@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Toybox 12A – Fork Progress</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="xp-counter">XP: <span id="xp-value">--</span></div>
+
+  <div id="top-left-controls">
+    <button onclick="goToMap()">🗺️ Progress Map</button>
+    <button onclick="saveAndExit()">💾 Save & Exit</button>
+  </div>
+
+  <h1>🧩 Fork Activated: Gamers Guild</h1>
+  <p>This is a test-state checkpoint for your forked path journey.</p>
+
+  <div id="progress-log">
+    <h3>Visited Toyboxes:</h3>
+    <ul id="visited-list"></ul>
+  </div>
+
+  <div id="nav-controls">
+    <button onclick="goBack()">⬅️ Back to 11A</button>
+    <button onclick="goHome()">🔁 Loop to Toybox 1</button>
+  </div>
+
+  <script src="../playerState.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>

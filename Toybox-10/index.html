@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mission Match</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="top-left-controls">
+    <button onclick="goToMap()">🗺️ Progress Map</button>
+    <button onclick="saveAndExit()">💾 Save & Exit</button>
+  </div>
+  <div id="xp-counter">
+    XP: <span id="xp-value">--</span>
+  </div>
+
+  <h1>🎯 Mission Match</h1>
+  <p>Each faction sees a problem. Each has a vision. Can you match their mission?</p>
+
+  <div id="grid">
+    <div class="quad" id="gamers" data-faction="gamers">
+      <h2>Gamers Guild</h2>
+      <ul>
+        <li>Problem: Energy, attention, and strategy are wasted in dead-end loops.</li>
+        <li>Solution: Make every move matter — on screen and off.</li>
+        <li>Vision: A world where gameplay drives real-world rewards and progress.</li>
+      </ul>
+      <div class="drop-zone" data-match="gamers"></div>
+    </div>
+
+    <div class="quad" id="bud" data-faction="bud">
+      <h2>Bud Brigade</h2>
+      <ul>
+        <li>Problem: We’ve been disconnected from what grows and heals.</li>
+        <li>Solution: Regeneration starts local — with soil, breath, and ritual.</li>
+        <li>Vision: Systems that mirror nature. And nurture us back.</li>
+      </ul>
+      <div class="drop-zone" data-match="bud"></div>
+    </div>
+
+    <div class="quad" id="crypto" data-faction="crypto">
+      <h2>Crypto Crew</h2>
+      <ul>
+        <li>Problem: Power gets hoarded. Tech gets gatekept.</li>
+        <li>Solution: Unlock tools that reward action — not access.</li>
+        <li>Vision: Borderless economies built on proof, not permission.</li>
+      </ul>
+      <div class="drop-zone" data-match="crypto"></div>
+    </div>
+
+    <div class="quad" id="defiant" data-faction="defiant">
+      <h2>Defiant Disruptors</h2>
+      <ul>
+        <li>Problem: Most systems are designed to dull the mind.</li>
+        <li>Solution: Use structure — not as control, but as a playground.</li>
+        <li>Vision: Local governance with global signal.</li>
+      </ul>
+      <div class="drop-zone" data-match="defiant"></div>
+    </div>
+  </div>
+
+  <div id="mission-container">
+    <p class="mission" draggable="true" data-mission="gamers">Build the bridge between digital play and real agency.</p>
+    <p class="mission" draggable="true" data-mission="bud">Reroot ourselves, together, in the wisdom of living things.</p>
+    <p class="mission" draggable="true" data-mission="crypto">Make tech invisible. Let people feel the value instead.</p>
+    <p class="mission" draggable="true" data-mission="defiant">Design new ways to decide, distribute, and defy.</p>
+  </div>
+
+  <div id="fork-choice" style="display: none;">
+    <h2>✅ Missions Matched! Which one will you explore first?</h2>
+    <div id="fork-buttons">
+      <button data-choice="GG">Gamers Guild</button>
+      <button data-choice="BB">Bud Brigade</button>
+      <button data-choice="CC">Crypto Crew</button>
+      <button data-choice="DD">Defiant Disruptors</button>
+    </div>
+  </div>
+
+  <script src="../playerState.js"></script>
+<script src="game.js"></script>
+
+</body>
+</html>

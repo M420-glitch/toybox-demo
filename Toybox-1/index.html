@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Water Cycle Toybox</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="../playerState.js"></script> <!-- ✅ Added for XP tracking -->
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+</head>
+<body>
+  <div id="top-left-controls">
+    <button onclick="goToMap()">🗺️ Progress Map</button>
+    <button onclick="saveAndExit()">💾 Save & Exit</button>
+    <button id="reset-button">Reset Game</button>
+  </div>
+  
+  <h1>🌞 Water Cycle Toybox 🌧️</h1>
+  <p>Drag the correct pieces into the scene to complete the water cycle.</p>
+
+  <div id="game-container">
+    <div id="game-area">
+      <!-- Fixed Elements -->
+      <img src="assets/water-cycle/sun.png" class="fixed sun" />
+      <img src="assets/water-cycle/cloud.png" class="fixed cloud cloud1" />
+      <img src="assets/water-cycle/cloud.png" class="fixed cloud cloud2" />
+      <img src="assets/water-cycle/lake.png" class="fixed lake lake1" />
+      <img src="assets/water-cycle/lake.png" class="fixed lake lake2" />
+    </div>
+
+    <div id="toolbox">
+      <p>Toolbox:</p>
+      <img id="evaporation" src="assets/water-cycle/evaporation.png" class="draggable" title="Evaporation" />
+      <img id="raindrops" src="assets/water-cycle/raindrops.png" class="draggable" title="Raindrops" />
+    </div>
+  </div>
+
+  <div id="xp-counter">
+    XP: <span id="xp-value">0</span>
+  </div>
+
+  <div id="completion-buttons" style="display: none;">
+    <button id="btn-continue">Continue</button>
+    <button id="btn-exit">Exit</button>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Blow Toybox</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>🌬 Blow Toybox</h1>
+  <p>Choose 4 things the wind can easily carry. Not everything was meant to stay.</p>
+
+  <div id="game-container">
+    <div id="game-area">
+      <img id="blow-cloud" src="assets/blow/blow-cloud.png" alt="Blowing Cloud" />
+      <div id="blow-dropzone">
+        <div class="blow-slot" data-slot="1"></div>
+        <div class="blow-slot" data-slot="2"></div>
+        <div class="blow-slot" data-slot="3"></div>
+        <div class="blow-slot" data-slot="4"></div>
+      </div>
+      <div id="ground-strip"></div>
+    </div>
+  </div>
+
+  <div id="toolbox">
+    <p>Toolbox:</p>
+    <img id="seeds" src="assets/blow/seeds.png" class="draggable" draggable="true" title="Seeds" />
+    <img id="fire" src="assets/blow/fire.png" class="draggable" draggable="true" title="Fire" />
+    <img id="whispers" src="assets/blow/whispers.png" class="draggable" draggable="true" title="Whispers" />
+    <img id="straw" src="assets/blow/straw.png" class="draggable" draggable="true" title="Straw" />
+    <img id="brick" src="assets/blow/brick.png" class="draggable" draggable="true" title="Brick" />
+    <img id="safe" src="assets/blow/safe.png" class="draggable" draggable="true" title="Safe" />
+    <img id="tank" src="assets/blow/tank.png" class="draggable" draggable="true" title="Tank" />
+    <img id="shark" src="assets/blow/shark.png" class="draggable" draggable="true" title="Shark" />
+  </div>
+
+  <div id="xp-counter">
+    XP: <span id="xp-value">--</span>
+  </div>
+
+  <div id="completion-buttons" style="display: none;">
+    <button id="btn-continue">Continue</button>
+    <button id="btn-exit">Exit</button>
+  </div>
+  <div id="top-left-controls">
+    <button onclick="goToMap()">🗺️ Progress Map</button>
+    <button onclick="saveAndExit()">💾 Save & Exit</button>
+  </div>
+  <div id="waterme-modal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <div class="me-me-row">
+        <img src="assets/blow/Water-Me-Me.png" />
+        <img src="assets/blow/Ground-Me-Me.png" class="locked" />
+        <img src="assets/blow/Light-Me-Me.png" class="locked" />
+        <img src="assets/blow/Blow-Me-Me.png" class="locked" />
+      </div>
+      <p><strong>🌊 You’ve been watered.</strong><br>
+        You’ve earned the <strong>Water Me Me</strong> token — your first mark of credibility.</p>
+        
+        <p>This is <strong>1 of 4</strong>. A seed doesn’t bloom alone.<br>
+        Together, these open the full path forward.</p>
+        
+        <p>Your XP is rising. But XP is just the surface.<br>
+        What grows from it? That depends on who you become.</p>
+        
+        <p><strong>Register to find out what your XP unlocks.</strong></p>
+        
+        <button id="btn-register">Register Now</button>
+        <button id="btn-skip">Continue Without</button>
+      </div>
+    </div>
+  </div>
+
+  <form id="force-form" action="../Toybox-5/index.html" method="get" style="display: none;"></form>
+
+<script src="config.js"></script>
+<script src="../playerState.js"></script>
+<script src="game.js"></script>
+
+
+<script>
+  document.getElementById('btn-skip').addEventListener('click', () => {
+    console.log('🔥 SUBMITTING FORM REDIRECT 🔥');
+    document.getElementById('force-form').submit();
+  });
+
+  document.getElementById('btn-register').addEventListener('click', () => {
+    window.location.href = '../Toybox-4/WaterMeReveal/index.html';
+  });
+</script>

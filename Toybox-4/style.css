@@ -1,0 +1,220 @@
+h1, p {
+  text-align: center;
+}
+
+#game-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  margin-top: 20px;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#game-area {
+  position: relative;
+  width: 600px;
+  height: 500px;
+  background: #d6faff;
+  border: 2px dashed #555;
+  overflow: hidden;
+}
+
+#blow-dropzone {
+  position: absolute;
+  bottom: 35%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 20px;
+  z-index: 5;
+}
+
+.blow-slot {
+  width: 100px;
+  height: 100px;
+  border: 2px dashed #888;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+#ground-strip {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 25%;
+  background: url('assets/blow/ground.png') repeat-x bottom;
+  background-size: contain;
+  z-index: 1;
+}
+
+#toolbox {
+  position: absolute;
+  top: 100px;
+  right: 50px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding: 10px;
+  background: #e0f7fa;
+  border-left: 2px solid #444;
+  min-width: 180px;
+  z-index: 10;
+  justify-items: center;
+}
+
+#toolbox img {
+  width: 80px;
+  cursor: grab;
+}
+
+#game-area.complete {
+  box-shadow: 0 0 20px 8px #28a745;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+#xp-counter {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-family: monospace;
+  font-size: 20px;
+  color: #333;
+  background: #dfffcf;
+  padding: 6px 12px;
+  border: 2px solid #6bb96b;
+  border-radius: 6px;
+  z-index: 999;
+}
+
+.xp-flash {
+  color: #28a745;
+  font-weight: bold;
+  animation: flash 0.4s ease-in-out;
+}
+
+@keyframes flash {
+  0% { transform: scale(1.1); color: #28a745; }
+  50% { transform: scale(1.3); color: #4caf50; }
+  100% { transform: scale(1); color: #28a745; }
+}
+
+#completion-buttons {
+  margin-top: 20px;
+}
+
+#completion-buttons button {
+  font-family: monospace;
+  font-size: 16px;
+  padding: 8px 16px;
+  margin: 0 10px;
+  background-color: #444;
+  color: #fff;
+  border: 2px solid #999;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+#completion-buttons button:hover {
+  background-color: #222;
+}
+.blow-slot {
+  z-index: 20;
+}
+#toolbox {
+  z-index: 10;
+}
+
+#blow-cloud {
+  position: absolute;
+  top: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 220px; /* twice the width of your 100px drop slots + spacing */
+  z-index: 2;
+  pointer-events: none;
+}
+.modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  padding: 30px;
+  border: 3px dashed #333;
+  text-align: center;
+  max-width: 500px;
+  border-radius: 10px;
+}
+
+.modal-content img {
+  width: 70px;
+  margin: 0 10px;
+}
+
+.modal-content img.locked {
+  opacity: 0.3;
+  filter: grayscale(100%);
+}
+
+.modal-buttons {
+  margin-top: 20px;
+}
+
+.modal-buttons button {
+  font-family: monospace;
+  font-size: 16px;
+  padding: 10px 18px;
+  margin: 0 10px;
+  background-color: #444;
+  color: #fff;
+  border: 2px solid #999;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.modal-buttons button:hover {
+  background-color: #222;
+}
+
+.me-me-row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+#top-left-controls button {
+  background: #f8f8b8; /* Pale yellow background */
+  color: #222; /* Dark text for contrast */
+  border: 2px solid #f8f8b8; /* Matching pale yellow border */
+  padding: 6px 10px;
+  font-family: monospace;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+#top-left-controls button:hover {
+  background: #f8f8b8; /* Maintain pale yellow on hover */
+  color: #111; /* Darker text on hover */
+}
+#top-left-controls {
+  position: absolute; /* Make sure it's placed correctly */
+  top: 20px;
+  left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1000;
+}

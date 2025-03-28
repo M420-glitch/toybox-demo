@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Light Toybox</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="top-left-controls">
+    <button onclick="goToMap()">🗺️ Progress Map</button>
+    <button onclick="saveAndExit()">💾 Save & Exit</button>
+  </div>
+  <h1>🌱 Light Toybox</h1>
+  <p>Generate light for the community. Pick 3 essentials from the toolbox. Not everything creates light.</p>
+
+<div id="game-container">
+  <div id="game-area">
+    <div id="light-dropzone">
+  <div class="light-slot" data-slot="1"></div>
+  <div class="arrow">➡️</div>
+  <div class="light-slot" data-slot="2"></div>
+  <div class="arrow">➡️</div>
+  <div class="light-slot" data-slot="3"></div>
+</div>
+
+    <div id="ground-strip"></div>
+  </div>
+</div>
+
+<div id="toolbox">
+  <p>Toolbox:</p>
+  <img id="sun" src="assets/light/sun.png" class="draggable" draggable="true" title="Sunlight" />
+  <img id="converter" src="assets/light/converter.png" class="draggable" draggable="true" title="Converter" />
+  <img id="light-bulb" src="assets/light/light-bulb.png" class="draggable" draggable="true" title="Light Bulb" />
+  <img id="pizza" src="assets/light/pizza.png" class="draggable" draggable="true" title="Pizza" />
+  <img id="cardboard-box" src="assets/light/cardboard-box.png" class="draggable" draggable="true" title="Cardboard Box" />
+</div>
+</div>
+
+
+  <div id="xp-counter">
+    XP: <span id="xp-value">--</span>
+  </div>
+
+  <div id="completion-buttons" style="display: none;">
+    <button id="btn-continue">Continue</button>
+    <button id="btn-exit">Exit</button>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="../playerState.js"></script>
+<script src="game.js"></script>
+
+</body>
+</html>

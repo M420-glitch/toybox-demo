@@ -1,0 +1,71 @@
+body {
+  font-family: monospace;
+  background: #111;
+  color: #fff;
+  padding: 30px;
+  text-align: center;
+}
+
+#xp-counter {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  font-size: 18px;
+  background: #222;
+  color: #0ff;
+  padding: 8px 12px;
+  border: 2px solid #0ff;
+  border-radius: 5px;
+  z-index: 1000;
+}
+
+#top-left-controls {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1000;
+}
+
+#top-left-controls button {
+  background: #222;
+  color: #0ff;
+  border: 2px solid #0ff;
+  padding: 6px 10px;
+  font-family: monospace;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+#top-left-controls button:hover {
+  background: #0ff;
+  color: #111;
+}
+
+#progress-log {
+  margin-top: 40px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  font-size: 14px;
+}
+
+#nav-controls {
+  margin-top: 40px;
+}
+
+#nav-controls button {
+  margin: 0 10px;
+  padding: 10px 20px;
+  font-family: monospace;
+  background: #0ff;
+  border: none;
+  color: #111;
+  border-radius: 4px;
+  cursor: pointer;
+}

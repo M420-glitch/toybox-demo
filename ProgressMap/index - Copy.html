@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>GVA Progress Map</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>🌿 GVA Progress Map</h1>
+  <div id="progress-bar">
+    <!-- 1 to 10 = 50 XP | 11+ = forks (5 each) -->
+    <button data-xp="0" onclick="goTo('Toybox-1')">1</button>
+    <button data-xp="5" onclick="goTo('Toybox-2')">2</button>
+    <button data-xp="10" onclick="goTo('Toybox-3')">3</button>
+    <button data-xp="15" onclick="goTo('Toybox-4')">4</button>
+    <button data-xp="20" onclick="goTo('Toybox-5')">5</button>
+    <button data-xp="25" onclick="goTo('Toybox-6')">6</button>
+    <button data-xp="30" onclick="goTo('Toybox-7')">7</button>
+    <button data-xp="35" onclick="goTo('Toybox-8')">8</button>
+    <button data-xp="40" onclick="goTo('Toybox-9')">9</button>
+    <button data-xp="45" onclick="goTo('Toybox-10')">10</button>
+    
+    <div class="forks">
+      <button data-xp="50" onclick="goTo('Toybox-11A')">11A</button>
+      <button data-xp="50" onclick="goTo('Toybox-11B')">11B</button>
+      <button data-xp="50" onclick="goTo('Toybox-11C')">11C</button>
+      <button data-xp="50" onclick="goTo('Toybox-11D')">11D</button>
+    </div>
+
+    <div class="forks">
+      <button data-xp="55" onclick="goTo('Toybox-12A')">12A</button>
+      <button data-xp="55" onclick="goTo('Toybox-12B')">12B</button>
+    </div>
+  </div>
+
+  <p id="xp-display">Current XP: --</p>
+
+  <script src="../playerState.js"></script>
+  <script src="map.js"></script>
+</body>
+</html>

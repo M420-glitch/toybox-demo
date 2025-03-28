@@ -1,0 +1,133 @@
+body {
+  font-family: monospace;
+  background: #f0f0f0;
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 26px;
+  margin-bottom: 10px;
+}
+
+#grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 16px;
+  max-width: 1000px;
+  margin: 30px auto 20px;
+}
+
+.quad {
+  background: #fff;
+  border: 2px dashed #444;
+  padding: 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  text-align: left;
+  min-height: 180px;
+}
+
+.quad h2 {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+ul {
+  padding-left: 18px;
+  margin: 0;
+}
+
+.drop-zone {
+  margin-top: 12px;
+  padding: 8px;
+  min-height: 40px;
+  border: 2px dashed #999;
+  border-radius: 6px;
+  background: #f9f9f9;
+  font-style: italic;
+  text-align: center;
+}
+
+.drop-zone.filled {
+  background-color: #d6faff;
+  font-style: normal;
+}
+
+#mission-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;               /* reduced gap between rows */
+  max-width: 800px;
+  margin: -20px auto 20px; /* reduced bottom margin */
+  position: relative;
+  z-index: 5;
+}
+
+
+.mission {
+  background: #222;
+  color: white;
+  padding: 8px 10px;      /* was 10px 12px */
+  font-size: 14px;
+  border-radius: 6px;
+  cursor: grab;
+  text-align: center;
+}
+
+
+#fork-choice {
+  margin-top: 30px;
+}
+
+#fork-buttons button {
+  font-family: monospace;
+  font-size: 16px;
+  padding: 10px 18px;
+  margin: 0 10px;
+  background-color: #444;
+  color: #fff;
+  border: 2px solid #999;
+  border-radius: 4px;
+  cursor: pointer;
+}
+#xp-counter {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-family: monospace;
+  font-size: 20px;
+  color: #333;
+  background: #dfffcf;
+  padding: 6px 12px;
+  border: 2px solid #6bb96b;
+  border-radius: 6px;
+  z-index: 999;
+}
+#top-left-controls button {
+  background: #f8f8b8; /* Pale yellow background */
+  color: #222; /* Dark text for contrast */
+  border: 2px solid #f8f8b8; /* Matching pale yellow border */
+  padding: 6px 10px;
+  font-family: monospace;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+#top-left-controls button:hover {
+  background: #f8f8b8; /* Maintain pale yellow on hover */
+  color: #111; /* Darker text on hover */
+}
+#top-left-controls {
+  position: absolute; /* Make sure it's placed correctly */
+  top: 20px;
+  left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1000;
+}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+
+  <meta charset="UTF-8" />
+  <title>Toybox 11D – Defiant Disruptors</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="top-left-controls">
+    <button onclick="goToMap()">🗺️ Progress Map</button>
+    <button onclick="saveAndExit()">💾 Save & Exit</button>
+  </div>
+
+  <div id="xp-counter">XP: <span id="xp-value">--</span></div>
+  <h1>💥 The System-Breakers</h1>
+<p class="subtitle">These aren’t chosen ones. They’re system checks. Built to resist. Wired to reset.</p>
+
+
+  <div id="game-container">
+    <div id="game-grid">
+      <div class="character" data-id="Gaia"><img src="assets/characters/Gaia.png" alt="Gaia" /></div>
+      <div class="character" data-id="Max"><img src="assets/characters/Max.png" alt="Max" /></div>
+      <div class="character" data-id="Leo"><img src="assets/characters/Leo.png" alt="Leo" /></div>
+      <div class="character" data-id="Belle"><img src="assets/characters/Belle.png" alt="Belle" /></div>
+      <div class="character" data-id="Luna"><img src="assets/characters/Luna.png" alt="Luna" /></div>
+      <div class="character" data-id="Zara"><img src="assets/characters/Zara.png" alt="Zara" /></div>
+      <div class="character" data-id="Rex"><img src="assets/characters/Rex.png" alt="Rex" /></div>
+    </div>
+
+    <div id="toolbox">
+      <div class="label" draggable="true" data-label="Gaia">Bridge</div>
+      <div class="label" draggable="true" data-label="Max">Food</div>
+      <div class="label" draggable="true" data-label="Leo">Economy</div>
+      <div class="label" draggable="true" data-label="Belle">Health</div>
+      <div class="label" draggable="true" data-label="Luna">Knowledge</div>
+      <div class="label" draggable="true" data-label="Zara">Consciousness</div>
+      <div class="label" draggable="true" data-label="Rex">Energy</div>
+    </div>
+  </div>
+
+  <div id="callout-box">
+    <h3>🔥 BURN THE SCRIPT</h3>
+    <p>
+      They weren’t made to lead. They were made to disrupt.<br>
+      Each one a glitch in the system, a crack in the wall, a scream in the silence.<br>
+      You don’t follow them. You unleash them.<br><br>
+      These aren't ideals. These are weapons. Use them well.
+    </p>
+  </div>
+
+  <div id="popup-card"></div>
+
+  <div id="completion" style="display: none;">
+    <h2>✅ All labels matched. XP +5</h2>
+    <a href="../Toybox-12D/index.html"><button>Continue</button></a>
+  </div>
+
+  <script src="../playerState.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>

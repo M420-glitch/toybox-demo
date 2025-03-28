@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lift</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="top-left-controls">
+    <button onclick="goToMap()">🗺️ Progress Map</button>
+    <button onclick="saveAndExit()">💾 Save & Exit</button>
+  </div>
+  <h1>🎈 Lift</h1>
+  <p>The four tokens are not the end. They are the beginning.<br>Look what becomes possible when we rise, together.</p>
+
+  <div id="xp-counter">
+    XP: <span id="xp-value">--</span>
+  </div>
+
+  <div id="layout">
+    <!-- Token strip on the left -->
+    <div id="token-column">
+      <div class="token">
+        <img src="assets/lift/Water-Me-Me.png" />
+        <span>Water Me Me</span>
+      </div>
+      <div class="token">
+        <img src="assets/lift/Ground-Me-Me.png" />
+        <span>Ground Me Me</span>
+      </div>
+      <div class="token">
+        <img src="assets/lift/Light-Me-Me.png" />
+        <span>Light Me Me</span>
+      </div>
+      <div class="token">
+        <img src="assets/lift/Blow-Me-Me.png" />
+        <span>Blow Me Me</span>
+      </div>
+    </div>
+
+    <!-- Game area in the middle -->
+    <div id="game-area">
+      <div id="circle">
+        <div id="circle-text"></div>
+      </div>
+      <button id="inflate-btn">Tap to Lift</button>
+      <div id="completion-buttons" style="display: none;">
+        <button id="btn-continue">Continue</button>
+      </div>
+    </div>
+
+    <!-- Reveals on the right -->
+    <div id="reveal-column">
+      <!-- Lines will appear here -->
+    </div>
+  </div>
+
+  <script src="../playerState.js"></script>
+<script src="game.js"></script>
+
+  <script>
+    document.getElementById('btn-continue').addEventListener('click', () => {
+      window.location.href = '../Toybox-6/index.html';
+    });
+  </script>
+</body>
+</html>

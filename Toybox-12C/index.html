@@ -1,0 +1,147 @@
+import ace_tools as tools; tools.create_text_file("Toybox-12B-Test-DragDrop.html", """
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Toybox 12B – Mobile DragDrop Test</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: monospace;
+      background: #111;
+      color: #fff;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+    }
+
+    #xp-counter {
+      position: fixed;
+      top: 10px;
+      right: 20px;
+      font-size: 18px;
+      color: #4caf50;
+      background: #222;
+      padding: 6px 10px;
+      border-radius: 4px;
+      border: 2px solid #4caf50;
+    }
+
+    .sortable-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+      margin-top: 40px;
+    }
+
+    .drop-zone, .toolbox {
+      background: #1a1a1a;
+      border: 2px dashed #4caf50;
+      padding: 20px;
+      border-radius: 6px;
+      width: 200px;
+      min-height: 250px;
+    }
+
+    .item {
+      padding: 10px;
+      margin: 10px 0;
+      background: #222;
+      border: 1px dashed #4caf50;
+      color: white;
+      border-radius: 4px;
+      cursor: grab;
+    }
+
+    #completion-buttons {
+      margin-top: 30px;
+    }
+
+    #completion-buttons button {
+      font-family: monospace;
+      margin: 5px;
+      background: #4caf50;
+      border: none;
+      color: black;
+      padding: 10px 20px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div id="top-left-controls">
+    <button onclick="goToMap()">🗺️ Progress Map</button>
+    <button onclick="saveAndExit()">💾 Save & Exit</button>
+  </div>
+
+  <div id="xp-counter">XP: <span id="xp-value">--</span></div>
+  <h1>🌿 Toybox 12B – SortableJS Drag Test</h1>
+  <p>Test mobile-friendly drag-and-drop. This is your touch-friendly sandbox.</p>
+
+  <div class="sortable-container">
+    <div id="toolbox" class="toolbox">
+      <div class="item">Seed</div>
+      <div class="item">Water</div>
+      <div class="item">Sunlight</div>
+    </div>
+    <div id="dropzone" class="drop-zone">
+      <p>Drop Here</p>
+    </div>
+  </div>
+
+  <div id="completion-buttons">
+    <button onclick="addXP(5)">+5 XP</button>
+    <button onclick="addXP(10)">+10 XP</button>
+    <button onclick="addXP(20)">+20 XP</button>
+    <button onclick="goToPledge()">Return to Ground-Me Pledge</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+  <script src="../playerState.js"></script>
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      playerState.load();
+      document.getElementById("xp-value").textContent = playerState.getXP();
+
+      Sortable.create(document.getElementById("toolbox"), {
+        group: "shared",
+        animation: 150
+      });
+
+      Sortable.create(document.getElementById("dropzone"), {
+        group: "shared",
+        animation: 150
+      });
+    });
+
+    function addXP(val) {
+      const xpEl = document.getElementById("xp-value");
+      let currentXP = playerState.getXP();
+      currentXP += val;
+      playerState.setXP(currentXP);
+      xpEl.textContent = currentXP;
+    }
+
+    function goToMap() {
+      window.location.href = "../ProgressMap/index.html";
+    }
+
+    function saveAndExit() {
+      playerState.save();
+      window.location.href = "../ExitScreen/index.html";
+    }
+
+    function goToPledge() {
+      window.location.href = "../toybox-2/index.html";
+    }
+  </script>
+</body>
+</html>
+""", "text/html")

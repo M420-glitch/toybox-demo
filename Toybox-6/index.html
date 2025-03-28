@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Choose Your Path</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="top-left-controls">
+    <button onclick="goToMap()">🗺️ Progress Map</button>
+    <button onclick="saveAndExit()">💾 Save & Exit</button>
+  </div>
+  <h1>🧭 Choose Your Path</h1>
+  <p>Answer 9 quick questions. Each choice tells us something about how you move through the world.</p>
+
+  <div id="xp-counter">
+    XP: <span id="xp-value">--</span>
+  </div>
+
+  <div id="quiz-box">
+    <div id="question-count">Question 1 of 9</div>
+    <div id="question-text">🧘 Train daily → 🏃 Take shortcuts → 💉 Inject results</div>
+    <div id="answer-buttons">
+      <button class="answer" data-choice="A">🧘</button>
+      <button class="answer" data-choice="B">🏃</button>
+      <button class="answer" data-choice="C">💉</button>
+    </div>
+  </div>
+
+  <div id="result-box" style="display: none;">
+    <h2 id="result-title">🌊 Your Pattern Emerges</h2>
+    <p id="result-text"></p>
+    <button id="restart">Start Again</button>
+    <div id="completion-buttons" style="margin-top: 20px; display: none;">
+      <button id="btn-continue">Continue</button>
+    </div>
+  </div>
+
+  <script src="../playerState.js"></script>
+<script src="game.js"></script>
+
+  <script>
+    document.getElementById('btn-continue').addEventListener('click', () => {
+      window.location.href = '../Toybox-7/index.html';
+    });
+  </script>
+</body>
+</html>

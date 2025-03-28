@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Promise Box</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="../playerState.js"></script> <!-- Moved to head, loaded early -->
+</head>
+<body>
+  <div id="top-left-controls">
+    <button onclick="goToMap()">🗺️ Progress Map</button>
+    <button onclick="saveAndExit()">💾 Save & Exit</button>
+  </div>
+
+  <h1>🧰 The Promise Box</h1>
+  <p>Click the box to receive what you’ve earned. Or haven’t.</p>
+
+  <div id="xp-counter">
+    XP: <span id="xp-value">--</span>
+  </div>
+
+  <div id="game-container">
+    <div id="game-area">
+      <img id="promise-box" src="assets/promise-box/promise-box.png" alt="Promise Box" />
+      <div id="message-bubble"></div>
+    </div>
+  </div>
+
+  <div id="message-count">Messages left: <span id="remaining">9</span></div>
+
+  <div id="completion-buttons" style="display: none;">
+    <button id="btn-retry">Try Again</button>
+    <button id="btn-continue">Continue</button>
+  </div>
+
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      playerState.load();
+      document.getElementById("xp-value").textContent = playerState.getXP();
+
+      const messages = [
+        "You already know the truth. You’re just scared to act on it.",
+        "Not everything lost wants to be found.",
+        "This isn’t a game. Or maybe it is.",
+        "Every whisper you ignored is now watching.",
+        "The postman doesn’t knock. He tests.",
+        "Truth doesn’t care if you believe in it.",
+        "Crack the system? Or crack yourself first?",
+        "Web3 was never the endgame. Just the first fork.",
+        "Some truths are shaped like memes.",
+        "You brought a flatscreen to a soil fight.",
+        "The chest wasn’t locked. You were.",
+        "You are not the user. You are the code.",
+        "What you laugh at might be your realest instinct.",
+        "There are no reruns. Only deeper layers.",
+        "404: Morality not found.",
+        "System override detected...",
+        "[loop detected... you’ve been here before]",
+        "[transmission ends]",
+        "Nothing here. Try again. Or don’t.",
+        "If you wait for permission, you’ve already lost.",
+        "The treasure was never the box. It was the click."
+      ];
+
+      let shownMessages = [];
+      let remaining = 9;
+
+      const box = document.getElementById('promise-box');
+      const bubble = document.getElementById('message-bubble');
+      const countEl = document.getElementById('remaining');
+      const buttons = document.getElementById('completion-buttons');
+      const xpEl = document.getElementById('xp-value');
+
+      box.addEventListener('click', () => {
+        if (remaining <= 0) return;
+
+        let next;
+        do {
+          next = messages[Math.floor(Math.random() * messages.length)];
+        } while (shownMessages.includes(next) && shownMessages.length < messages.length);
+
+        shownMessages.push(next);
+        bubble.textContent = next;
+        bubble.style.display = 'block';
+
+        remaining--;
+        countEl.textContent = remaining;
+
+        if (remaining === 0) {
+          buttons.style.display = 'block';
+
+          if (!window._xpAdded) {
+            window._xpAdded = true;
+            let currentXP = playerState.getXP();
+            currentXP += 5;
+            playerState.setXP(currentXP);
+            xpEl.textContent = currentXP;
+
+            xpEl.classList.add('xp-flash');
+            setTimeout(() => xpEl.classList.remove('xp-flash'), 400);
+          }
+        }
+      });
+
+      document.getElementById('btn-retry').addEventListener('click', () => {
+        remaining = 9;
+        shownMessages = [];
+        countEl.textContent = remaining;
+        bubble.style.display = 'none';
+        buttons.style.display = 'none';
+        window._xpAdded = false;
+      });
+
+      document.getElementById('btn-continue').addEventListener('click', () => {
+        window.location.href = '../Toybox-9/index.html';
+      });
+    });
+
+    function goToMap() {
+      window.location.href = "../ProgressMap/index.html";
+    }
+
+    function saveAndExit() {
+      playerState.save();
+      window.location.href = "../ExitScreen/index.html";
+    }
+  </script>
+</body>
+</html>

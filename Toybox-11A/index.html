@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Toybox 11A – Gamers Guild</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+   <div id="top-left-controls">
+  <button onclick="goToMap()">🗺️ Progress Map</button>
+  <button onclick="saveAndExit()">💾 Save & Exit</button>
+</div>
+
+  <div id="xp-counter">XP: <span id="xp-value">--</span></div>
+  <h1>🎮 The Legends Await</h1>
+<p class="subtitle">Unlock the playable loadout. Every legend is a mechanic. Every mechanic is a weapon.</p>
+
+
+  <div id="game-container">
+    <div id="game-grid">
+      <div class="character" data-id="Gaia"><img src="assets/characters/Gaia.png" alt="Gaia" /></div>
+      <div class="character" data-id="Max"><img src="assets/characters/Max.png" alt="Max" /></div>
+      <div class="character" data-id="Leo"><img src="assets/characters/Leo.png" alt="Leo" /></div>
+      <div class="character" data-id="Belle"><img src="assets/characters/Belle.png" alt="Belle" /></div>
+      <div class="character" data-id="Luna"><img src="assets/characters/Luna.png" alt="Luna" /></div>
+      <div class="character" data-id="Zara"><img src="assets/characters/Zara.png" alt="Zara" /></div>
+      <div class="character" data-id="Rex"><img src="assets/characters/Rex.png" alt="Rex" /></div>
+    </div>
+
+    <div id="toolbox">
+      <div class="label" draggable="true" data-label="Gaia">Bridge</div>
+      <div class="label" draggable="true" data-label="Max">Food</div>
+      <div class="label" draggable="true" data-label="Leo">Economy</div>
+      <div class="label" draggable="true" data-label="Belle">Health</div>
+      <div class="label" draggable="true" data-label="Luna">Knowledge</div>
+      <div class="label" draggable="true" data-label="Zara">Consciousness</div>
+      <div class="label" draggable="true" data-label="Rex">Energy</div>
+    </div>
+  </div>
+<div id="callout-box">
+  <h3>⚔️ THE WAR CRY</h3>
+  <p>This isn’t a game. Not just.<br>
+     We’re building the House of Fun for the broken generation—where memes teach, pixels pay, and shadows speak.<br>
+     We blend chaos with code, toys with truth, and every mechanic is rigged... in your favour.<br>
+     Web2. Web3. IRL. No more borders.<br>
+     Just missions worth remembering.<br>
+     And legends you actually get to become.<br><br>
+     <em>We don’t sell dreams. We weaponize them.</em>
+  </p>
+</div>
+  <div id="popup-card"></div>
+
+  <div id="completion" style="display: none;">
+    <h2>✅ All labels matched. XP +5</h2>
+    <a href="../Toybox-12A/index.html"><button>Continue</button></a>
+  </div>
+
+  <script src="../playerState.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Four Forces</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="top-left-controls">
+    <button onclick="goToMap()">🗺️ Progress Map</button>
+    <button onclick="saveAndExit()">💾 Save & Exit</button>
+  </div>
+  <h1>🧰 The Promise Box</h1>
+  <p>These four energies help grow something better. Tap each one. See what’s possible.</p>
+
+  <div id="xp-counter">
+    XP: <span id="xp-value">--</span>
+  </div>
+
+  <div id="layout">
+    <div id="game-area">
+      <img id="gamers" class="faction" src="assets/four-factions/gamers-guild.png" />
+<img id="bud" class="faction" src="assets/four-factions/bud-brigade.png" />
+<img id="crypto" class="faction" src="assets/four-factions/crypto-crew.png" />
+<img id="defiant" class="faction" src="assets/four-factions/defiant-disruptors.png" />
+
+    </div>
+
+    <div id="reveal-area">
+      <p id="gamers-text"></p>
+      <p id="bud-text"></p>
+      <p id="crypto-text"></p>
+      <p id="defiant-text"></p>
+    </div>
+  </div>
+
+  <div id="completion-buttons" style="display: none;">
+    <button id="btn-continue">Continue</button>
+  </div>
+
+  <div id="groundme-modal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <div class="me-me-row">
+        <div class="me-me-row">
+  <div class="me-me-row">
+  <img src="assets/four-factions/Water-Me-Me.png" />
+  <img src="assets/four-factions/Ground-Me-Me.png" />
+  <img src="assets/four-factions/Light-Me-Me.png" class="locked" />
+  <img src="assets/four-factions/Blow-Me-Me.png" class="locked" />
+</div>
+
+</div>
+
+      </div>
+      <p><strong>🪨 You’ve rooted.</strong><br>
+        You’ve earned the <strong>Ground Me Me</strong> token — your second mark of credibility.</p>
+        
+        <p>This is <strong>2 of 4</strong>. They don’t unlock access.<br>
+        They prove you’ve stood for something.</p>
+        
+        <p>You don’t buy this.<br>
+        You don’t sell this.<br>
+        You don’t pass this on.</p>
+        
+        <p>Your XP grows — but that’s just the surface.<br>
+        Credibility is earned. Held. Recognised by the system itself.</p>
+        
+        <p><strong>Register to link your XP and be recognised.</strong></p>
+        
+      <div class="modal-buttons">
+        <button id="btn-register">Register Now</button>
+        <button id="btn-skip">Continue Without</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../playerState.js"></script>
+<script src="game.js"></script>
+
+</body>
+</html>
+

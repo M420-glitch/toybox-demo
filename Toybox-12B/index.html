@@ -1,0 +1,43 @@
+html_content = """<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Toybox 12B – Close the Loop</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="top-left-controls">
+    <button onclick="goToMap()">🗺️ Progress Map</button>
+    <button onclick="saveAndExit()">💾 Save & Exit</button>
+  </div>
+
+  <div id="xp-counter">XP: <span id="xp-value">--</span></div>
+  <h1>🌱 Close the Loop</h1>
+  <p class="subtitle">Nature doesn’t waste. It recycles. It regenerates. Can you?</p>
+
+  <div id="game-container">
+    <div id="dropzone">
+      <p>Drag the right items here to complete the nutrient cycle:</p>
+      <div class="drop-slot" data-accept="Compost"></div>
+      <div class="drop-slot" data-accept="Worms"></div>
+      <div class="drop-slot" data-accept="Cover Crops"></div>
+    </div>
+
+    <div id="toolbox">
+      <div class="draggable" draggable="true" data-id="Compost">Compost</div>
+      <div class="draggable" draggable="true" data-id="Plastic Bag">Plastic Bag</div>
+      <div class="draggable" draggable="true" data-id="Worms">Worms</div>
+      <div class="draggable" draggable="true" data-id="Cover Crops">Cover Crops</div>
+      <div class="draggable" draggable="true" data-id="Oil Can">Oil Can</div>
+    </div>
+  </div>
+
+  <div id="completion-buttons" style="display: none;">
+    <h2>✅ Cycle Complete. XP +5</h2>
+    <a href="../Toybox-1/index.html"><button>Loop Back</button></a>
+  </div>
+
+  <script src="../playerState.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
