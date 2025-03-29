@@ -108,7 +108,7 @@ function resetSlots() {
 
 // Buttons
 document.getElementById('btn-continue').addEventListener('click', () => {
-  window.location.href = '../toybox-4/index.html';
+  window.location.href = '../Toybox-4/index.html';
 });
 
 

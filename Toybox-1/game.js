@@ -106,7 +106,7 @@ document.getElementById('game-area').addEventListener('drop', e => {
 });
 
 document.getElementById('btn-continue').addEventListener('click', () => {
-  window.location.href = '../toybox-2/index.html';
+  window.location.href = '../Toybox-2/index.html';
 });
 
 document.getElementById('btn-exit').addEventListener('click', () => {

@@ -102,7 +102,7 @@ setTimeout(() => {
 }
 
 document.getElementById('btn-continue').addEventListener('click', () => {
-  window.location.href = '../toybox-3/index.html'; 
+  window.location.href = '../Toybox-3/index.html'; 
 });
 
 document.getElementById('btn-exit').addEventListener('click', () => {
