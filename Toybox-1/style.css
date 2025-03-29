@@ -84,7 +84,6 @@ h1 {
   margin: 10px 0;
   cursor: grab;
   width: 80px;
-  touch-action: none; /* Prevent default touch behavior */
 }
 
 #game-area.complete {
@@ -155,11 +154,5 @@ h1 {
 #top-left-controls button:hover {
   background: #f8f8b8; /* Maintain pale yellow on hover */
   color: #111; /* Darker text on hover */
-}
-
-.sortable-ghost {
-  opacity: 0.5;
-  background: #ccc;
-  border: 2px dashed #999;
 }
 

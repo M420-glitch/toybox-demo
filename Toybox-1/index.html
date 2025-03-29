@@ -5,13 +5,11 @@
   <title>Water Cycle Toybox</title>
   <link rel="stylesheet" href="style.css" />
   <script src="../playerState.js"></script> <!-- ✅ Added for XP tracking -->
-  <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
 </head>
 <body>
   <div id="top-left-controls">
     <button onclick="goToMap()">🗺️ Progress Map</button>
     <button onclick="saveAndExit()">💾 Save & Exit</button>
-    <button id="reset-button">Reset Game</button>
   </div>
   
   <h1>🌞 Water Cycle Toybox 🌧️</h1>
@@ -29,8 +27,8 @@
 
     <div id="toolbox">
       <p>Toolbox:</p>
-      <img id="evaporation" src="assets/water-cycle/evaporation.png" class="draggable" title="Evaporation" />
-      <img id="raindrops" src="assets/water-cycle/raindrops.png" class="draggable" title="Raindrops" />
+      <img id="evaporation" src="assets/water-cycle/evaporation.png" class="draggable" draggable="true" title="Evaporation" />
+      <img id="raindrops" src="assets/water-cycle/raindrops.png" class="draggable" draggable="true" title="Raindrops" />
     </div>
   </div>
 
