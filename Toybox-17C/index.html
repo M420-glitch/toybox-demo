@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Toybox 13C – The Mirror Machine</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="top-left-controls">
+    <button onclick="goToMap()">🗺️ Progress Map</button>
+    <button onclick="saveAndExit()">💾 Save & Exit</button>
+  </div>
+
+  <div id="xp-counter">XP: <span id="xp-value">--</span></div>
+
+  <h1>🧩 The Mirror Machine – Crypto Crew</h1>
+  <p class="subtitle">Corrupt ledgers forget. Yours remembers. Mirror the intent. Rebuild the system.</p>
+
+  <div id="mirror-container">
+    <div class="column">
+      <h3>🔒 Broken Loop</h3>
+      <div class="mirror-box" title="Assume trust without proof.">Trust</div>
+      <div class="mirror-box" title="Power held by few.">Central Hold</div>
+      <div class="mirror-box" title="Use vulnerabilities for gain.">Exploit</div>
+      <div class="mirror-box" title="Silence dissent.">Censorship</div>
+    </div>
+
+    <div class="column">
+      <h3>🔓 Regenerative Loop</h3>
+      <div class="drop-box" data-answer="Consensus Clock" title="Time and truth via distributed agreement."></div>
+      <div class="drop-box" data-answer="Mirror Protocol" title="Actions reflect transparently."></div>
+      <div class="drop-box" data-answer="Truth Fork" title="Fork to reveal censored truth."></div>
+      <div class="drop-box" data-answer="Node Memory" title="Truth lives everywhere."></div>
+    </div>
+  </div>
+
+  <div id="toolbox">
+    <div class="tool" draggable="true" data-label="Consensus Clock" title="Time and truth via distributed agreement.">Consensus Clock</div>
+    <div class="tool" draggable="true" data-label="Mirror Protocol" title="Actions reflect transparently.">Mirror Protocol</div>
+    <div class="tool" draggable="true" data-label="Truth Fork" title="Fork to reveal censored truth.">Truth Fork</div>
+    <div class="tool" draggable="true" data-label="Node Memory" title="Truth lives everywhere.">Node Memory</div>
+  </div>
+
+  <div id="completion" style="display: none;">
+    <h2>✅ Ledger repaired. XP +5</h2>
+    <a href="../Toybox-14C/index.html"><button>Continue</button></a>
+  </div>
+
+  <div id="callout-box">
+    <h3>🔵 CTPCTW SIGNAL</h3>
+    <p>
+      This is what happens when trust becomes trap.<br>
+      Mirror it. Fork it. Write it back.<br>
+      What the system forgets, you remember.
+    </p>
+  </div>
+
+  <script src="../playerState.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>

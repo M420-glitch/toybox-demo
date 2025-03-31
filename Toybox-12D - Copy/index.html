@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+  <meta charset="UTF-8" />
+  <title>Toybox 12D – Rewrite the Script</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="top-left-controls">
+    <button onclick="goToMap()">🗺️ Progress Map</button>
+    <button onclick="saveAndExit()">💾 Save & Exit</button>
+  </div>
+
+  <div id="xp-counter">XP: <span id="xp-value">--</span></div>
+  <h1>✍️ Rewrite the Script</h1>
+  <p class="subtitle">They wrote the rules. You rewrote the purpose.</p>
+
+  <div id="game-container">
+    <div>
+      <h3>Fragments</h3>
+      <div id="fragments">
+        <div class="label" draggable="true" data-label="Inner Knowing" title="A system fueled by panic and silence.">Fear Engine</div>
+        <div class="label" draggable="true" data-label="Self-Sovereignty" title="Compliance rewarded. Questions punished.">Obedience Loop</div>
+        <div class="label" draggable="true" data-label="Love" title="You may exist, if they approve.">Permission Gate</div>
+        <div class="label" draggable="true" data-label="Memory" title="Your story, rewritten without you.">Identity Lock</div>
+        <div class="label" draggable="true" data-label="Fire" title="A scar disguised as a moral.">Shame Trigger</div>
+        <div class="label" draggable="true" data-label="Vision" title="Your value, calculated by outsiders.">Worth Index</div>
+      </div>
+    </div>
+
+    <div>
+      <h3>Forces</h3>
+      <div id="modules">
+        <div class="dropzone" data-target="Inner Knowing" title="What they couldn’t steal: your own voice.">Inner Knowing</div>
+        <div class="dropzone" data-target="Self-Sovereignty" title="No rulers. Just responsibility.">Self-Sovereignty</div>
+        <div class="dropzone" data-target="Love" title="The antidote to engineered disconnection.">Love</div>
+        <div class="dropzone" data-target="Memory" title="What still lives when history is deleted.">Memory</div>
+        <div class="dropzone" data-target="Fire" title="Not destruction—transformation.">Fire</div>
+        <div class="dropzone" data-target="Vision" title="What comes next when you stop looking back.">Vision</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="callout-box" title="The ink was always yours. You just forgot you could write.">
+    <h3>🖊️ Reclaim the Pen</h3>
+    <p>
+      These scripts weren’t made for you.<br>
+      They were written to hold you.<br>
+      But paper burns. And truth rewrites.<br><br>
+      Take the fragments. Match the forces. Watch the system dissolve.
+    </p>
+  </div>
+
+  <div id="completion">
+    <h2>✅ The script is rewritten. XP +10</h2>
+    <a href="../Toybox-13/index.html"><button>Continue</button></a>
+  </div>
+
+  <script src="../playerState.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>

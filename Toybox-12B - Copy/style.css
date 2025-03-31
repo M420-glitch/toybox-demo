@@ -1,0 +1,97 @@
+body {
+  font-family: monospace;
+  background: #0b2f0f;
+  color: #fff;
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 10px;
+  color: #4caf50;
+}
+
+.subtitle {
+  font-size: 15px;
+  color: #a5d6a7;
+  margin-bottom: 30px;
+}
+
+#xp-counter {
+  position: fixed;
+  top: 10px;
+  right: 20px;
+  font-size: 18px;
+  color: #4caf50;
+  background: #222;
+  padding: 6px 10px;
+  border-radius: 4px;
+  border: 2px solid #4caf50;
+}
+
+#top-left-controls {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1000;
+}
+
+#top-left-controls button {
+  background: #222;
+  color: #4caf50;
+  border: 2px solid #4caf50;
+  padding: 6px 10px;
+  font-family: monospace;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+#top-left-controls button:hover {
+  background: #4caf50;
+  color: #111;
+}
+
+#game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+#toolbox {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.draggable {
+  background: #2e7d32;
+  color: #fff;
+  padding: 10px;
+  border: 2px dashed #a5d6a7;
+  border-radius: 5px;
+  cursor: grab;
+  width: 120px;
+  text-align: center;
+}
+
+.drop-slot {
+  width: 140px;
+  height: 80px;
+  margin: 10px;
+  background: #1b5e20;
+  border: 2px dashed #c8e6c9;
+  border-radius: 5px;
+}
+
+#completion-buttons {
+  margin-top: 30px;
+}
+

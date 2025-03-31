@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Toybox 13D – The Mirror Machine</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="top-left-controls">
+    <button onclick="goToMap()">🗺️ Progress Map</button>
+    <button onclick="saveAndExit()">💾 Save & Exit</button>
+  </div>
+
+  <div id="xp-counter">XP: <span id="xp-value">--</span></div>
+
+  <h1>🛠 The Mirror Machine</h1>
+  <p class="subtitle">You were born in shackles. But you don’t have to die in them.</p>
+
+  <div id="mirror-container">
+    <div class="column">
+      <h3>🔒 Shackled Loop</h3>
+      <div class="mirror-box" title="Follow without question. Safety is compliance.">Obey</div>
+      <div class="mirror-box" title="Adjust yourself to fit the system.">Comply</div>
+      <div class="mirror-box" title="Become the weapon that shackled you.">Enforce</div>
+    </div>
+
+    <div class="column">
+      <h3>💣 Regenerative Loop</h3>
+      <div class="drop-box" data-answer="Thought Grenade" title="Truth that explodes illusion."></div>
+      <div class="drop-box" data-answer="Mirror ID" title="See yourself through their lies."></div>
+      <div class="drop-box" data-answer="Null Zone" title="Erase the frame they trapped you in."></div>
+    </div>
+  </div>
+
+  <div id="toolbox">
+    <div class="tool" draggable="true" data-label="Thought Grenade" title="Truth that explodes illusion.">Thought Grenade</div>
+    <div class="tool" draggable="true" data-label="Mirror ID" title="See yourself through their lies.">Mirror ID</div>
+    <div class="tool" draggable="true" data-label="Null Zone" title="Erase the frame they trapped you in.">Null Zone</div>
+  </div>
+
+  <div id="completion" style="display: none;">
+    <h2>✅ You shattered the loop. XP +5</h2>
+    <a href="../Toybox-14D/index.html"><button>Continue</button></a>
+  </div>
+
+  <div id="callout-box">
+    <h3>🧨 SHACKLES BREAK HERE</h3>
+    <p>
+      The rules were never made for you.<br>
+      The loop feeds itself by keeping you tame.<br>
+      Break the chain. Or be the chain.<br><br>
+      This is not rebellion. It's realignment.
+    </p>
+  </div>
+
+  <script src="../playerState.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>

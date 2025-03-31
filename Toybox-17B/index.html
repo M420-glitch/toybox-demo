@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Toybox 13B – The Mirror Machine</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="top-left-controls">
+    <button onclick="goToMap()">🗺️ Progress Map</button>
+    <button onclick="saveAndExit()">💾 Save & Exit</button>
+  </div>
+
+  <div id="xp-counter">XP: <span id="xp-value">--</span></div>
+
+  <h1>🌿 The Mirror Machine</h1>
+  <p class="subtitle">The farm broke the farmer. Now the soil speaks back.</p>
+
+  <div id="mirror-container">
+    <div class="column">
+      <h3>🧪 Broken Loop</h3>
+      <div class="mirror-box" title="Grow one crop only. Kill biodiversity.">Mono-Planting</div>
+      <div class="mirror-box" title="Artificial energy. Immediate growth. Hidden cost.">Chemical Boost</div>
+      <div class="mirror-box" title="Nutrients gone. Soil dead.">Soil Collapse</div>
+      <div class="mirror-box" title="False rescue that maintains damage.">Subsidy</div>
+    </div>
+
+    <div class="column">
+      <h3>🌱 Regenerative Loop</h3>
+      <div class="drop-box" data-answer="Companion Crop" title="Grow plants together that protect and nourish."></div>
+      <div class="drop-box" data-answer="Root Memory" title="Heal the soil with remembrance and rhythm."></div>
+      <div class="drop-box" data-answer="Seed Swap" title="Exchange diversity. Break dependency."></div>
+      <div class="drop-box" data-answer="Loop Restore" title="Close the loop. Regenerate what feeds you."></div>
+    </div>
+  </div>
+
+  <div id="toolbox">
+    <div class="tool" draggable="true" data-label="Companion Crop" title="Grow plants together that protect and nourish.">Companion Crop</div>
+    <div class="tool" draggable="true" data-label="Root Memory" title="Heal the soil with remembrance and rhythm.">Root Memory</div>
+    <div class="tool" draggable="true" data-label="Seed Swap" title="Exchange diversity. Break dependency.">Seed Swap</div>
+    <div class="tool" draggable="true" data-label="Loop Restore" title="Close the loop. Regenerate what feeds you.">Loop Restore</div>
+  </div>
+
+  <div id="completion" style="display: none;">
+    <h2>✅ Soil speaks. You listened. XP +5</h2>
+    <a href="../Toybox-14B/index.html"><button>Continue</button></a>
+  </div>
+
+  <div id="callout-box">
+    <h3>🌾 THE EARTH REMEMBERS</h3>
+    <p>
+      Regeneration isn't a concept. It's a cycle.<br>
+      Break the loop of damage.<br>
+      Grow what heals. Plant what stays.<br>
+      And never forget: monoculture is mind control.
+    </p>
+  </div>
+
+  <script src="../playerState.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
