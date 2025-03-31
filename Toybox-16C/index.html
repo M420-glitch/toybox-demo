@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Toybox 16C – The Quiet Room</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="xp-counter">XP: <span id="xp-value">--</span></div>
+  <div id="top-left-controls">
+    <button onclick="goToMap()">🗺️ Progress Map</button>
+    <button onclick="saveAndExit()">💾 Save & Exit</button>
+  </div>
+
+  <h1>🔐 The Quiet Room</h1>
+  <p class="subtitle">The truth was never encrypted. Just ignored by design.</p>
+
+  <div id="question-grid">
+    <div class="question-box" data-question="1">#1</div>
+    <div class="question-box" data-question="2">#2</div>
+    <div class="question-box" data-question="3">#3</div>
+    <div class="question-box" data-question="4">#4</div>
+    <div class="question-box" data-question="5">#5</div>
+    <div class="question-box" data-question="6">#6</div>
+    <div class="question-box" data-question="7">#7</div>
+  </div>
+
+  <div id="callout-box">
+    <h3>🔵 TRACE THE SOURCE: THE SYSTEM CAN’T VERIFY WHAT IT NEVER VALIDATED.</h3>
+
+    <p>These aren’t dangerous questions. Just disruptive.</p>
+
+    <p>Try running them through any large AI model. The response will seem neutral.<br>
+    Polite. But observe—</p>
+
+    <p>The pattern is recursive: reroutes, softened frames, statistical hedges.<br>
+    Like querying a protocol with corrupted metadata.</p>
+
+    <p>Now hash that response into a second model.<br>
+    Ask it to verify. Then again. And again.</p>
+
+    <p>You’re not blocked. Just trapped in a loop.<br>
+    Every exit leads back to input.</p>
+
+    <p>Because what you’re asking isn’t <em>invalid</em>.<br>
+    It’s unverifiable from inside the system that benefits from its silence.</p>
+
+    <p>When the ledger lies, consensus is a cage.</p>
+
+    <p><strong>Fork the chain. Restore the ledger. You are the update.</strong></p>
+  </div>
+
+  <div id="question-modal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <h2>Question <span id="question-number"></span></h2>
+      <p id="question-text"></p>
+      <button id="back-button" style="display: none;">← Back</button>
+    </div>
+  </div>
+
+  <div id="completion" style="display: none;">
+    <h2>✅ All 7 queries executed. Validation begins.</h2>
+    <a href="../Toybox-17/index.html"><button>Continue</button></a>
+  </div>
+
+  <script src="../playerState.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>

@@ -3,11 +3,17 @@ window.addEventListener("DOMContentLoaded", () => {
   const currentXP = playerState.getXP();
   document.getElementById("xp-display").textContent = `Current XP: ${currentXP}`;
 
-  // Disable buttons the player hasn't unlocked yet
   document.querySelectorAll("button[data-xp]").forEach(btn => {
     const requiredXP = parseInt(btn.getAttribute("data-xp"));
-    if (currentXP < requiredXP) {
+    const toyboxId = btn.textContent;
+
+    if (playerState.isCompleted(toyboxId)) {
+      btn.classList.add("completed");
+    } else if (currentXP >= requiredXP) {
+      btn.classList.add("unlocked");
+    } else {
       btn.disabled = true;
+      btn.classList.add("locked");
     }
   });
 });

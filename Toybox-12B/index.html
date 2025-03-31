@@ -1,8 +1,8 @@
-html_content = """<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Toybox 12B – Close the Loop</title>
+  <title>Toybox 12B – Bud Brigade</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -12,29 +12,23 @@ html_content = """<!DOCTYPE html>
   </div>
 
   <div id="xp-counter">XP: <span id="xp-value">--</span></div>
-  <h1>🌱 Close the Loop</h1>
-  <p class="subtitle">Nature doesn’t waste. It recycles. It regenerates. Can you?</p>
+  <h1>🌿 The Soil Remembers</h1>
+  <p class="subtitle">CTPCTW grows here too. If you know where to plant it.</p>
 
-  <div id="game-container">
-    <div id="dropzone">
-      <p>Drag the right items here to complete the nutrient cycle:</p>
-      <div class="drop-slot" data-accept="Compost"></div>
-      <div class="drop-slot" data-accept="Worms"></div>
-      <div class="drop-slot" data-accept="Cover Crops"></div>
-    </div>
+  <div id="prompt-container"></div>
 
-    <div id="toolbox">
-      <div class="draggable" draggable="true" data-id="Compost">Compost</div>
-      <div class="draggable" draggable="true" data-id="Plastic Bag">Plastic Bag</div>
-      <div class="draggable" draggable="true" data-id="Worms">Worms</div>
-      <div class="draggable" draggable="true" data-id="Cover Crops">Cover Crops</div>
-      <div class="draggable" draggable="true" data-id="Oil Can">Oil Can</div>
-    </div>
+  <div id="completion" style="display: none;">
+    <h2>✅ All responses rooted. XP +5</h2>
+    <a href="../Toybox-13B/index.html"><button>Continue</button></a>
   </div>
 
-  <div id="completion-buttons" style="display: none;">
-    <h2>✅ Cycle Complete. XP +5</h2>
-    <a href="../Toybox-1/index.html"><button>Loop Back</button></a>
+  <div id="callout-box">
+    <h3>🌱 ROOT WHISPER</h3>
+    <p>
+      These aren’t just questions. They’re seeds.<br>
+      Planted by the Postman. Growing inside you.<br>
+      Choose where you stand. Choose how it grows.
+    </p>
   </div>
 
   <script src="../playerState.js"></script>

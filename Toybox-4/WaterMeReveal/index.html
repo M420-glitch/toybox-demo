@@ -6,6 +6,10 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  
+  <button id="btn-test-claim" class="dev-claim-btn">💧 Claim Token (Dev Test)</button>
+
+
   <div class="ad-column left-column">
     <div class="ad" title="Earn +5 XP"><a href="https://www.youtube.com/shorts/sTuStNx31os" target="_blank">
       <img src="../assets/blow/TOTD-teaser.png" alt="Tent of the Dead Teaser" />
@@ -81,5 +85,45 @@
     <div class="ad" title="Earn +5 XP">🧙‍♂️ Unlock: Ghost Noodle Lore</div>
 
   </div>
+  <script>
+    // Ensure playerState is available
+    if (!window.playerState) {
+      window.playerState = {
+        meMes: JSON.parse(localStorage.getItem('meMes')) || {},
+  
+        markMeMeEarned(token) {
+          this.meMes[token] = true;
+          localStorage.setItem('meMes', JSON.stringify(this.meMes));
+        },
+  
+        hasMeMe(token) {
+          return this.meMes[token] === true;
+        },
+  
+        save() {
+          localStorage.setItem('meMes', JSON.stringify(this.meMes));
+        }
+      };
+    }
+  
+    document.addEventListener("DOMContentLoaded", () => {
+      const btn = document.getElementById('btn-test-claim');
+  
+      if (playerState.hasMeMe("water")) {
+        btn.classList.add("claimed");
+        btn.textContent = "✅ Token Claimed";
+      }
+  
+      btn.addEventListener('click', () => {
+        if (!playerState.hasMeMe("water")) {
+          playerState.markMeMeEarned("water");
+          playerState.save();
+          btn.classList.add("claimed");
+          btn.textContent = "✅ Token Claimed";
+        }
+      });
+    });
+  </script>
+  
 </body>
 </html>

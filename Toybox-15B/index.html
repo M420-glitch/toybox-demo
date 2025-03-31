@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Toybox 15B – The Tranche Choice</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="top-left-controls">
+    <button onclick="goToMap()">🗺️ Progress Map</button>
+    <button onclick="saveAndExit()">💾 Save & Exit</button>
+  </div>
+
+  <div id="xp-counter">XP: <span id="xp-value">--</span></div>
+
+  <h1>🌿 The Tranche Choice</h1>
+  <p class="subtitle">Choose your seed. Choose your ground. Nature remembers.</p>
+
+  <div id="simulator-container">
+    <div id="step-1" class="step">
+      <h3>Step 1: Pick Your Seed</h3>
+      <div class="option-row">
+        <button onclick="chooseSeed('Annual Bloom')">🌼 Annual Bloom</button>
+        <button onclick="chooseSeed('Perennial Root')">🌲 Perennial Root</button>
+        <button onclick="chooseSeed('Flash Fungus')">🍄 Flash Fungus</button>
+      </div>
+    </div>
+
+    <div id="step-2" class="step" style="display:none;">
+      <h3>Step 2: Pick Environment</h3>
+      <div class="option-row">
+        <button onclick="chooseEnv('Rich Humus')">🌱 Rich Humus</button>
+        <button onclick="chooseEnv('Underground Vault')">🪨 Underground Vault</button>
+        <button onclick="chooseEnv('Toxic Runoff')">☠️ Toxic Runoff</button>
+      </div>
+    </div>
+
+    <div id="result-area" style="display:none;">
+      <h3>Your Growth Result:</h3>
+      <p id="result-message">...</p>
+      <img id="growth-image" src="" alt="Growth Result" />
+      <div id="completion">
+        <h2>✅ You made your choice. XP +5</h2>
+        <a href="../Toybox-16B/index.html"><button>Continue</button></a>
+      </div>
+    </div>
+  </div>
+
+  <script src="../playerState.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>

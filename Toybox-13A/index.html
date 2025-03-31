@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Toybox 13A – The Mirror Machine</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="top-left-controls">
+    <button onclick="goToMap()">🗺️ Progress Map</button>
+    <button onclick="saveAndExit()">💾 Save & Exit</button>
+  </div>
+
+  <div id="xp-counter">XP: <span id="xp-value">--</span></div>
+
+  <h1>🎮 The Mirror Machine</h1>
+  <p class="subtitle">One side is broken. The other is yours to rebuild. Match the ethic, not the chaos.</p>
+
+  <div id="mirror-container">
+    <div class="column">
+      <h3>💀 Broken Loop</h3>
+      <div class="mirror-box" title="Work without joy. Progress without meaning.">Grind</div>
+      <div class="mirror-box" title="Award to keep you addicted.">Badge</div>
+      <div class="mirror-box" title="Energy collapse after repetition.">Burnout</div>
+    </div>
+
+    <div class="column">
+      <h3>🛠 Regenerative Loop</h3>
+      <div class="drop-box" data-answer="Play" title="Do it for joy, not reward."></div>
+      <div class="drop-box" data-answer="Create" title="Make something new. Something yours."></div>
+      <div class="drop-box" data-answer="Flow" title="Sustain energy, stay in the zone."></div>
+    </div>
+  </div>
+
+  <div id="toolbox">
+    <div class="tool" draggable="true" data-label="Play" title="Do it for joy, not reward.">Play</div>
+    <div class="tool" draggable="true" data-label="Create" title="Make something new. Something yours.">Create</div>
+    <div class="tool" draggable="true" data-label="Flow" title="Sustain energy, stay in the zone.">Flow</div>
+  </div>
+
+  <div id="completion" style="display: none;">
+    <h2>✅ You rewrote the loop. XP +5</h2>
+    <a href="../Toybox-14A/index.html"><button>Continue</button></a>
+  </div>
+
+  <div id="callout-box">
+    <h3>🎭 CALL IT A LOOP</h3>
+    <p>
+      What grinds you down can also be mirrored into something that builds you up.<br>
+      Systems aren't broken. They're just optimized for someone else.<br>
+      Your turn now.
+    </p>
+  </div>
+
+  <script src="../playerState.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>

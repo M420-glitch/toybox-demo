@@ -1,0 +1,155 @@
+body {
+  font-family: monospace;
+  background: #f0f0f0;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+#container {
+  max-width: 650px;
+  margin: 0 20px;
+}
+
+#pledge-wrapper {
+  border: 2px dashed #00ccff;
+  padding: 20px;
+  border-radius: 12px;
+  background: white;
+  text-align: center;
+}
+
+#glowing-token {
+  width: 100px;
+  margin-bottom: 20px;
+  animation: glow 2s ease-in-out infinite alternate;
+  filter: drop-shadow(0 0 8px #00ccff);
+}
+
+@keyframes glow {
+  from {
+    filter: drop-shadow(0 0 8px #00ccff);
+  }
+  to {
+    filter: drop-shadow(0 0 18px #66e6ff);
+  }
+}
+
+h1 {
+  margin-bottom: 0;
+  font-size: 24px;
+}
+
+h2 {
+  margin-top: 5px;
+  font-size: 16px;
+  color: #333;
+}
+
+#pledge-box {
+  text-align: left;
+  border: 2px dashed #00ccff;
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 10px;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+#register-box {
+  margin-top: 30px;
+}
+
+#register-box input {
+  font-family: monospace;
+  padding: 8px;
+  width: 70%;
+  margin-bottom: 10px;
+}
+
+#register-box button {
+  font-family: monospace;
+  padding: 8px 16px;
+  font-size: 14px;
+  background: #00ccff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#register-box .note {
+  font-size: 13px;
+  color: #555;
+  margin-top: 10px;
+}
+
+#back-link {
+  margin-top: 30px;
+  font-size: 14px;
+}
+
+.ad-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 12px;
+  width: 160px;
+  margin-top: 110px;
+}
+
+.ad {
+  background: #fffbe6;
+  border: 2px dotted #888;
+  padding: 10px;
+  font-size: 13px;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s ease-in-out;
+  animation: adPulse 4s infinite alternate;
+}
+
+@keyframes adPulse {
+  0% {
+    background-color: #fffbe6;
+    border-color: #888;
+  }
+  100% {
+    background-color: #e6f7ff;
+    border-color: #00ccff;
+  }
+}
+
+.ad:hover {
+  background: #ffffcc;
+  transform: scale(1.03);
+  border-color: #00ccff;
+}
+
+.ad img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.dev-claim-btn {
+  background: transparent;
+  color: #ffeb3b;
+  border: 2px dashed #ffeb3b;
+  padding: 6px 12px;
+  font-size: 14px;
+  font-family: monospace;
+  border-radius: 6px;
+  cursor: pointer;
+  width: fit-content;
+  margin: 10px auto;
+  display: block;
+  transition: all 0.3s ease-in-out;
+}
+
+.dev-claim-btn.claimed {
+  background-color: #4caf50 !important;
+  color: #fff !important;
+  border: 2px solid #4caf50 !important;
+}

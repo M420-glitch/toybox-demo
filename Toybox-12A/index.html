@@ -1,29 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Toybox 12A – Fork Progress</title>
+  <meta charset="UTF-8" />
+  <title>Toybox 12A – Gamers Guild</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div id="xp-counter">XP: <span id="xp-value">--</span></div>
-
   <div id="top-left-controls">
     <button onclick="goToMap()">🗺️ Progress Map</button>
     <button onclick="saveAndExit()">💾 Save & Exit</button>
   </div>
 
-  <h1>🧩 Fork Activated: Gamers Guild</h1>
-  <p>This is a test-state checkpoint for your forked path journey.</p>
+  <div id="xp-counter">XP: <span id="xp-value">--</span></div>
+  <h1>🎮 The System Glitched First</h1>
+  <p class="subtitle">CTPCTW has always been here. You just never looked.</p>
 
-  <div id="progress-log">
-    <h3>Visited Toyboxes:</h3>
-    <ul id="visited-list"></ul>
+  <div id="prompt-container"></div>
+
+  <div id="completion" style="display: none;">
+    <h2>✅ All responses locked. XP +5</h2>
+    <a href="../Toybox-13A/index.html"><button>Continue</button></a>
   </div>
 
-  <div id="nav-controls">
-    <button onclick="goBack()">⬅️ Back to 11A</button>
-    <button onclick="goHome()">🔁 Loop to Toybox 1</button>
+  <div id="callout-box">
+    <h3>🎭 CTPCTW TRANSMISSION</h3>
+    <p>
+      These aren't just questions. They're cracks.<br>
+      Messages from the postman, delivered through glitch and glitcher.<br>
+      Choose how you feel. But choose.
+    </p>
   </div>
 
   <script src="../playerState.js"></script>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Toybox 14C – The Trial</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <button id="btn-test-claim" class="dev-claim-btn">💧 Claim Token (Dev Test)</button>
+
+  <div id="top-left-controls">
+    <button onclick="goToMap()">🗺️ Progress Map</button>
+    <button onclick="saveAndExit()">💾 Save & Exit</button>
+  </div>
+
+  <div id="xp-counter">XP: <span id="xp-value">--</span></div>
+
+  <h1>🧬 The Trial: Crypto Crew</h1>
+  <p class="subtitle">Verify the failure. Trace the collapse. Light Me Me unlocks.</p>
+
+  <div id="timeline-container">
+    <div class="timeline" data-answer="Central control corrupts consensus">
+      <div class="slot" title="When truth is owned, consensus becomes fiction.">🛑 Protocol Breach</div>
+      <div class="slot drop" data-slot></div>
+      <div class="slot" title="Once consensus is lost, systems decay.">⚠️ Ledger Drift</div>
+    </div>
+    <div class="timeline" data-answer="Trust without verification breeds collapse">
+      <div class="slot" title="Trust becomes blind when not backed by checks.">🔒 Blind Trust</div>
+      <div class="slot drop" data-slot></div>
+      <div class="slot" title="Failure is baked in where no one checks the math.">💥 Collapse Point</div>
+    </div>
+    <div class="timeline" data-answer="Censorship hides the exploit">
+      <div class="slot" title="Silencing the signal hides the root flaw.">📵 Censorship Layer</div>
+      <div class="slot drop" data-slot></div>
+      <div class="slot" title="The exploit remains when the evidence is erased.">🐛 Vulnerability Vault</div>
+    </div>
+    <div class="timeline" data-answer="Only transparency restores integrity">
+      <div class="slot" title="Nothing sacred, nothing hidden.">🔍 Full Exposure</div>
+      <div class="slot drop" data-slot></div>
+      <div class="slot" title="Integrity returns when nothing is off-chain.">🔗 Verifiable Layer</div>
+    </div>
+  </div>
+
+  <div id="truth-bank">
+    <div class="truth" draggable="true" data-label="Central control corrupts consensus" title="Consensus means nothing if one node has override.">Central control corrupts consensus</div>
+    <div class="truth" draggable="true" data-label="Trust without verification breeds collapse" title="You trusted. They lied. And the system let them.">Trust without verification breeds collapse</div>
+    <div class="truth" draggable="true" data-label="Censorship hides the exploit" title="The silence wasn’t peace—it was protection for the flaw.">Censorship hides the exploit</div>
+    <div class="truth" draggable="true" data-label="Only transparency restores integrity" title="Expose all. Trust the chain, not the face.">Only transparency restores integrity</div>
+  </div>
+
+  <div id="completion" style="display: none;">
+    <h2>✅ Ledger Restored. XP +5</h2>
+  </div>
+
+  <div id="callout-box">
+    <h3>🧠 THE LEDGER OF CONSEQUENCE</h3>
+    <p>
+      What you hide will rot.<br>
+      What you verify will evolve.<br><br>
+      This is not just code. It’s consequence.<br>
+      Plug in. Trace the failure. Then fix it.<br><br>
+      Light Me Me isn’t given. It’s earned.
+    </p>
+  </div>
+
+  <!-- LIGHT ME ME MODAL -->
+  <div id="lightme-modal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <div class="me-me-row">
+        <img src="assets/images/Water-Me-Me.png" />
+        <img src="assets/images/Ground-Me-Me.png" />
+        <img src="assets/images/Light-Me-Me.png" />
+        <img src="assets/images/Blow-Me-Me.png" class="locked" />
+      </div>
+      <p><strong>💡 Protocol Cleared.</strong><br>
+        You’ve earned the <strong>Light Me Me</strong> token — third in the chain.</p>
+        
+        <p>This is <strong>3 of 4</strong>. Truth doesn’t spread—it syncs.<br>
+        And sync only works if no node lies.</p>
+        
+        <p>XP gained. But what matters now:<br>
+        Will you verify what comes next?</p>
+        
+        <div class="modal-buttons">
+          <button id="btn-register">Register Now</button>
+          <button id="btn-skip">Continue Without</button>
+        </div>
+    </div>
+  </div>
+
+  <form id="force-form" action="../Toybox-15C/index.html" method="get" style="display: none;"></form>
+
+  <script src="../playerState.js"></script>
+  <script src="game.js"></script>
+  <script>
+    // SAFE playerState fallback if not loaded externally
+    if (!window.playerState) {
+      window.playerState = {
+        meMes: JSON.parse(localStorage.getItem('meMes')) || {},
+  
+        markMeMeEarned(token) {
+          this.meMes[token] = true;
+          localStorage.setItem('meMes', JSON.stringify(this.meMes));
+        },
+  
+        hasMeMe(token) {
+          return this.meMes[token] === true;
+        },
+  
+        save() {
+          localStorage.setItem('meMes', JSON.stringify(this.meMes));
+        }
+      };
+    }
+  
+    document.addEventListener("DOMContentLoaded", () => {
+      const btn = document.getElementById('btn-test-claim');
+      const tokenType = "light"; // ⬅️ CHANGE THIS per page: "ground", "light", or "blow"
+  
+      if (playerState.hasMeMe(tokenType)) {
+        btn.classList.add("claimed");
+        btn.textContent = "✅ Token Claimed";
+      }
+  
+      btn.addEventListener('click', () => {
+        if (!playerState.hasMeMe(tokenType)) {
+          playerState.markMeMeEarned(tokenType);
+          playerState.save();
+          btn.classList.add("claimed");
+          btn.textContent = "✅ Token Claimed";
+        }
+      });
+    });
+  </script>
+  
+</body>
+</html>

@@ -6,6 +6,8 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <button id="btn-test-claim" class="dev-claim-btn">💧 Claim Token (Dev Test)</button>
+
   <div id="page-wrapper">
     <div class="ad-column">
       <div class="ad" title="Earn +5 XP">🚨 XP BOOST: GLITCHGLADE MAP DROP</div>
@@ -71,5 +73,46 @@
       <div class="ad" title="Earn +5 XP">💼 TRADE LIKE A BARON. LOSE LIKE A LEGEND.</div>
     </div>
   </div>
+  <script>
+    // SAFE playerState fallback if not loaded externally
+    if (!window.playerState) {
+      window.playerState = {
+        meMes: JSON.parse(localStorage.getItem('meMes')) || {},
+  
+        markMeMeEarned(token) {
+          this.meMes[token] = true;
+          localStorage.setItem('meMes', JSON.stringify(this.meMes));
+        },
+  
+        hasMeMe(token) {
+          return this.meMes[token] === true;
+        },
+  
+        save() {
+          localStorage.setItem('meMes', JSON.stringify(this.meMes));
+        }
+      };
+    }
+  
+    document.addEventListener("DOMContentLoaded", () => {
+      const btn = document.getElementById('btn-test-claim');
+      const tokenType = "ground"; // ⬅️ CHANGE THIS per page: "ground", "light", or "blow"
+  
+      if (playerState.hasMeMe(tokenType)) {
+        btn.classList.add("claimed");
+        btn.textContent = "✅ Token Claimed";
+      }
+  
+      btn.addEventListener('click', () => {
+        if (!playerState.hasMeMe(tokenType)) {
+          playerState.markMeMeEarned(tokenType);
+          playerState.save();
+          btn.classList.add("claimed");
+          btn.textContent = "✅ Token Claimed";
+        }
+      });
+    });
+  </script>
+  
 </body>
 </html>

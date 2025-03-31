@@ -464,3 +464,15 @@ localStorage.setItem('playerXP', '0');
 Hit Enter.
 
 Refresh the page — your XP will now be 0.
+
+
+To refresh a meme pledge page: 
+
+Got to dev tools and find the application tab:
+On the left under Storage, expand Local Storage
+
+Click your site (e.g., file:// or localhost)
+
+Find meMes key → right-click → Delete
+
+Reload your page

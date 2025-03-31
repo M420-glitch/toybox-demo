@@ -83,16 +83,22 @@ document.getElementById('game-area').addEventListener('drop', e => {
       gameAreaEl.style.borderColor = '#28a745';
 
       const xpEl = document.getElementById('xp-value');
-      let currentXP = playerState.getXP();
-      currentXP += 5;
-      playerState.setXP(currentXP);
-      xpEl.textContent = currentXP;
-      xpEl.classList.add('xp-flash');
-      setTimeout(() => {
-        xpEl.classList.remove('xp-flash');
-      }, 500);
+const toyboxId = '1'; // Change this per toybox
 
-      document.getElementById('completion-buttons').style.display = 'block';
+if (!playerState.isCompleted(toyboxId)) {
+  let currentXP = playerState.getXP();
+  currentXP += 5;
+  playerState.setXP(currentXP);
+  playerState.markCompleted(toyboxId);
+
+  xpEl.textContent = currentXP;
+  xpEl.classList.add('xp-flash');
+  setTimeout(() => {
+    xpEl.classList.remove('xp-flash');
+  }, 500);
+}
+
+document.getElementById('completion-buttons').style.display = 'block';
 
       setTimeout(() => {
         alert('✅ You completed the water cycle!');

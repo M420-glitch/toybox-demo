@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+  <meta charset="UTF-8" />
+  <title>Toybox 12C – Restore the Ledger</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="top-left-controls">
+    <button onclick="goToMap()">🗺️ Progress Map</button>
+    <button onclick="saveAndExit()">💾 Save & Exit</button>
+  </div>
+
+  <div id="xp-counter">XP: <span id="xp-value">--</span></div>
+  <h1>🔐 Restore the Ledger</h1>
+  <p class="subtitle">Some chains weren’t meant to bind. They were meant to free.</p>
+
+  <div id="game-container">
+    <div>
+      <h3>Broken Fragments</h3>
+      <div id="fragments">
+        <div class="label" draggable="true" data-label="Open-Source" title="Code that hides nothing.">Blackbox Logic</div>
+        <div class="label" draggable="true" data-label="Privacy" title="Erased identities, permanent shadows.">Censorship Trail</div>
+        <div class="label" draggable="true" data-label="Verifiability" title="Promises without proofs.">Trust Breach</div>
+        <div class="label" draggable="true" data-label="Consensus" title="One failsafe. All fail.">Central Failsafe</div>
+        <div class="label" draggable="true" data-label="Interoperability" title="Islands of isolation.">Exploit Vector</div>
+        <div class="label" draggable="true" data-label="Permanence" title="Disappearing value.">Token Drift</div>
+      </div>
+    </div>
+
+    <div>
+      <h3>Regenerative Protocols</h3>
+      <div id="modules">
+        <div class="dropzone" data-target="Open-Source" title="Code that reveals instead of conceals.">Open-Source</div>
+        <div class="dropzone" data-target="Verifiability" title="Proof is the new trust.">Verifiability</div>
+        <div class="dropzone" data-target="Interoperability" title="Connected by design.">Interoperability</div>
+        <div class="dropzone" data-target="Consensus" title="Agreement built without force.">Consensus</div>
+        <div class="dropzone" data-target="Privacy" title="Seen without being exposed.">Privacy</div>
+        <div class="dropzone" data-target="Permanence" title="Written once. Read forever.">Permanence</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="callout-box" title="You weren’t locked in. You were hash-signed out.">
+    <h3>📜 Reclaim the Chain</h3>
+    <p>
+      Ledgers were never about control.<br>
+      They were about memory, integrity, consensus.<br>
+      This isn’t just a fix. It’s a rebuild.<br><br>
+      Restore the match. Recover the truth.
+    </p>
+  </div>
+
+  <div id="completion">
+    <h2>✅ You’ve restored the ledger. The truth now writes itself. XP +10</h2>
+    <a href="../Toybox-13/index.html"><button>Continue</button></a>
+  </div>
+
+  <script src="../playerState.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>

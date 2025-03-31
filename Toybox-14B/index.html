@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Toybox 14B – The Trial</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <button id="btn-test-claim" class="dev-claim-btn">💧 Claim Token (Dev Test)</button>
+
+  <div id="top-left-controls">
+    <button onclick="goToMap()">🗺️ Progress Map</button>
+    <button onclick="saveAndExit()">💾 Save & Exit</button>
+  </div>
+
+  <div id="xp-counter">XP: <span id="xp-value">--</span></div>
+
+  <h1>🌱 The Trial</h1>
+  <p class="subtitle">Trace the consequence. The soil remembers. Light Me Me awaits.</p>
+
+  <div id="timeline-container">
+    <div class="timeline" data-answer="Mono-planting sterilizes the soil">
+      <div class="slot" title="Over-reliance on a single crop.">🌾 Industrial Shortcut</div>
+      <div class="slot drop" data-slot></div>
+      <div class="slot" title="Biodiversity collapses. Microbes die.">💀 Ecological Fallout</div>
+    </div>
+    <div class="timeline" data-answer="Chemical boosts become chemical needs">
+      <div class="slot" title="Synthetic growth injections.">🧪 Artificial Input</div>
+      <div class="slot drop" data-slot></div>
+      <div class="slot" title="Soil dependency forms. Life weakens.">🩺 Root Dependency</div>
+    </div>
+    <div class="timeline" data-answer="Seeds without stories don’t survive">
+      <div class="slot" title="Lab seeds without generational adaptation.">🧬 Memory Loss</div>
+      <div class="slot drop" data-slot></div>
+      <div class="slot" title="Breaks the line of wisdom. Yields vanish.">🥀 Regeneration Blocked</div>
+    </div>
+    <div class="timeline" data-answer="Compost heals what profit denied">
+      <div class="slot" title="Organic return to the soil.">🍂 Closed Loop</div>
+      <div class="slot drop" data-slot></div>
+      <div class="slot" title="Life re-emerges. Cycles restart.">🌿 System Reboot</div>
+    </div>
+  </div>
+
+  <div id="truth-bank">
+    <div class="truth" draggable="true" data-label="Mono-planting sterilizes the soil" title="One crop = one outcome = dead earth.">Mono-planting sterilizes the soil</div>
+    <div class="truth" draggable="true" data-label="Chemical boosts become chemical needs" title="Addiction is not just human. Soil remembers dependency.">Chemical boosts become chemical needs</div>
+    <div class="truth" draggable="true" data-label="Seeds without stories don’t survive" title="Heirloom seeds carry memory. GMOs forget the path home.">Seeds without stories don’t survive</div>
+    <div class="truth" draggable="true" data-label="Compost heals what profit denied" title="Waste is a lie. Nothing is lost in a real system.">Compost heals what profit denied</div>
+  </div>
+
+  <div id="completion" style="display: none;">
+    <h2>✅ You traced the cycle. XP +5</h2>
+  </div>
+
+  <div id="callout-box">
+    <h3>🪱 THE ROOTMAP</h3>
+    <p>
+      Nature never forgets.<br><br>
+      Every shortcut shows in the roots.<br>
+      Every lie lingers in the soil.<br><br>
+      Regeneration isn’t greenwashing. It’s brutal, slow truth.
+    </p>
+  </div>
+
+  <!-- LIGHT ME ME MODAL -->
+  <div id="lightme-modal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <div class="me-me-row">
+        <img src="assets/images/Water-Me-Me.png" />
+        <img src="assets/images/Ground-Me-Me.png" />
+        <img src="assets/images/Light-Me-Me.png" />
+        <img src="assets/images/Blow-Me-Me.png" class="locked" />
+      </div>
+      <p><strong>💡 You’ve traced the root consequence.</strong><br>
+        You’ve earned the <strong>Light Me Me</strong> token — the third step forward.</p>
+        
+        <p>This is <strong>3 of 4</strong>. Regrowth starts with exposure.<br>
+        Light feeds what was once buried.</p>
+        
+        <p>Your XP is rising. But light without soil... is blind.</p>
+        
+        <p><strong>Register to see what you’ve unearthed.</strong></p>
+        
+        <div class="modal-buttons">
+          <button id="btn-register">Register Now</button>
+          <button id="btn-skip">Continue Without</button>
+        </div>
+    </div>
+  </div>
+
+  <form id="force-form" action="../Toybox-15B/index.html" method="get" style="display: none;"></form>
+
+  <script src="../playerState.js"></script>
+  <script src="game.js"></script>
+  <script>
+    // SAFE playerState fallback if not loaded externally
+    if (!window.playerState) {
+      window.playerState = {
+        meMes: JSON.parse(localStorage.getItem('meMes')) || {},
+  
+        markMeMeEarned(token) {
+          this.meMes[token] = true;
+          localStorage.setItem('meMes', JSON.stringify(this.meMes));
+        },
+  
+        hasMeMe(token) {
+          return this.meMes[token] === true;
+        },
+  
+        save() {
+          localStorage.setItem('meMes', JSON.stringify(this.meMes));
+        }
+      };
+    }
+  
+    document.addEventListener("DOMContentLoaded", () => {
+      const btn = document.getElementById('btn-test-claim');
+      const tokenType = "light"; // ⬅️ CHANGE THIS per page: "ground", "light", or "blow"
+  
+      if (playerState.hasMeMe(tokenType)) {
+        btn.classList.add("claimed");
+        btn.textContent = "✅ Token Claimed";
+      }
+  
+      btn.addEventListener('click', () => {
+        if (!playerState.hasMeMe(tokenType)) {
+          playerState.markMeMeEarned(tokenType);
+          playerState.save();
+          btn.classList.add("claimed");
+          btn.textContent = "✅ Token Claimed";
+        }
+      });
+    });
+  </script>
+  
+</body>
+</html>

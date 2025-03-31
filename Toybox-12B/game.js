@@ -1,56 +1,75 @@
-let matched = 0;
-const total = 6;
+const prompts = [
+  "Isn’t it funny how the earth gives freely, but we pay to stay alive?",
+  "Isn’t it funny how they outlaw the plants that heal and subsidize the ones that harm?",
+  "Isn’t it lovely how a single seed can feed more than a supermarket?"
+];
 
-window.addEventListener("DOMContentLoaded", () => {
-  playerState.load();
-  document.getElementById("xp-value").textContent = playerState.getXP();
+let responses = [null, null, null];
 
-  const draggables = document.querySelectorAll(".draggable");
-  const dropzones = document.querySelectorAll(".dropzone");
-
-  draggables.forEach(el => {
-    el.setAttribute("draggable", "true");
-
-    el.addEventListener("dragstart", e => {
-      e.dataTransfer.setData("text/plain", el.dataset.match);
-      e.dataTransfer.setData("text/id", el.textContent);
-    });
+function renderPrompts() {
+  const container = document.getElementById("prompt-container");
+  prompts.forEach((text, index) => {
+    const box = document.createElement("div");
+    box.className = "prompt-box";
+    box.innerHTML = `
+      <div class="prompt-text">${text}</div>
+      <div class="choice-buttons">
+        <div class="choice-button" onclick="select(${index}, '👍', this)" data-type="agree">
+          <span>👍</span>
+          <div>Agree</div>
+        </div>
+        <div class="choice-button" onclick="select(${index}, '👎', this)" data-type="disagree">
+          <span>👎</span>
+          <div>Disagree</div>
+        </div>
+      </div>
+    `;
+    container.appendChild(box);
   });
+}
 
-  dropzones.forEach(zone => {
-    zone.addEventListener("dragover", e => e.preventDefault());
+function select(index, value, element) {
+  if (responses[index] !== null) return;
 
-    zone.addEventListener("drop", e => {
-      e.preventDefault();
-      const draggedMatch = e.dataTransfer.getData("text/plain");
-      const draggedId = e.dataTransfer.getData("text/id");
-      const accept = zone.dataset.accept;
+  responses[index] = value;
+  const buttons = element.parentElement.querySelectorAll(".choice-button");
+  buttons.forEach(btn => btn.classList.remove("selected", "agree", "disagree"));
+  element.classList.add("selected");
 
-      if (draggedMatch === accept && zone.childNodes.length <= 1) {
-        const item = document.querySelector(`.draggable:contains('${draggedId}')`);
-        zone.appendChild(document.querySelector(`.draggable[data-match='${draggedMatch}']`));
-        matched++;
-        checkComplete();
-      }
-    });
-  });
-});
+  if (element.dataset.type === "agree") {
+    element.classList.add("agree");
+  } else {
+    element.classList.add("disagree");
+  }
+
+  checkComplete();
+}
 
 function checkComplete() {
-  if (matched === total) {
+  if (responses.every(r => r !== null)) {
     document.getElementById("completion").style.display = "block";
     if (!window._xpAdded) {
       window._xpAdded = true;
-      let xp = playerState.getXP() + 10;
-      playerState.setXP(xp);
-      document.getElementById("xp-value").textContent = xp;
+      if (!playerState.isCompleted("12B")) {
+        let currentXP = playerState.getXP();
+        currentXP += 5;
+        playerState.setXP(currentXP);
+        playerState.markCompleted("12B");
+        xpEl.textContent = currentXP;
+      
+        xpEl.classList.add('xp-flash');
+        setTimeout(() => xpEl.classList.remove('xp-flash'), 500);
+      }
+      
+      document.getElementById("xp-value").textContent = playerState.getXP();
     }
   }
 }
 
-function continueToNext() {
-  window.location.href = "../Toybox-13/index.html";
-}
+window.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("xp-value").textContent = playerState.getXP();
+  renderPrompts();
+});
 
 function goToMap() {
   window.location.href = "../ProgressMap/index.html";
@@ -60,7 +79,3 @@ function saveAndExit() {
   playerState.save();
   window.location.href = "../ExitScreen/index.html";
 }
-'''
-
-with open("/mnt/data/Toybox-12B/game.js", "w") as f:
-    f.write(js_content)

@@ -103,11 +103,16 @@ function showResult() {
     const xpEl = document.getElementById('xp-value');
     let currentXP = playerState.getXP();
 currentXP += 5;
-playerState.setXP(currentXP);
-xpEl.textContent = currentXP;
+if (!playerState.isCompleted("7")) {
+  let currentXP = playerState.getXP();
+  currentXP += 5;
+  playerState.setXP(currentXP);
+  playerState.markCompleted("7");
+  xpEl.textContent = currentXP;
 
-    xpEl.classList.add('xp-flash');
-    setTimeout(() => xpEl.classList.remove('xp-flash'), 400);
+  xpEl.classList.add('xp-flash');
+  setTimeout(() => xpEl.classList.remove('xp-flash'), 500);
+}
 
     document.getElementById('completion-buttons').style.display = 'block';
   }

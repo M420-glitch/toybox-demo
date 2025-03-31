@@ -1,0 +1,110 @@
+body {
+  background: #f0f0f0;
+  font-family: monospace;
+  text-align: center;
+  margin: 0;
+  padding: 20px;
+}
+
+h1 {
+  margin-top: 20px;
+  font-size: 28px;
+}
+
+.subtitle {
+  font-size: 14px;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+#xp-counter {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 18px;
+  background: #dfffcf;
+  border: 2px solid #6bb96b;
+  padding: 5px 10px;
+  border-radius: 6px;
+  z-index: 999;
+}
+
+#top-left-controls {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1000;
+}
+
+#top-left-controls button {
+  background: #f8f8b8;
+  color: #222;
+  border: 2px solid #f8f8b8;
+  padding: 6px 10px;
+  font-family: monospace;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+#ctpctw-box {
+  background: #fff;
+  border: 2px dashed #444;
+  padding: 20px;
+  max-width: 720px;
+  margin: 0 auto 30px;
+  text-align: left;
+  color: #000;
+  line-height: 1.6;
+}
+
+#ctpctw-box p {
+  margin-bottom: 14px;
+}
+
+#mission-options {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 520px;
+  margin: 0 auto 30px;
+}
+
+#mission-options button {
+  background: #222;
+  color: #fff;
+  font-family: monospace;
+  font-size: 16px;
+  padding: 12px;
+  border: 2px dashed #000;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#mission-options button:hover {
+  background: #4caf50;
+  color: #000;
+  border-color: #4caf50;
+}
+
+#result-box {
+  margin-top: 30px;
+}
+
+#result-box h2 {
+  color: #4caf50;
+}
+
+#result-box button {
+  font-family: monospace;
+  background: #4caf50;
+  border: none;
+  color: black;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 4px;
+}

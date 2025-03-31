@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Toybox 15C – The Tranche Choice</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="top-left-controls">
+    <button onclick="goToMap()">🗺️ Progress Map</button>
+    <button onclick="saveAndExit()">💾 Save & Exit</button>
+  </div>
+
+  <div id="xp-counter">XP: <span id="xp-value">--</span></div>
+
+  <h1>🔗 The Tranche Choice</h1>
+  <p class="subtitle">Choose your protocol. Choose your layer. Trust builds truth.</p>
+
+  <div id="simulator-container">
+    <div id="step-1" class="step">
+      <h3>Step 1: Pick Your Protocol</h3>
+      <div class="option-row">
+        <button onclick="chooseSeed('Flash Token')">⚡ Flash Token</button>
+        <button onclick="chooseSeed('Root Chain')">🔗 Root Chain</button>
+        <button onclick="chooseSeed('Pump Coin')">📈 Pump Coin</button>
+      </div>
+    </div>
+
+    <div id="step-2" class="step" style="display:none;">
+      <h3>Step 2: Pick Execution Layer</h3>
+      <div class="option-row">
+        <button onclick="chooseEnv('Layer Zero')">🧠 Layer Zero</button>
+        <button onclick="chooseEnv('Cold Vault')">❄️ Cold Vault</button>
+        <button onclick="chooseEnv('Hype Pool')">💦 Hype Pool</button>
+      </div>
+    </div>
+
+    <div id="result-area" style="display:none;">
+      <h3>Your Network Outcome:</h3>
+      <p id="result-message">...</p>
+      <img id="growth-image" src="" alt="Network Result" />
+      <div id="completion">
+        <h2>✅ You made your choice. XP +5</h2>
+        <a href="../Toybox-16C/index.html"><button>Continue</button></a>
+      </div>
+    </div>
+  </div>
+
+  <script src="../playerState.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>

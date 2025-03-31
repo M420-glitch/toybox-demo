@@ -67,13 +67,17 @@ function checkOrder() {
     gameAreaEl.classList.add('complete');
     gameAreaEl.style.borderColor = '#28a745';
 
-    let currentXP = playerState.getXP();
-    currentXP += 5;
-    playerState.setXP(currentXP);
-    xpEl.textContent = currentXP;
+    if (!playerState.isCompleted("3")) {
+      let currentXP = playerState.getXP();
+      currentXP += 5;
+      playerState.setXP(currentXP);
+      playerState.markCompleted("3");
+      xpEl.textContent = currentXP;
     
-    xpEl.classList.add('xp-flash');
-    setTimeout(() => xpEl.classList.remove('xp-flash'), 500);
+      xpEl.classList.add('xp-flash');
+      setTimeout(() => xpEl.classList.remove('xp-flash'), 500);
+    }
+    
 
     document.getElementById('completion-buttons').style.display = 'block';
 
