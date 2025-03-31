@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Toybox 12D – Defiant Disruptors</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="top-left-controls">
+    <button onclick="goToMap()">🗺️ Progress Map</button>
+    <button onclick="saveAndExit()">💾 Save & Exit</button>
+  </div>
+
+  <div id="xp-counter">XP: <span id="xp-value">--</span></div>
+  <h1>🛠 One Refusal is Enough</h1>
+  <p class="subtitle">CTPCTW doesn’t ask permission. It just begins.</p>
+
+  <div id="prompt-container"></div>
+
+  <div id="completion" style="display: none;">
+    <h2>✅ All choices locked. XP +5</h2>
+    <a href="../Toybox-13D/index.html"><button>Continue</button></a>
+  </div>
+
+  <div id="callout-box">
+    <h3>🚨 SYSTEM BREACH</h3>
+    <p>
+      These aren’t questions. They’re cracks in the script.<br>
+      CTPCTW isn’t sanctioned. It’s inevitable.<br>
+      Break the loop. Or be broken by it.
+    </p>
+  </div>
+
+  <script src="../playerState.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>

@@ -122,3 +122,24 @@ h2 {
   margin-top: 30px;
   font-size: 14px;
 }
+
+.dev-claim-btn {
+  background: transparent;
+  color: #ffeb3b;
+  border: 2px dashed #ffeb3b;
+  padding: 6px 12px;
+  font-size: 14px;
+  font-family: monospace;
+  border-radius: 6px;
+  cursor: pointer;
+  width: fit-content;
+  margin: 10px auto;
+  display: block;
+  transition: all 0.3s ease-in-out;
+}
+
+.dev-claim-btn.claimed {
+  background-color: #4caf50 !important;
+  color: #fff !important;
+  border: 2px solid #4caf50 !important;
+}

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Toybox 14A – The Trial</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="top-left-controls">
+    <button onclick="goToMap()">🗺️ Progress Map</button>
+    <button onclick="saveAndExit()">💾 Save & Exit</button>
+  </div>
+
+  <div id="xp-counter">XP: <span id="xp-value">--</span></div>
+
+  <h1>🎮 The Trial</h1>
+  <p class="subtitle">Trace the consequence. See the system. Light Me Me awaits.</p>
+
+  <div id="timeline-container">
+    <div class="timeline" data-answer="Gamification creates compliance">
+      <div class="slot" title="A method used to control behavior through points, badges, and streaks.">⚡ Manipulation Tactic</div>
+      <div class="slot drop" data-slot></div>
+      <div class="slot" title="Unquestioning behavior dressed as progress.">📉 Behavior Outcome</div>
+    </div>
+    <div class="timeline" data-answer="The illusion of choice is still control">
+      <div class="slot" title="A mask that offers false freedom.">🎭 Narrative Trick</div>
+      <div class="slot drop" data-slot></div>
+      <div class="slot" title="Keeps power unchallenged while pretending it’s shared.">🧠 Mental Effect</div>
+    </div>
+    <div class="timeline" data-answer="The game isn’t broken. It’s rigged">
+      <div class="slot" title="The rules are built to keep you chasing.">🎮 Game Design</div>
+      <div class="slot drop" data-slot></div>
+      <div class="slot" title="Designed failure loops. Illusion of progress.">🕳️ System Trap</div>
+    </div>
+    <div class="timeline" data-answer="Some players stop playing. Others rewrite the code">
+      <div class="slot" title="Those who awaken to the illusion.">👤 Player Response</div>
+      <div class="slot drop" data-slot></div>
+      <div class="slot" title="A refusal to play. A rebuild from scratch.">🛠 Rewrite Moment</div>
+    </div>
+  </div>
+
+  <div id="truth-bank">
+    <div class="truth" draggable="true" data-label="Gamification creates compliance" title="Progress becomes control. You follow because it feels fun.">Gamification creates compliance</div>
+    <div class="truth" draggable="true" data-label="The illusion of choice is still control" title="If all options lead to the same power, it was never your choice.">The illusion of choice is still control</div>
+    <div class="truth" draggable="true" data-label="The game isn’t broken. It’s rigged" title="Loss is designed. Your frustration is monetized.">The game isn’t broken. It’s rigged</div>
+    <div class="truth" draggable="true" data-label="Some players stop playing. Others rewrite the code" title="You can refuse the game. You can build a new one.">Some players stop playing. Others rewrite the code</div>
+  </div>
+
+  <div id="completion" style="display: none;">
+    <h2>✅ You faced the loop. XP +5</h2>
+  </div>
+
+  <div id="callout-box">
+    <h3>🔓 THE CONSEQUENCE ENGINE</h3>
+    <p>
+      Truth doesn’t sit quietly.  
+      It moves. Breaks. Bends. Bites.<br><br>
+      Each phrase here isn’t a fact — it’s a fuse.<br>
+      Trace the chain. Watch the fallout.<br><br>
+      Light Me Me begins where denial ends.
+    </p>
+  </div>
+
+  <!-- LIGHT ME ME MODAL -->
+  <div id="lightme-modal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <div class="me-me-row">
+        <img src="assets/images/Water-Me-Me.png" />
+        <img src="assets/images/Ground-Me-Me.png" />
+        <img src="assets/images/Light-Me-Me.png" />
+        <img src="assets/images/Blow-Me-Me.png" class="locked" />
+      </div>
+      <p><strong>💡 You’ve faced the consequence.</strong><br>
+        You’ve earned the <strong>Light Me Me</strong> token — the third step forward.</p>
+        
+        <p>This is <strong>3 of 4</strong>. Some truths hurt — others unlock.<br>
+        Light reveals what shadows feared.</p>
+        
+        <p>Your XP is rising. But truth doesn’t just shine.<br>
+        It burns.</p>
+        
+        <p><strong>Register to see what you just ignited.</strong></p>
+        
+        <div class="modal-buttons">
+          <button id="btn-register">Register Now</button>
+          <button id="btn-skip">Continue Without</button>
+        </div>
+    </div>
+  </div>
+
+  <form id="force-form" action="../Toybox-15A/index.html" method="get" style="display: none;"></form>
+
+  <script src="../playerState.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>

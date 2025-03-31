@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Light Me Me – The Pledge</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <button id="btn-test-claim" class="dev-claim-btn">💧 Claim Token (Dev Test)</button>
+
+  <div class="ad-column left-column">
+    <div class="ad" title="Earn +5 XP"><a href="https://www.youtube.com/shorts/sTuStNx31os" target="_blank">
+      <img src="../assets/images/TOTD-teaser.png" alt="Tent of the Dead Teaser" />
+    </a></div>
+    <div class="ad" title="Earn +5 XP">💾 Install the GaiaVerse Netscape Plugin</div>
+    <div class="ad" title="Earn +5 XP">👀 Shadow Sight™: See beyond the veil</div>
+    <div class="ad" title="Earn +5 XP">🧃 Drink Weed Water, Stay Rooted™</div>
+    <div class="ad" title="Earn +5 XP">🦷 DENTAL DAO – Decay or Destiny?</div>
+    <div class="ad" title="Earn +5 XP">👀 SNIFF ME ME SNEAK PEEK</div>
+    <div class="ad" title="Earn +5 XP">📦 Buy 2 NFTs Get 6 Crates</div>
+    <div class="ad" title="Earn +5 XP">🧼 Baron's Cleanse™ – Coming Soon</div>
+    <div class="ad" title="Earn +5 XP">💼 TRADE LIKE A BARON. LOSE LIKE A LEGEND.</div>
+  </div>
+
+  <div id="container">
+    <div id="pledge-wrapper">
+      <img src="../assets/images/Light-Me-Me.png" alt="Light Me Me" id="glowing-token" />
+      <h1>💡 THE PLEDGE</h1>
+      <h2>(Light Me Me – The Trial)</h2>
+
+      <div id="pledge-box">
+        <p>I am no longer here to be seen.</p>
+        <p>I am here to be exposed.</p>
+
+        <p>I understand that light does not flatter—it reveals.<br>
+        And I no longer fear what will be shown.</p>
+
+        <p>I will face the shadows within and the systems without.<br>
+        I will not explain away my ignorance.<br>
+        I will not justify my silence.</p>
+
+        <p>I will use my name with care.<br>
+        I will wield truth without pride.<br>
+        And I will not retreat from clarity, no matter who it shatters.</p>
+
+        <p>I am not here to escape.<br>
+        I am here to illuminate.</p>
+
+        <p><strong>Light me me.</strong></p>
+      </div>
+
+      <div id="register-box">
+        <h3>Want to register your pledge?</h3>
+        <input type="email" placeholder="Enter your email" />
+        <button>Send Verification Code</button>
+        <p class="note">We’ll send a code to verify you.<br>
+        This links your XP and credibility going forward.</p>
+      </div>
+
+      <div id="back-link">
+        <a href="../../Toybox-15A/index.html">← Continue to Toybox 15</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="ad-column right-column">
+    <div class="ad" title="Earn +5 XP">📡 Join the Barons' Surveillance Loyalty Club™</div>
+    <div class="ad" title="Earn +5 XP">💊 Eat the Red Pill & Get a Free Hat</div>
+    <div class="ad" title="Earn +5 XP">🧠 Brain-Mint 3000 – Freshness You Can Think</div>
+    <div class="ad" title="Earn +5 XP">👻 WhisperCoin – Mint in Silence</div>
+    <div class="ad" title="Earn +5 XP">🚨 XP BOOST: GLITCHGLADE MAP DROP</div>
+    <div class="ad" title="Earn +5 XP">💊 TOKENOMICS TUNNEL – ENTER?</div>
+    <div class="ad" title="Earn +5 XP">🎥 NEW: Tent of the Dead trailer</div>
+    <div class="ad" title="Earn +5 XP">💎 CLAIM YOUR DANK PASS</div>
+    <div class="ad" title="Earn +5 XP">🧙‍♂️ Unlock: Ghost Noodle Lore</div>
+  </div>
+  <script>
+  // SAFE playerState fallback if not loaded externally
+  if (!window.playerState) {
+    window.playerState = {
+      meMes: JSON.parse(localStorage.getItem('meMes')) || {},
+
+      markMeMeEarned(token) {
+        this.meMes[token] = true;
+        localStorage.setItem('meMes', JSON.stringify(this.meMes));
+      },
+
+      hasMeMe(token) {
+        return this.meMes[token] === true;
+      },
+
+      save() {
+        localStorage.setItem('meMes', JSON.stringify(this.meMes));
+      }
+    };
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const btn = document.getElementById('btn-test-claim');
+    const tokenType = "ground"; // ⬅️ CHANGE THIS per page: "ground", "light", or "blow"
+
+    if (playerState.hasMeMe(tokenType)) {
+      btn.classList.add("claimed");
+      btn.textContent = "✅ Token Claimed";
+    }
+
+    btn.addEventListener('click', () => {
+      if (!playerState.hasMeMe(tokenType)) {
+        playerState.markMeMeEarned(tokenType);
+        playerState.save();
+        btn.classList.add("claimed");
+        btn.textContent = "✅ Token Claimed";
+      }
+    });
+  });
+</script>
+<script>
+  // SAFE playerState fallback if not loaded externally
+  if (!window.playerState) {
+    window.playerState = {
+      meMes: JSON.parse(localStorage.getItem('meMes')) || {},
+
+      markMeMeEarned(token) {
+        this.meMes[token] = true;
+        localStorage.setItem('meMes', JSON.stringify(this.meMes));
+      },
+
+      hasMeMe(token) {
+        return this.meMes[token] === true;
+      },
+
+      save() {
+        localStorage.setItem('meMes', JSON.stringify(this.meMes));
+      }
+    };
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const btn = document.getElementById('btn-test-claim');
+    const tokenType = "ground"; // ⬅️ CHANGE THIS per page: "ground", "light", or "blow"
+
+    if (playerState.hasMeMe(tokenType)) {
+      btn.classList.add("claimed");
+      btn.textContent = "✅ Token Claimed";
+    }
+
+    btn.addEventListener('click', () => {
+      if (!playerState.hasMeMe(tokenType)) {
+        playerState.markMeMeEarned(tokenType);
+        playerState.save();
+        btn.classList.add("claimed");
+        btn.textContent = "✅ Token Claimed";
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

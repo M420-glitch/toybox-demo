@@ -87,12 +87,17 @@ if (isSplit) {
 
   // ✅ Add XP +5 logic
   const xpEl = document.getElementById('xp-value');
-  let currentXP = playerState.getXP();
-  currentXP += 5;
-  playerState.setXP(currentXP);
-  xpEl.textContent = currentXP;
-  xpEl.classList.add('xp-flash');
-  setTimeout(() => xpEl.classList.remove('xp-flash'), 400);
+  if (!playerState.isCompleted("6")) {
+    let currentXP = playerState.getXP();
+    currentXP += 5;
+    playerState.setXP(currentXP);
+    playerState.markCompleted("6");
+    xpEl.textContent = currentXP;
+  
+    xpEl.classList.add('xp-flash');
+    setTimeout(() => xpEl.classList.remove('xp-flash'), 500);
+  }
+  
   
   // ✅ Show the Continue button
   document.getElementById('completion-buttons').style.display = 'block';

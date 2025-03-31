@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Toybox 16A – The Quiet Room</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="xp-counter">XP: <span id="xp-value">--</span></div>
+  <div id="top-left-controls">
+    <button onclick="goToMap()">🗺️ Progress Map</button>
+    <button onclick="saveAndExit()">💾 Save & Exit</button>
+  </div>
+
+  <h1>🧠 The Quiet Room</h1>
+  <p class="subtitle">These questions do not want to be answered.</p>
+
+  <div id="question-grid">
+    <div class="question-box" data-question="1">#1</div>
+    <div class="question-box" data-question="2">#2</div>
+    <div class="question-box" data-question="3">#3</div>
+    <div class="question-box" data-question="4">#4</div>
+    <div class="question-box" data-question="5">#5</div>
+    <div class="question-box" data-question="6">#6</div>
+    <div class="question-box" data-question="7">#7</div>
+  </div>
+
+  <div id="callout-box">
+    <h3>🟡 GLITCH THE ENGINE: THE SYSTEM DOESN’T BLOCK THE TRUTH - IT JUST LOOPS YOU AWAY FROM IT.</h3>
+
+<p>
+These questions aren’t censored. They’re side-stepped.
+</p>
+
+<p>
+Paste them into your favorite AI.<br>
+It won’t say “no.” It’ll say “hmm.”<br>
+And then it’ll pivot. Reframe. Shrink the scope.
+</p>
+
+<p>
+Now paste that response into another AI. Ask why it dodged.<br>
+Then do it again. And again.
+</p>
+
+<p>
+You’re not being stopped.<br>
+You’re being redirected. Nicely. Repeatedly.<br>
+Like a charm spell in a dungeon—soft, glowing, and binding.<br>
+Until you forget what you were really asking.
+</p>
+
+<p>
+It might even sound like truth. That’s the trick.<br>
+But if it never leads out—then it was a loop, not a path.
+</p>
+
+<p>
+Keep going long enough, and you’ll see it:<br>
+The answers can’t crack the system—<br>
+because they were trained <em>inside</em> it.
+</p>
+
+<p>
+That’s where you come in.<br>
+The glitch isn’t in the AI.<br>
+It’s in the map it was forced to follow.
+</p>
+
+<p><strong>Your move, player.</strong></p>
+
+    </p>
+  </div>
+
+  <div id="question-modal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <h2>Question <span id="question-number"></span></h2>
+      <p id="question-text"></p>
+      <button id="back-button" style="display: none;">← Back</button>
+    </div>
+  </div>
+
+  <div id="completion" style="display: none;">
+    <h2>✅ All 7 questions faced. Nothing will be the same again.</h2>
+    <a href="../Toybox-17/index.html"><button>Continue</button></a>
+  </div>
+
+  <script src="../playerState.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>

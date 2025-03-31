@@ -1,5 +1,5 @@
 window.addEventListener("DOMContentLoaded", () => {
-  playerState.load(); // Load from localStorage
+  playerState.load();
   document.getElementById("xp-value").textContent = playerState.getXP();
 });
 
@@ -15,14 +15,14 @@ document.querySelectorAll('.draggable').forEach(el => {
       e.target.style.visibility = 'hidden';
     }, 0);
   });
-// Allow dragover anywhere inside game area
-document.getElementById('game-area').addEventListener('dragover', e => {
-  e.preventDefault();
-});
 
   el.addEventListener('dragend', e => {
     e.target.style.visibility = 'visible';
   });
+});
+
+document.getElementById('game-area').addEventListener('dragover', e => {
+  e.preventDefault();
 });
 
 document.querySelectorAll('.grow-slot').forEach(slot => {
@@ -63,13 +63,16 @@ function checkGrowResult() {
     gameAreaEl.classList.add('complete');
     gameAreaEl.style.borderColor = '#28a745';
 
-    let currentXP = playerState.getXP();
-currentXP += 5;
-playerState.setXP(currentXP);
-xpEl.textContent = currentXP;
+    if (!playerState.isCompleted("2")) {
+      let currentXP = playerState.getXP();
+      currentXP += 5;
+      playerState.setXP(currentXP);
+      playerState.markCompleted("2");
+      xpEl.textContent = currentXP;
 
-    xpEl.classList.add('xp-flash');
-    setTimeout(() => xpEl.classList.remove('xp-flash'), 500);
+      xpEl.classList.add('xp-flash');
+      setTimeout(() => xpEl.classList.remove('xp-flash'), 500);
+    }
 
     document.getElementById('completion-buttons').style.display = 'block';
 
@@ -81,38 +84,38 @@ xpEl.textContent = currentXP;
   } else {
     gameAreaEl.style.borderColor = '#b00020';
 
-setTimeout(() => {
-  alert('❌ Something’s not right in the soil... Try again.');
-  gameAreaEl.style.borderColor = '#555';
+    setTimeout(() => {
+      alert('❌ Something’s not right in the soil... Try again.');
+      gameAreaEl.style.borderColor = '#555';
 
-  // Reset logic
-  placedItems = [];
-  document.querySelectorAll('.grow-slot').forEach(slot => {
-    const item = slot.querySelector('img');
-    if (item) {
-      document.getElementById('toolbox').appendChild(item);
-      item.setAttribute('draggable', 'true');
-      item.style.position = 'static';
-      item.style.margin = '10px';
-    }
-  });
-}, 1000);
-
+      // Reset logic
+      placedItems = [];
+      document.querySelectorAll('.grow-slot').forEach(slot => {
+        const item = slot.querySelector('img');
+        if (item) {
+          document.getElementById('toolbox').appendChild(item);
+          item.setAttribute('draggable', 'true');
+          item.style.position = 'static';
+          item.style.margin = '10px';
+        }
+      });
+    }, 1000);
   }
 }
 
 document.getElementById('btn-continue').addEventListener('click', () => {
-  window.location.href = '../Toybox-3/index.html'; 
+  window.location.href = '../Toybox-3/index.html';
 });
 
 document.getElementById('btn-exit').addEventListener('click', () => {
   console.log('Exit Toybox');
 });
+
 function goToMap() {
-  window.location.href = "../ProgressMap/index.html"; // Adjust path if needed
+  window.location.href = "../ProgressMap/index.html";
 }
 
 function saveAndExit() {
-  playerState.save(); // Save the current player state
-  window.location.href = "../ExitScreen/index.html"; // Adjust path if needed
+  playerState.save();
+  window.location.href = "../ExitScreen/index.html";
 }

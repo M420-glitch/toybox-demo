@@ -81,14 +81,17 @@ function checkWindItems() {
     gameAreaEl.classList.add('complete');
     gameAreaEl.style.borderColor = '#28a745';
 
-    let currentXP = playerState.getXP();
-currentXP += 5;
-playerState.setXP(currentXP);
-xpEl.textContent = currentXP;
-
-    xpEl.classList.add('xp-flash');
-    setTimeout(() => xpEl.classList.remove('xp-flash'), 500);
-
+    if (!playerState.isCompleted("4")) {
+      let currentXP = playerState.getXP();
+      currentXP += 5;
+      playerState.setXP(currentXP);
+      playerState.markCompleted("4");
+      xpEl.textContent = currentXP;
+    
+      xpEl.classList.add('xp-flash');
+      setTimeout(() => xpEl.classList.remove('xp-flash'), 500);
+    }
+    
     setTimeout(() => {
       document.getElementById('waterme-modal').style.display = 'flex';
       gameAreaEl.classList.remove('complete');

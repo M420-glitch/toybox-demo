@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>CTPCTW: The Real Game</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="top-left-controls">
+    <button onclick="goToMap()">🗺️ Progress Map</button>
+    <button onclick="saveAndExit()">💾 Save & Exit</button>
+  </div>
+
+  <div id="xp-counter">XP: <span id="xp-value">--</span></div>
+
+  <h1>📦 CTPCTW: The Real Game</h1>
+  <p class="subtitle">No leaderboard. No spectators. Just you, the world, and the post.</p>
+
+  <div id="ctpctw-box">
+    <p><strong>🚪 You’ve reached the layer beneath the simulation.</strong></p>
+    <p>This isn’t a mission.<br>It’s a signal.</p>
+    <p>CTPCTW isn't a trend. It's the underground logistics of a new world.<br>Flyers in lockers. Parcels at dawn. Memes that land like bombs.</p>
+    <p>Kindness at scale. Truth with teeth. Action with no applause.</p>
+    <p>You don’t need permission. You need a direction.</p>
+    <p><em>This is where it starts.</em></p>
+    <p>🧃 Pick your first drop. The algorithm won’t see it coming.</p>
+  </div>
+
+  <div id="mission-options">
+    <button onclick="chooseDrop('Sticker a truth in the wild')">🎯 Sticker a truth in the wild</button>
+    <button onclick="chooseDrop('Drop a meme that cracks the loop')">💣 Drop a meme that cracks the loop</button>
+    <button onclick="chooseDrop('Deliver a parcel to change nothing—and everything')">📦 Deliver a parcel to change nothing—and everything</button>
+    <button onclick="chooseDrop('Send a whisper they’ll never trace')">👻 Send a whisper they’ll never trace</button>
+  </div>
+
+  <div id="result-box" style="display: none;">
+    <h2>📮 Delivery route accepted.</h2>
+    <p id="result-text"></p>
+    <p><em>No receipts. No claps. Just consequence.</em></p>
+    <a href="../Toybox-18/index.html"><button>Enter Final Sequence</button></a>
+  </div>
+
+  <script src="../playerState.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>

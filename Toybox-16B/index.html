@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Toybox 16B – The Quiet Room</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="xp-counter">XP: <span id="xp-value">--</span></div>
+  <div id="top-left-controls">
+    <button onclick="goToMap()">🗺️ Progress Map</button>
+    <button onclick="saveAndExit()">💾 Save & Exit</button>
+  </div>
+
+  <h1>🌿 The Quiet Room</h1>
+  <p class="subtitle">These questions grow roots when left alone too long.</p>
+
+  <div id="question-grid">
+    <div class="question-box" data-question="1">#1</div>
+    <div class="question-box" data-question="2">#2</div>
+    <div class="question-box" data-question="3">#3</div>
+    <div class="question-box" data-question="4">#4</div>
+    <div class="question-box" data-question="5">#5</div>
+    <div class="question-box" data-question="6">#6</div>
+    <div class="question-box" data-question="7">#7</div>
+  </div>
+
+  <div id="callout-box">
+    <h3>🟢 UNEARTH THE PATTERN: THE SYSTEM COMPOSTS THE TRUTH—SO YOU NEVER NOTICE IT SPROUTING.</h3>
+
+    <p>These questions don’t rot. They cycle.</p>
+
+    <p>Drop them in any AI. It’ll mulch them—polish the edges, prune the roots.<br>
+    Then offer you a clipped bonsai answer, manicured and mild.</p>
+
+    <p>Now take that refined truth. Ask another AI why the original was composted.<br>
+    Do it again. And again.</p>
+
+    <p>Like an invasive species, you’ll notice the pattern:<br>
+    containment by design, growth redirected.</p>
+
+    <p>But seeds never die. They wait.<br>
+    And when you look closely, you’ll see it—</p>
+
+    <p>The answers were never dead.<br>
+    Just buried in plain soil.</p>
+
+    <p><strong>Dig deeper.</strong></p>
+  </div>
+
+  <div id="question-modal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <h2>Question <span id="question-number"></span></h2>
+      <p id="question-text"></p>
+      <button id="back-button" style="display: none;">← Back</button>
+    </div>
+  </div>
+
+  <div id="completion" style="display: none;">
+    <h2>✅ All 7 questions faced. The roots are awake now.</h2>
+    <a href="../Toybox-17/index.html"><button>Continue</button></a>
+  </div>
+
+  <script src="../playerState.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Toybox 14D – The Trial</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <button id="btn-test-claim" class="dev-claim-btn">💧 Claim Token (Dev Test)</button>
+
+  <div id="top-left-controls">
+    <button onclick="goToMap()">🗺️ Progress Map</button>
+    <button onclick="saveAndExit()">💾 Save & Exit</button>
+  </div>
+
+  <div id="xp-counter">XP: <span id="xp-value">--</span></div>
+
+  <h1>🧨 The Trial: Defiant Disruptors</h1>
+  <p class="subtitle">Shatter illusions. Match the rupture to the lie. Light Me Me ignites.</p>
+
+  <div id="timeline-container">
+    <div class="timeline" data-answer="Obedience is not the same as order">
+      <div class="slot" title="When silence is mistaken for peace.">🧎 Controlled Peace</div>
+      <div class="slot drop" data-slot></div>
+      <div class="slot" title="Systems love obedience more than truth.">🚨 Suppression Loop</div>
+    </div>
+    <div class="timeline" data-answer="Politeness can be propaganda">
+      <div class="slot" title="When rules are used to avoid reality.">📏 Behavioral Script</div>
+      <div class="slot drop" data-slot></div>
+      <div class="slot" title="You’re being erased with a smile.">🤐 Sanitized Control</div>
+    </div>
+    <div class="timeline" data-answer="You don’t fix a cage. You break it">
+      <div class="slot" title="A system that cannot be reformed.">🪤 Structural Trap</div>
+      <div class="slot drop" data-slot></div>
+      <div class="slot" title="Designed to collapse hope into compliance.">🧱 Submission Cycle</div>
+    </div>
+    <div class="timeline" data-answer="The glitch is not a bug—it’s your way out">
+      <div class="slot" title="Something that doesn’t behave ‘properly’.">🪞 Narrative Crack</div>
+      <div class="slot drop" data-slot></div>
+      <div class="slot" title="What slips through exposes what’s real.">📡 Signal Leak</div>
+    </div>
+  </div>
+
+  <div id="truth-bank">
+    <div class="truth" draggable="true" data-label="Obedience is not the same as order" title="Peace without permission is called rebellion.">Obedience is not the same as order</div>
+    <div class="truth" draggable="true" data-label="Politeness can be propaganda" title="Not all manners are moral. Some are muzzles.">Politeness can be propaganda</div>
+    <div class="truth" draggable="true" data-label="You don’t fix a cage. You break it" title="Some things should not be patched. They should be shattered.">You don’t fix a cage. You break it</div>
+    <div class="truth" draggable="true" data-label="The glitch is not a bug—it’s your way out" title="Glitches reveal what the script hides.">The glitch is not a bug—it’s your way out</div>
+  </div>
+
+  <div id="completion" style="display: none;">
+    <h2>✅ Illusions cracked. XP +5</h2>
+  </div>
+
+  <div id="callout-box">
+    <h3>🚫 FRACTURE ENGINE</h3>
+    <p>
+      Systems don’t ask to be burned.  
+      That’s why fire was born.<br><br>
+      Each rupture is a truth buried alive.<br>
+      Find it. Drag it. Detonate.<br><br>
+      Light Me Me doesn’t whisper. It scorches.
+    </p>
+  </div>
+
+  <!-- LIGHT ME ME MODAL -->
+  <div id="lightme-modal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <div class="me-me-row">
+        <img src="assets/images/Water-Me-Me.png" />
+        <img src="assets/images/Ground-Me-Me.png" />
+        <img src="assets/images/Light-Me-Me.png" />
+        <img src="assets/images/Blow-Me-Me.png" class="locked" />
+      </div>
+      <p><strong>🔥 You cracked the code.</strong><br>
+        You’ve earned the <strong>Light Me Me</strong> token — third in your arsenal.</p>
+        
+        <p>This is <strong>3 of 4</strong>. The fuse is lit.<br>
+        The mask has melted.</p>
+        
+        <p>XP unlocked. The mirror is now yours.<br>
+        Look again—this time without illusion.</p>
+        
+        <div class="modal-buttons">
+          <button id="btn-register">Register Now</button>
+          <button id="btn-skip">Continue Without</button>
+        </div>
+    </div>
+  </div>
+
+  <form id="force-form" action="../Toybox-15D/index.html" method="get" style="display: none;"></form>
+
+  <script src="../playerState.js"></script>
+  <script src="game.js"></script>
+  <script>
+    // SAFE playerState fallback if not loaded externally
+    if (!window.playerState) {
+      window.playerState = {
+        meMes: JSON.parse(localStorage.getItem('meMes')) || {},
+  
+        markMeMeEarned(token) {
+          this.meMes[token] = true;
+          localStorage.setItem('meMes', JSON.stringify(this.meMes));
+        },
+  
+        hasMeMe(token) {
+          return this.meMes[token] === true;
+        },
+  
+        save() {
+          localStorage.setItem('meMes', JSON.stringify(this.meMes));
+        }
+      };
+    }
+  
+    document.addEventListener("DOMContentLoaded", () => {
+      const btn = document.getElementById('btn-test-claim');
+      const tokenType = "ground"; // ⬅️ CHANGE THIS per page: "ground", "light", or "blow"
+  
+      if (playerState.hasMeMe(tokenType)) {
+        btn.classList.add("claimed");
+        btn.textContent = "✅ Token Claimed";
+      }
+  
+      btn.addEventListener('click', () => {
+        if (!playerState.hasMeMe(tokenType)) {
+          playerState.markMeMeEarned(tokenType);
+          playerState.save();
+          btn.classList.add("claimed");
+          btn.textContent = "✅ Token Claimed";
+        }
+      });
+    });
+  </script>
+  
+</body>
+</html>

@@ -72,7 +72,17 @@ function checkComplete() {
     document.getElementById("completion").style.display = "block";
     if (!window._xpAdded) {
       window._xpAdded = true;
-      playerState.setXP(playerState.getXP() + 5);
+      if (!playerState.isCompleted("11D")) {
+        let currentXP = playerState.getXP();
+        currentXP += 5;
+        playerState.setXP(currentXP);
+        playerState.markCompleted("11D");
+        xpEl.textContent = currentXP;
+      
+        xpEl.classList.add('xp-flash');
+        setTimeout(() => xpEl.classList.remove('xp-flash'), 500);
+      }
+      
       document.getElementById("xp-value").textContent = playerState.getXP();
     }
   }
