@@ -475,4 +475,14 @@ Click your site (e.g., file:// or localhost)
 
 Find meMes key → right-click → Delete
 
+<<<<<<< HEAD
 Reload your page
+=======
+Reload your page
+
+>> git add .
+>> git commit -m "Initial commit"
+>> git push -u origin main
+error: remote origin already exists.
+warning: in the working copy of 'README.md', LF will be replaced by CRLF the next time Git touches it
+>>>>>>> 1ae57e4 (Your message here)
