@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Plugin Toybox</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="top-left-controls">
+    <button onclick="goToMap()">🗺️ Progress Map</button>
+    <button onclick="saveAndExit()">💾 Save & Exit</button>
+  </div>
+  <h1>🧃 Drink Weed Water, Stay Rooted™</h1>
+  <p>"Roots are still growing. Please check back next Tuesday."
+    "Awaiting FDA approval. May or may not cause uncontrollable giggling."</p>
+
+<div id="game-container">
+  <div id="game-area">
+    <div id="plugin-dropzone">
+  <div class="plugin-slot" data-slot="1"></div>
+  <div class="arrow">➡️</div>
+  <div class="plugin-slot" data-slot="2"></div>
+  <div class="arrow">➡️</div>
+  <div class="plugin-slot" data-slot="3"></div>
+</div>
+
+    <div id="ground-strip"></div>
+  </div>
+</div>
+
+<div id="toolbox">
+  <p>Toolbox:</p>
+  <img id="plugin-chip" src="assets/images/plugin-chip.png" class="draggable" draggable="true" title="Plugin Chip" />
+  <img id="ether-cable" src="assets/images/ether-cable.png" class="draggable" draggable="true" title="Ether Cable" />
+  <img id="gaia-disc" src="assets/images/gaia-disc.png" class="draggable" draggable="true" title="Gaia Disc" />
+  <img id="banana" src="assets/images/banana.png" class="draggable" draggable="true" title="Banana" />
+  <img id="rubber-duck" src="assets/images/rubber-duck.png" class="draggable" draggable="true" title="Rubber Duck" />
+</div>
+</div>
+
+
+  <div id="xp-counter">
+    XP: <span id="xp-value">--</span>
+  </div>
+
+  <div id="completion-buttons" style="display: none;">
+    <button id="btn-continue">Continue</button>
+    <button id="btn-exit">Exit</button>
+  </div>
+
+  
+  <script src="../../../playerState.js"></script> <!-- ✅ Added for XP tracking -->
+  <script src="game.js?v=2"></script>
+
+</body>
+</html>

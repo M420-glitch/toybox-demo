@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Light Me Me Progress Map</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="../../playerState.js"></script>
+  
+  <!-- IMMEDIATE LOCK CHECK - this runs before anything else -->
+  <script>
+    // Execute this code immediately
+    (function() {
+      if (typeof playerState !== 'undefined') {
+        playerState.load();
+        const lightToken = playerState.meMeTokens.light || 0;
+        
+        // If no token, store this in window variable for later use
+        window.needsLock = (lightToken <= 0);
+        
+        // Pre-style the body to prevent flash of content
+        if (window.needsLock) {
+          document.write(`
+            <style>
+              #container {
+                filter: grayscale(90%) !important;
+                opacity: 0.7 !important;
+                pointer-events: none !important;
+              }
+              
+              #lock-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.3);
+                z-index: 99999;
+              }
+              
+              #unlock-message {
+                position: fixed;
+                top: 30px;
+                left: 50%;
+                transform: translateX(-50%);
+                background-color: rgba(0, 0, 0, 0.9);
+                color: white;
+                padding: 20px 30px;
+                border-radius: 8px;
+                z-index: 100000;
+                text-align: center;
+                box-shadow: 0 0 30px rgba(255, 193, 7, 0.6);
+                border: 2px solid #FFC107;
+              }
+              
+              a {
+                pointer-events: none !important;
+                cursor: not-allowed !important;
+                text-decoration: line-through !important;
+                opacity: 0.5 !important;
+              }
+              
+              button:not(#dev-reset-button):not(#return-button) {
+                pointer-events: none !important;
+                cursor: not-allowed !important;
+                opacity: 0.5 !important;
+              }
+            </style>
+          `);
+        }
+      }
+    })();
+  </script>
+</head>
+<body>
+  <div id="top-left-controls">
+    <button id="save-and-exit-button" onclick="saveAndExit()">Save and Exit</button>
+  </div>
+
+  <p id="xp-display">Current XP: --</p>
+
+  <!-- Light Me Me Info Block -->
+  <div id="light-me-me-info-block" class="me-me-info-block">
+    <h3>Light Me Me Status</h3>
+    <div class="info-content">
+      <div class="info-row">
+        <span class="info-label">Pledge Status:</span>
+        <span id="pledge-status" class="info-value">Not taken</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Tokens:</span>
+        <span id="token-count" class="info-value">0</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Light Me Me XP:</span>
+        <span id="light-xp" class="info-value">0</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="container">
+    <section id="brick-ironclaw">
+      <h2>Brick IronClaw's Guidance</h2>
+      <p>Welcome, Initiate! Brick IronClaw here, your guide through the illuminating realm of Light Me Me. Follow these steps to unlock the secrets of the Light Pledge...</p>
+    </section>
+
+    <section id="what-is-gva">
+      <h2>What is Gaiaverse Adventures (GVA)?</h2>
+      <p>Gaiaverse Adventures (GVA) is...</p>
+    </section>
+
+    <section id="sub-quests">
+      <h2>Light Me Me Sub-Quests</h2>
+      <ul class="sub-quest-list">
+        <li><a href="../../Toybox-14/LightMeReveal/beam-me-up/index.html">☀️ Beam Me Up: Coming soon: Enlightenment may cause nosebleeds.</a></li>
+        <li><a href="../../Toybox-14/LightMeReveal/laser-tabernacle/index.html">⚡ Laser Tabernacle: A sacred space for accidental disintegration.</a></li>
+        <li><a href="../../Toybox-14/LightMeReveal/truth-render/index.html">💡 Truth Render: The facts have been processed. They're still ugly.</a></li>
+        <li><a href="../../Toybox-14/LightMeReveal/spectrum-tax/index.html">🌈 Spectrum Tax: You are being charged for invisible colors.</a></li>
+        <li><a href="../../Toybox-14/LightMeReveal/neon-baptism/index.html">✨ Neon Baptism: Clean your soul. Bring goggles.</a></li>
+        <li><a href="../../Toybox-14/LightMeReveal/halo-vpn/index.html">👼 Halo VPN: Encrypt your halo. Gary is watching.</a></li>
+        <li><a href="../../Toybox-14/LightMeReveal/lightbulb-lobby/index.html">💡 Lightbulb Lobby: Please wait while your idea buffers.</a></li>
+        <li><a href="../../Toybox-14/LightMeReveal/optic-overlord/index.html">👁️ Optic Overlord: It sees everything. Especially the embarrassing stuff.</a></li>
+        <li><a href="../../Toybox-14/LightMeReveal/photo-sin-thesis/index.html">🌿 Photo-Sin-Thesis: We ran your sins through a photosynthesis filter. You're still guilty.</a></li>
+        <li><a href="../../Toybox-14/LightMeReveal/pixel-righteous/index.html">📱 Pixel Righteous: Righteousness. In 8K. Sponsored by SnackCorp.</a></li>
+        <li><a href="../../Toybox-14/LightMeReveal/divine-captcha/index.html">🤖 Divine Captcha: Select all images that contain awakening. Hint: none.</a></li>
+        <li><a href="../../Toybox-14/LightMeReveal/retina-glitch/index.html">👀 Retina Glitch: Your eyes aren't lying. The system is.</a></li>
+        <li><a href="../../Toybox-14/LightMeReveal/beamline-confession/index.html">🙏 Beamline Confession: Forgive me Father, for I have streamed.</a></li>
+        <li><a href="../../Toybox-14/LightMeReveal/prism-panic/index.html">🔺 Prism Panic: You split the light. Now deal with the consequences.</a></li>
+        <li><a href="../../Toybox-14/LightMeReveal/holy-upload/index.html">⬆️ Holy Upload: Uploading soul... error 404: morality not found.</a></li>
+        <li><a href="../../Toybox-14/LightMeReveal/lumen-tunnel/index.html">🕳️ Lumen Tunnel: There's a light at the end. And a clown with a clipboard.</a></li>
+        <li><a href="../../Toybox-14/LightMeReveal/heavenly-popup/index.html">📢 Heavenly Popup: You've been selected for divine intervention. Click 'maybe later.'</a></li>
+      </ul>
+    </section>
+
+    <section id="progress-map">
+      <h2>Progress Map</h2>
+      <div id="progress-bar">
+        <button data-xp="0" onclick="goTo('Toybox-1')">1</button>
+        <button data-xp="5" onclick="goTo('Toybox-2')">2</button>
+        <button data-xp="10" onclick="goTo('Toybox-3')">3</button>
+        <button data-xp="15" onclick="goTo('Toybox-4')">4</button>
+        <button data-xp="20" onclick="goTo('Toybox-5')">5</button>
+        <button data-xp="25" onclick="goTo('Toybox-6')">6</button>
+        <button data-xp="30" onclick="goTo('Toybox-7')">7</button>
+        <button data-xp="35" onclick="goTo('Toybox-8')">8</button>
+        <button data-xp="40" onclick="goTo('Toybox-9')">9</button>
+        <button data-xp="45" onclick="goTo('Toybox-10')">10</button>
+
+        <div class="forks">
+          <button data-xp="50" onclick="goTo('Toybox-11A')">11A</button>
+          <button data-xp="50" onclick="goTo('Toybox-11B')">11B</button>
+          <button data-xp="50" onclick="goTo('Toybox-11C')">11C</button>
+          <button data-xp="50" onclick="goTo('Toybox-11D')">11D</button>
+        </div>
+
+        <div class="forks">
+          <button data-xp="55" onclick="goTo('Toybox-12A')">12A</button>
+          <button data-xp="55" onclick="goTo('Toybox-12B')">12B</button>
+          <button data-xp="55" onclick="goTo('Toybox-12C')">12C</button>
+          <button data-xp="55" onclick="goTo('Toybox-12D')">12D</button>
+        </div>
+
+        <div class="forks">
+          <button data-xp="60" onclick="goTo('Toybox-13A')">13A</button>
+          <button data-xp="60" onclick="goTo('Toybox-13B')">13B</button>
+          <button data-xp="60" onclick="goTo('Toybox-13C')">13C</button>
+          <button data-xp="60" onclick="goTo('Toybox-13D')">13D</button>
+        </div>
+
+        <div class="forks">
+          <button data-xp="65" onclick="goTo('Toybox-14A')">14A</button>
+          <button data-xp="65" onclick="goTo('Toybox-14B')">14B</button>
+          <button data-xp="65" onclick="goTo('Toybox-14C')">14C</button>
+          <button data-xp="65" onclick="goTo('Toybox-14D')">14D</button>
+        </div>
+
+        <div class="forks">
+          <button data-xp="70" onclick="goTo('Toybox-15A')">15A</button>
+          <button data-xp="70" onclick="goTo('Toybox-15B')">15B</button>
+          <button data-xp="70" onclick="goTo('Toybox-15C')">15C</button>
+          <button data-xp="70" onclick="goTo('Toybox-15D')">15D</button>
+        </div>
+
+        <div class="forks">
+          <button data-xp="75" onclick="goTo('Toybox-16A')">16A</button>
+          <button data-xp="75" onclick="goTo('Toybox-16B')">16B</button>
+          <button data-xp="75" onclick="goTo('Toybox-16C')">16C</button>
+          <button data-xp="75" onclick="goTo('Toybox-16D')">16D</button>
+        </div>
+
+        <div class="final-line">
+          <button data-xp="80" onclick="goTo('Toybox-17')">17</button>
+          <button data-xp="85" onclick="goTo('Toybox-18')">18</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="me-me-section" class="pledge-content">
+      <h2>Me Me Tokens</h2>
+      <div class="me-me-tokens">
+        <div class="me-me" id="water">
+          <img src="assets/images/Water-Me-Me.png" alt="Water Me Me" onclick="goToPledge('water')"/>
+          <button onclick="goToPledge('water')">Water Me Me</button>
+        </div>
+        <div class="me-me" id="ground">
+          <img src="assets/images/Ground-Me-Me.png" alt="Ground Me Me" onclick="goToPledge('ground')"/>
+          <button onclick="goToPledge('ground')">Ground Me Me</button>
+        </div>
+        <div class="me-me" id="light">
+          <img src="assets/images/Light-Me-Me.png" alt="Light Me Me" onclick="goToPledge('light')"/>
+          <button onclick="goToPledge('light')">Light Me Me</button>
+        </div>
+        <div class="me-me" id="blow">
+          <img src="assets/images/Blow-Me-Me.png" alt="Blow Me Me" onclick="goToPledge('blow')"/>
+          <button onclick="goToPledge('blow')">Blow Me Me</button>
+        </div>
+      </div>
+    </section>
+
+    <button id="dev-reset-button" onclick="resetProgress()">Dev Reset Score</button>
+  </div>
+
+  <!-- Add the lock overlay elements at the end of the body -->
+  <script>
+    // Run this immediately after body loads
+    (function() {
+      if (window.needsLock) {
+        // Create lock overlay
+        const overlay = document.createElement('div');
+        overlay.id = 'lock-overlay';
+        document.body.appendChild(overlay);
+        
+        // Create message
+        const message = document.createElement('div');
+        message.id = 'unlock-message';
+        message.innerHTML = `
+          <h3 style="margin: 0 0 15px 0; color: #FFC107; font-size: 22px;">🔒 PREVIEW MODE</h3>
+          <p style="margin: 0 0 15px 0; font-size: 16px;">Complete Toybox 14A, 14B, 14C, or 14D to access this area</p>
+          <button id="return-button" style="padding: 12px 24px; background: #FFC107; color: #333; 
+                                         border: none; cursor: pointer; border-radius: 4px;
+                                         font-weight: bold; font-size: 16px;">
+            Return to Main Progress Map
+          </button>
+        `;
+        document.body.appendChild(message);
+        
+        // Add return button functionality
+        document.getElementById('return-button').onclick = function() {
+          window.location.href = '../index.html';
+        };
+        
+        // Disable all links by removing their href
+        document.querySelectorAll('a').forEach(link => {
+          // Save original href
+          link.setAttribute('data-original-href', link.href);
+          // Replace with void
+          link.href = 'javascript:void(0)';
+        });
+        
+        // Block ALL clicks at document level
+        document.addEventListener('click', function(e) {
+          // Only allow clicks on specific elements
+          if (e.target.id !== 'dev-reset-button' && 
+              e.target.id !== 'return-button' && 
+              !e.target.closest('#return-button')) {
+            e.stopPropagation();
+            e.preventDefault();
+            return false;
+          }
+        }, true); // Use capture phase
+      }
+    })();
+    
+    function resetProgress() {
+      playerState.clearData();
+      window.location.reload();
+    }
+    
+    function saveAndExit() {
+      window.location.href = '../index.html';
+    }
+  </script>
+  
+  <script src="map.js"></script>
+  <script src="page-state.js"></script>
+</body>
+</html>

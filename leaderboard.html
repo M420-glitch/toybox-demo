@@ -1,0 +1,51 @@
+leaderboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GVA Toyboxes Leaderboard</title>
+  <link rel="stylesheet" href="leaderboard.css">
+  
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>GVA Toyboxes Leaderboard</h1>
+    
+    <div id="username-section">
+      <input type="text" id="username-input" placeholder="Enter your username">
+      <button id="save-username">Save Username</button>
+    </div>
+    
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="xp">XP Leaders</button>
+      <button class="tab-btn" data-tab="tokens">Token Leaders</button>
+      <button class="tab-btn" data-tab="completed">Completion Leaders</button>
+    </div>
+    
+    <div id="leaderboard">
+      <table id="leaderboard-table">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Username</th>
+            <th>Score</th>
+            <th>Last Active</th>
+          </tr>
+        </thead>
+        <tbody id="leaderboard-body">
+          <!-- Leaderboard entries will be added here -->
+        </tbody>
+      </table>
+    </div>
+    
+    <button id="back-button">Back to Game</button>
+  </div>
+
+  <script src="../playerState.js"></script>
+  <script src="leaderboard.js"></script>
+</body>
+</html>

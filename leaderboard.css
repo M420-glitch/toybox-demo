@@ -1,0 +1,253 @@
+leaderboard.css */
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+body {
+  font-family: 'VT323', monospace;
+  background-color: #000;
+  color: #0f0;
+  margin: 0;
+  padding: 20px;
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)),
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none" stroke="%230f0" stroke-width="0.5"/></svg>');
+  background-size: 20px 20px;
+  text-shadow: 0 0 5px #0f0;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #000;
+  padding: 20px;
+  border: 2px solid #0f0;
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.2), 
+              inset 0 0 10px rgba(0, 255, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.container::before {
+  content: "C:\\GVA\\LEADERBOARD>";
+  position: absolute;
+  top: 0;
+  left: 10px;
+  font-family: 'Share Tech Mono', monospace;
+  color: #0f0;
+  line-height: 20px;
+  padding: 5px;
+  background: #000;
+  border-bottom: 1px solid #0f0;
+  width: 100%;
+}
+
+.container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 30px;
+  background: #000;
+  border-bottom: 1px solid #0f0;
+  z-index: -1;
+}
+
+h1 {
+  text-align: center;
+  color: #0f0;
+  margin-top: 25px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 28px;
+}
+
+h1::before {
+  content: ">";
+  margin-right: 10px;
+}
+
+#username-section {
+  display: flex;
+  margin: 20px 0;
+  padding: 10px;
+  border: 1px solid #0f0;
+  background-color: rgba(0, 255, 0, 0.05);
+}
+
+#username-input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #0f0;
+  background-color: #000;
+  color: #0f0;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 16px;
+}
+
+#username-input:focus {
+  outline: none;
+  border-color: #0ff;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+}
+
+#save-username {
+  margin-left: 10px;
+  padding: 10px 15px;
+  background-color: rgba(0, 255, 0, 0.1);
+  color: #0f0;
+  border: 1px solid #0f0;
+  cursor: pointer;
+  font-family: 'VT323', monospace;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+#save-username:hover {
+  background-color: rgba(0, 255, 0, 0.2);
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+}
+
+.tabs {
+  display: flex;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #0f0;
+}
+
+.tab-btn {
+  padding: 10px 20px;
+  background-color: transparent;
+  border: 1px solid #0f0;
+  border-bottom: none;
+  cursor: pointer;
+  font-family: 'VT323', monospace;
+  font-size: 18px;
+  color: #0f0;
+  margin-right: 5px;
+  text-transform: uppercase;
+}
+
+.tab-btn:hover {
+  background-color: rgba(0, 255, 0, 0.1);
+}
+
+.tab-btn.active {
+  background-color: rgba(0, 255, 0, 0.15);
+  color: #fff;
+  text-shadow: 0 0 10px #0f0;
+}
+
+#leaderboard {
+  margin-bottom: 20px;
+  overflow: auto;
+  border: 1px solid #0f0;
+  position: relative;
+}
+
+#leaderboard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    transparent 0%,
+    rgba(0, 255, 0, 0.03) 50%,
+    transparent 100%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  animation: scanline 8s linear infinite;
+}
+
+@keyframes scanline {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 100%;
+  }
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Share Tech Mono', monospace;
+}
+
+th, td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid rgba(0, 255, 0, 0.3);
+}
+
+th {
+  background-color: rgba(0, 255, 0, 0.1);
+  color: #0f0;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+tr:hover {
+  background-color: rgba(0, 255, 0, 0.05);
+}
+
+tr.current-player {
+  background-color: rgba(0, 255, 0, 0.1);
+  border-left: 3px solid #0f0;
+}
+
+tr.current-player td {
+  color: #fff;
+  text-shadow: 0 0 5px #0f0;
+}
+
+#back-button {
+  display: block;
+  margin: 20px auto 0;
+  padding: 10px 25px;
+  background-color: #000;
+  color: #0f0;
+  border: 2px solid #0f0;
+  cursor: pointer;
+  font-family: 'VT323', monospace;
+  font-size: 18px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: all 0.3s;
+}
+
+#back-button:hover {
+  background-color: rgba(0, 255, 0, 0.2);
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+  text-shadow: 0 0 5px #0f0;
+}
+
+/* Web3 decorative element in the background */
+.container::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    rgba(0, 255, 0, 0.03) 10px,
+    rgba(0, 255, 0, 0.03) 20px
+  );
+  z-index: -1;
+  animation: matrix-bg 20s linear infinite;
+}
+
+@keyframes matrix-bg {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

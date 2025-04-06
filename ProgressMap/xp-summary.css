@@ -1,0 +1,584 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+body {
+  font-family: 'VT323', monospace;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #000;
+  color: #0f0;
+  overflow: auto;
+  position: relative;
+  text-shadow: 0 0 5px #0f0;
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)),
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none" stroke="%230f0" stroke-width="0.5"/></svg>');
+  background-size: 20px 20px;
+}
+
+h1, h2 {
+  color: #0f0;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+h1::before, h2::before {
+  content: ">";
+  margin-right: 10px;
+}
+
+#progress-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+#xp-summary {
+  background-color: #000;
+  padding: 15px;
+  border-radius: 0;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.2);
+  margin-bottom: 20px;
+  border: 1px solid #0f0;
+  position: relative;
+}
+
+#xp-summary::before {
+  content: "C:\\GVA\\XP_SUMMARY>";
+  position: absolute;
+  top: -25px;
+  left: 0;
+  font-family: 'Share Tech Mono', monospace;
+  color: #0f0;
+}
+
+#token-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.token-container {
+  background-color: #000;
+  border-radius: 0;
+  padding: 15px;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.1);
+  opacity: 0.7;
+  transition: all 0.3s ease;
+  border: 1px solid #0f0;
+  position: relative;
+}
+
+.token-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    transparent 0%,
+    rgba(0, 255, 0, 0.03) 50%,
+    transparent 100%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  animation: scanline 8s linear infinite;
+}
+
+@keyframes scanline {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 100%;
+  }
+}
+
+.token-container.active {
+  opacity: 1;
+  transform: scale(1.02);
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+}
+
+.token-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.token-icon {
+  width: 50px;
+  height: 50px;
+  margin-right: 15px;
+  border-radius: 0;
+  border: 1px solid #0f0;
+  filter: hue-rotate(100deg) brightness(1.2);
+}
+
+.token-header h3 {
+  margin: 0;
+  flex-grow: 1;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.token-header h3::before {
+  content: ">";
+  margin-right: 5px;
+}
+
+.health-bar-container {
+  background-color: #111;
+  height: 20px;
+  border-radius: 0;
+  overflow: hidden;
+  margin-bottom: 10px;
+  border: 1px solid #0f0;
+}
+
+.health-bar {
+  height: 100%;
+  width: 0%;
+  transition: width 0.5s ease-in-out;
+}
+
+.health-bar.healthy {
+  background-color: #0f0;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.8);
+}
+
+.health-bar.fading {
+  background-color: #ff0;
+  box-shadow: 0 0 10px rgba(255, 255, 0, 0.8);
+}
+
+.health-bar.weak {
+  background-color: #f00;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
+}
+
+#back-button {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #000;
+  color: #0f0;
+  border: 1px solid #0f0;
+  border-radius: 0;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: 'VT323', monospace;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+#back-button:hover {
+  background-color: #0f0;
+  color: #000;
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+}
+
+/* Style for each token type */
+.token-container.water .token-icon {
+  background-color: #000;
+  border-color: #00f;
+}
+
+.token-container.ground .token-icon {
+  background-color: #000;
+  border-color: #080;
+}
+
+.token-container.light .token-icon {
+  background-color: #000;
+  border-color: #ff0;
+}
+
+.token-container.blow .token-icon {
+  background-color: #000;
+  border-color: #0ff;
+}
+
+#xp-summary p {
+  font-size: 1.2em;
+  margin: 10px 0;
+  letter-spacing: 0.1em;
+  font-family: 'Share Tech Mono', monospace;
+}
+
+#xp-summary span {
+  color: #0f0;
+  text-shadow: 0 0 10px #0f0;
+}
+
+.forks, .final-line {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  width: 100%;
+}
+
+button {
+  background-color: #000;
+  color: #0f0;
+  border: 1px solid #0f0;
+  padding: 10px 20px;
+  font-family: 'VT323', monospace;
+  font-size: 1em;
+  cursor: pointer;
+  border-radius: 0;
+  margin-top: 20px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+}
+
+button:disabled {
+  background: #111;
+  color: #555;
+  border-color: #333;
+  cursor: not-allowed;
+}
+
+button:hover {
+  background-color: #0f0;
+  color: #000;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+}
+
+button:hover:enabled {
+  background: #0f0;
+  color: #000;
+}
+
+#xp-display {
+  font-size: 16px;
+  color: #0f0;
+  margin-top: 20px;
+  font-family: 'Share Tech Mono', monospace;
+}
+
+/* Fork Faction Colors */
+button:nth-child(1 of .forks button) { border-color: #ff0; color: #ff0; } /* GG Yellow */
+button:nth-child(2 of .forks button) { border-color: #0f0; color: #0f0; } /* BB Green */
+button:nth-child(3 of .forks button) { border-color: #0ff; color: #0ff; } /* CC Blue */
+button:nth-child(4 of .forks button) { border-color: #f00; color: #f00; } /* DD Red */
+
+button.locked {
+  background: #111;
+  color: #555;
+  border-color: #333;
+  cursor: not-allowed;
+}
+
+button.unlocked {
+  background: #000;
+  color: #0f0;
+  border: 1px dashed #0f0;
+}
+
+button.completed {
+  background: #0f0;
+  color: #000;
+  border: 1px solid #0f0;
+  font-weight: bold;
+}
+
+.me-me-section {
+  position: absolute;
+  top: 18px;
+  left: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.me-me {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+.me-me img {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 5px;
+  border: 1px solid #0f0;
+  filter: brightness(1.2) hue-rotate(100deg);
+}
+
+.me-me button {
+  padding: 12px;
+  font-size: 16px;
+  font-family: 'VT323', monospace;
+  background: #000;
+  border: 1px solid #0f0;
+  color: #0f0;
+  border-radius: 0;
+  cursor: pointer;
+  width: 150px;
+  text-align: center;
+}
+
+.me-me-connection {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  gap: 10px;
+}
+
+.me-me-connection.locked {
+  filter: grayscale(100%);
+}
+
+.connection-line {
+  width: 2px;
+  height: 50px;
+  background: #0f0;
+  border-style: dashed;
+}
+
+.connection-text {
+  font-size: 14px;
+  color: #0f0;
+  margin-top: 5px;
+  font-family: 'Share Tech Mono', monospace;
+}
+
+#dev-reset-button {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  padding: 12px;
+  font-size: 16px;
+  font-family: 'VT323', monospace;
+  background: #000;
+  border: 1px solid #f00;
+  color: #f00;
+  border-radius: 0;
+  cursor: pointer;
+}
+
+#dev-controls {
+  background-color: #000;
+  padding: 15px;
+  border-radius: 0;
+  margin: 20px 0;
+  border: 1px dashed #f00;
+  position: relative;
+}
+
+#dev-controls::before {
+  content: "DEV MODE ACTIVE";
+  position: absolute;
+  top: -15px;
+  left: 10px;
+  background: #000;
+  padding: 0 10px;
+  color: #f00;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 12px;
+}
+
+#dev-controls h3 {
+  color: #f00;
+  margin-top: 0;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+#dev-controls button {
+  background-color: #000;
+  color: #f00;
+  border: 1px solid #f00;
+  margin: 5px;
+  padding: 8px 15px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'VT323', monospace;
+}
+
+#dev-controls button:hover {
+  background-color: #f00;
+  color: #000;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+}
+
+#simulate-decay-button {
+  border-color: #ff0 !important;
+  color: #ff0 !important;
+}
+
+#simulate-decay-button:hover {
+  background-color: #ff0 !important;
+  color: #000 !important;
+  box-shadow: 0 0 10px rgba(255, 255, 0, 0.5) !important;
+}
+
+#restore-tokens-button {
+  border-color: #0f0 !important;
+  color: #0f0 !important;
+}
+
+#restore-tokens-button:hover {
+  background-color: #0f0 !important;
+  color: #000 !important;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.5) !important;
+}
+
+.flash {
+  animation: flash-decay 0.3s;
+}
+
+.flash-restore {
+  animation: flash-restore 0.3s;
+}
+
+@keyframes flash-decay {
+  0% { background-color: transparent; }
+  50% { background-color: rgba(255, 255, 0, 0.3); }
+  100% { background-color: transparent; }
+}
+
+@keyframes flash-restore {
+  0% { background-color: transparent; }
+  50% { background-color: rgba(0, 255, 0, 0.3); }
+  100% { background-color: transparent; }
+}
+
+/* Matrix effect in the background */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    rgba(0, 255, 0, 0.03) 10px,
+    rgba(0, 255, 0, 0.03) 20px
+  );
+  z-index: -1;
+  animation: matrix-bg 20s linear infinite;
+}
+
+@keyframes matrix-bg {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Remove or comment out the pledge-checkmark class */
+/*
+.pledge-checkmark {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background-color: #0f0;
+  color: #000;
+  padding: 5px 10px;
+  font-size: 14px;
+  font-family: 'Share Tech Mono', monospace;
+  z-index: 5;
+  border: 1px solid #000;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+}
+*/
+
+/* Update token-multiplier to position at bottom right */
+.token-multiplier {
+  position: absolute;
+  bottom: 10px;
+  right: 10px; /* Changed back to right */
+  background-color: rgba(0, 0, 0, 0.7);
+  border: 1px solid #0f0;
+  padding: 8px;
+  font-family: 'Share Tech Mono', monospace;
+  color: #0f0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  font-size: 24px;
+  font-weight: bold;
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+  text-shadow: 0 0 5px #0f0;
+}
+
+.boost-tag {
+  font-size: 12px;
+  background-color: #0f0;
+  color: #000;
+  padding: 2px 4px;
+  margin-top: 4px;
+}
+
+.pledge-button.pledge-taken {
+  background-color: #0f0;
+  color: #000;
+  border-color: #0f0;
+}
+
+.health-bar.doubled {
+  background-image: linear-gradient(
+    45deg,
+    rgba(0, 255, 0, 1) 25%,
+    rgba(0, 255, 255, 1) 25%,
+    rgba(0, 255, 255, 1) 50%,
+    rgba(0, 255, 0, 1) 50%,
+    rgba(0, 255, 0, 1) 75%,
+    rgba(0, 255, 255, 1) 75%,
+    rgba(0, 255, 255, 1) 100%
+  );
+  background-size: 20px 20px;
+  animation: move-stripes 2s linear infinite;
+}
+
+@keyframes move-stripes {
+  0% { background-position: 0 0; }
+  100% { background-position: 20px 0; }
+}
+
+/* Replace the previous #top-left-controls styles with these */
+#top-left-controls {
+  position: fixed; /* Change from absolute to fixed */
+  top: 20px;
+  left: 20px; /* Change from -180px to 20px */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1000;
+}
+
+#top-left-controls button {
+  background-color: #000;
+  color: #0f0;
+  border: 1px solid #0f0;
+  padding: 6px 10px;
+  font-family: 'VT323', monospace;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+#top-left-controls button:hover {
+  background-color: rgba(0, 255, 0, 0.2);
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+  text-shadow: 0 0 5px #0f0;
+}

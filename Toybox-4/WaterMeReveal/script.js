@@ -1,4 +1,4 @@
-<script>
+
   document.addEventListener("DOMContentLoaded", () => {
     const btn = document.getElementById('btn-test-claim');
 
@@ -10,4 +10,4 @@
       btn.textContent = "✅ Token Claimed";
     });
   });
-</script>
+

@@ -1,0 +1,84 @@
+body {
+  font-family: monospace;
+  background: #111;
+  color: #fff;
+  padding: 40px;
+  text-align: center;
+}
+
+h1 {
+  color: #0f0;
+  margin-bottom: 30px;
+}
+
+#progress-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.forks, .final-line {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  width: 100%;
+}
+
+button {
+  padding: 12px;
+  font-size: 18px;
+  font-family: monospace;
+  background: #222;
+  border: 2px solid #555;
+  color: #ccc;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 60px;
+}
+
+button:disabled {
+  background: #111;
+  color: #555;
+  border-color: #333;
+  cursor: not-allowed;
+}
+
+button:hover:enabled {
+  background: #0f0;
+  color: #000;
+}
+
+#xp-display {
+  font-size: 16px;
+  color: #aaa;
+  margin-top: 20px;
+}
+
+/* Fork Faction Colors */
+button:nth-child(1 of .forks button) { border-color: #ffeb3b; color: #ffeb3b; } /* 11A, 12A... GG Yellow */
+button:nth-child(2 of .forks button) { border-color: #4caf50; color: #4caf50; } /* 11B, 12B... BB Green */
+button:nth-child(3 of .forks button) { border-color: #2196F3; color: #2196F3; } /* 11C, 12C... CC Blue */
+button:nth-child(4 of .forks button) { border-color: #f44336; color: #f44336; } /* 11D, 12D... DD Red */
+
+button.locked {
+  background: #111;
+  color: #555;
+  border-color: #333;
+  cursor: not-allowed;
+}
+
+button.unlocked {
+  background: #222;
+  color: #ccc;
+  border: 2px dashed #0f0;
+}
+
+button.completed {
+  background: #0f0;
+  color: #000;
+  border: 2px solid #0f0;
+  font-weight: bold;
+}

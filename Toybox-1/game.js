@@ -83,22 +83,26 @@ document.getElementById('game-area').addEventListener('drop', e => {
       gameAreaEl.style.borderColor = '#28a745';
 
       const xpEl = document.getElementById('xp-value');
-const toyboxId = '1'; // Change this per toybox
+      const toyboxId = '1'; // Change this per toybox
 
-if (!playerState.isCompleted(toyboxId)) {
-  let currentXP = playerState.getXP();
-  currentXP += 5;
-  playerState.setXP(currentXP);
-  playerState.markCompleted(toyboxId);
+      if (!playerState.isCompleted(toyboxId)) {
+        // Award XP
+        playerState.addXP("main", 5);
 
-  xpEl.textContent = currentXP;
-  xpEl.classList.add('xp-flash');
-  setTimeout(() => {
-    xpEl.classList.remove('xp-flash');
-  }, 500);
-}
+        // Mark the toybox as completed
+        playerState.markCompleted(toyboxId);
 
-document.getElementById('completion-buttons').style.display = 'block';
+        // Save the player state
+        playerState.save();
+
+        xpEl.textContent = playerState.getXP("main");
+        xpEl.classList.add('xp-flash');
+        setTimeout(() => {
+          xpEl.classList.remove('xp-flash');
+        }, 500);
+      }
+
+      document.getElementById('completion-buttons').style.display = 'block';
 
       setTimeout(() => {
         alert('✅ You completed the water cycle!');
@@ -116,13 +120,21 @@ document.getElementById('btn-continue').addEventListener('click', () => {
 });
 
 document.getElementById('btn-exit').addEventListener('click', () => {
-  console.log('Exit Toybox');
+  saveAndExit();
 });
 
 window.addEventListener('DOMContentLoaded', () => {
   playerState.load(); // ✅ Now loading from persistent storage
-  document.getElementById("xp-value").textContent = playerState.getXP();
-
+  document.getElementById("xp-value").textContent = playerState.getXP("main");
+  
+  // Make XP clickable and link to XP summary
+  const xpValueElement = document.getElementById("xp-value");
+  xpValueElement.style.cursor = "pointer";
+  xpValueElement.title = "Click to view XP Summary";
+  xpValueElement.addEventListener("click", () => {
+    window.location.href = "../ProgressMap/xp-summary.html";
+  });
+  
   const area = document.getElementById('game-area');
 
   const evapBox = document.createElement('div');

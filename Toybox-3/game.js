@@ -1,11 +1,44 @@
-window.addEventListener("DOMContentLoaded", () => {
-  playerState.load(); // Load from localStorage
-  document.getElementById("xp-value").textContent = playerState.getXP();
-});
-
 let dragged = null;
 let taskComplete = false;
 const correctOrder = ['sun', 'converter', 'light-bulb'];
+
+const config = {
+  validPositions: {
+    sun: { topMin: 50, topMax: 190, leftMin: 400, leftMax: 540 },
+    cloud: { topMin: 50, topMax: 190, leftMin: 100, leftMax: 240 },
+    plant: { topMin: 250, topMax: 390, leftMin: 250, leftMax: 390 }
+  },
+
+  winCheck: () => {
+    const sun = document.getElementById('sun');
+    const cloud = document.getElementById('cloud');
+    const plant = document.getElementById('plant');
+    if (!sun || !cloud || !plant) return false;
+
+    const sunRect = sun.getBoundingClientRect();
+    const cloudRect = cloud.getBoundingClientRect();
+    const plantRect = plant.getBoundingClientRect();
+    const areaRect = document.getElementById('game-area').getBoundingClientRect();
+
+    const sunInBounds = checkInBounds(sunRect, config.validPositions.sun, areaRect);
+    const cloudInBounds = checkInBounds(cloudRect, config.validPositions.cloud, areaRect);
+    const plantInBounds = checkInBounds(plantRect, config.validPositions.plant, areaRect);
+
+    return sunInBounds && cloudInBounds && plantInBounds;
+  }
+};
+
+function checkInBounds(rect, bounds, container) {
+  const localTop = rect.top - container.top;
+  const localLeft = rect.left - container.left;
+
+  return (
+    localTop >= bounds.topMin &&
+    localTop <= bounds.topMax &&
+    localLeft >= bounds.leftMin &&
+    localLeft <= bounds.leftMax
+  );
+}
 
 // Init drag logic
 document.querySelectorAll('.draggable').forEach(el => {
@@ -68,21 +101,24 @@ function checkOrder() {
     gameAreaEl.style.borderColor = '#28a745';
 
     if (!playerState.isCompleted("3")) {
-      let currentXP = playerState.getXP();
-      currentXP += 5;
-      playerState.setXP(currentXP);
+      // Award XP
+      playerState.addXP("main", 5);
+
+      // Mark the toybox as completed
       playerState.markCompleted("3");
-      xpEl.textContent = currentXP;
-    
+
+      // Save the player state
+      playerState.save();
+
+      xpEl.textContent = playerState.getXP("main");
       xpEl.classList.add('xp-flash');
       setTimeout(() => xpEl.classList.remove('xp-flash'), 500);
     }
-    
 
     document.getElementById('completion-buttons').style.display = 'block';
 
     setTimeout(() => {
-      alert('✅ You turned sunlight into light!');
+      alert('✅ You generated light!');
       gameAreaEl.classList.remove('complete');
       gameAreaEl.style.borderColor = '#555';
     }, 1000);
@@ -115,15 +151,50 @@ document.getElementById('btn-continue').addEventListener('click', () => {
   window.location.href = '../Toybox-4/index.html';
 });
 
-
 document.getElementById('btn-exit').addEventListener('click', () => {
-  console.log('Exit Toybox');
+  saveAndExit();
 });
+
+window.addEventListener('DOMContentLoaded', () => {
+  playerState.load(); // ✅ Now loading from persistent storage
+  document.getElementById("xp-value").textContent = playerState.getXP("main");
+
+  const area = document.getElementById('game-area');
+
+  // THIS is creating the extra boxes - REMOVE THIS BLOCK
+  const sunBox = document.createElement('div');
+  sunBox.className = 'hitbox';
+  sunBox.dataset.id = 'sun';
+  sunBox.style.border = '2px dashed red';
+  sunBox.style.position = 'absolute';
+  sunBox.style.left = '400px';
+  sunBox.style.top = '50px';
+  sunBox.style.width = '140px';
+  sunBox.style.height = '140px';
+  area.appendChild(sunBox);
+
+  // Same for cloudBox and plantBox - all these are creating extra boxes
+  const cloudBox = document.createElement('div');
+  // ...
+
+  const plantBox = document.createElement('div');
+  // ...
+
+  // Add clickable XP functionality
+  const xpValueElement = document.getElementById("xp-value");
+  xpValueElement.style.cursor = "pointer";
+  xpValueElement.title = "Click to view XP Summary";
+  xpValueElement.addEventListener("click", () => {
+    window.location.href = "../ProgressMap/xp-summary.html";
+  });
+});
+
 function goToMap() {
-  window.location.href = "../ProgressMap/index.html"; // Adjust path if needed
+  playerState.save();
+  window.location.href = "../ProgressMap/index.html";
 }
 
 function saveAndExit() {
-  playerState.save(); // Save the current player state
-  window.location.href = "../ExitScreen/index.html"; // Adjust path if needed
+  playerState.save();
+  window.location.href = "../ExitScreen/index.html";
 }

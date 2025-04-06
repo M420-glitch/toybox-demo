@@ -1,0 +1,93 @@
+Reveal\root-hack\index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ROOT_HACK | Ground Me Me</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="../../../playerState.js"></script>
+</head>
+<body>
+  <div id="app">
+    <header>
+      <div class="logo">
+        <img src="assets/root-hack-logo.svg" alt="Root Hack">
+        <h1>ROOT_HACK.exe</h1>
+      </div>
+      <div class="status-bar">
+        <div class="status-item">
+          <span class="label">XP</span>
+          <span id="xp-display">0/5</span>
+        </div>
+        <div class="status-item">
+          <span class="label">ROOT ACCESS</span>
+          <span id="access-level">DENIED</span>
+        </div>
+      </div>
+    </header>
+    
+    <main>
+      <div id="terminal-container">
+        <div id="terminal">
+          <div class="terminal-header">
+            <h3 class="terminal-title">GAIA_ROOT_ACCESS_v2.25</h3>
+            <div class="terminal-controls">
+              <div class="control minimize">_</div>
+              <div class="control maximize">□</div>
+              <div class="control close">×</div>
+            </div>
+          </div>
+          <div id="terminal-output"></div>
+          <div id="input-line">
+            <span class="prompt">root@gaia:~$</span>
+            <input type="text" id="terminal-input" autofocus>
+          </div>
+        </div>
+      </div>
+      
+      <div id="visualization">
+        <div id="root-system">
+          <svg id="root-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"></svg>
+        </div>
+        
+        <div id="challenge-container" class="hidden">
+          <h3 id="challenge-title">Challenge Title</h3>
+          <div id="challenge-content">Challenge description goes here.</div>
+          <div id="challenge-input-area"></div>
+          <button id="challenge-submit" class="hidden">Submit</button>
+        </div>
+      </div>
+    </main>
+    
+    <!-- Rewards panel -->
+    <div id="rewards-panel" class="hidden">
+      <h2 id="rewards-title">ROOT ACCESS GRANTED!</h2>
+      <div class="reward-content">
+        <div class="reward-item">
+          <img src="assets/xp-icon.svg" alt="XP" class="reward-icon">
+          <div class="reward-value">+5</div>
+          <div class="reward-label">EXPERIENCE</div>
+        </div>
+        <div class="reward-item">
+          <img src="assets/ground-token.svg" alt="Ground Token" class="reward-icon">
+          <div class="reward-value">+0.2</div>
+          <div class="reward-label">GROUND ME ME</div>
+        </div>
+      </div>
+      <p class="flavor-text">"The roots run deep. You now have access to the mycelial network. The Baron will be pleased."</p>
+      <div class="rewards-buttons">
+        <button id="claim-rewards">CLAIM REWARDS</button>
+        <button id="return-to-map">RETURN TO MAP</button>
+      </div>
+    </div>
+    
+    <!-- Dark overlay when rewards panel is shown -->
+    <div id="overlay" class="hidden"></div>
+  </div>
+
+  <script src="rootSystem.js"></script>
+  <script src="terminal.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>

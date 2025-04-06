@@ -1,0 +1,274 @@
+xp-summary.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XP Summary</title>
+  <link rel="stylesheet" href="xp-summary.css">
+</head>
+<body>
+  <div id="top-left-controls">
+    <button onclick="goToMap()">🗺️ Progress Map</button>
+    <button onclick="saveAndExit()">💾 Save & Exit</button>
+  </div>
+  
+  <h1>XP Summary</h1>
+
+  <div id="xp-summary">
+    <p>Main XP: <span id="main-xp">0</span></p>
+    <p>Water XP: <span id="water-xp">0</span></p>
+    <p>Ground XP: <span id="ground-xp">0</span></p>
+    <p>Light XP: <span id="light-xp">0</span></p>
+    <p>Blow XP: <span id="blow-xp">0</span></p>
+  </div>
+
+  <h2>Me Me Token Health</h2>
+  <div id="token-summary">
+    <div class="token-container water">
+      <div class="token-header">
+        <img src="assets/images/Water-Me-Me.png" alt="Water Me Me" class="token-icon">
+        <h3>Water Me Me</h3>
+        <span id="water-tokens-percent">0%</span>
+      </div>
+      <div class="health-bar-container">
+        <div id="water-health-bar" class="health-bar"></div>
+      </div>
+      <p id="water-status-message">Not yet earned</p>
+      <div class="token-actions">
+        <button class="pledge-button" data-element="water" onclick="takePledge('water')">Take Pledge</button>
+        <button onclick="window.location.href='ProgressMapWM/index.html'">Progress Map</button>
+      </div>
+    </div>
+
+    <div class="token-container ground">
+      <div class="token-header">
+        <img src="assets/images/Ground-Me-Me.png" alt="Ground Me Me" class="token-icon">
+        <h3>Ground Me Me</h3>
+        <span id="ground-tokens-percent">0%</span>
+      </div>
+      <div class="health-bar-container">
+        <div id="ground-health-bar" class="health-bar"></div>
+      </div>
+      <p id="ground-status-message">Not yet earned</p>
+      <div class="token-actions">
+        <button class="pledge-button" data-element="ground" onclick="takePledge('ground')">Take Pledge</button>
+        <button onclick="window.location.href='ProgressMapGM/index.html'">Progress Map</button>
+      </div>
+    </div>
+
+    <div class="token-container light">
+      <div class="token-header">
+        <img src="assets/images/Light-Me-Me.png" alt="Light Me Me" class="token-icon">
+        <h3>Light Me Me</h3>
+        <span id="light-tokens-percent">0%</span>
+      </div>
+      <div class="health-bar-container">
+        <div id="light-health-bar" class="health-bar"></div>
+      </div>
+      <p id="light-status-message">Not yet earned</p>
+      <div class="token-actions">
+        <button class="pledge-button" data-element="light" onclick="takePledge('light')">Take Pledge</button>
+        <button onclick="window.location.href='ProgressMapLM/index.html'">Progress Map</button>
+      </div>
+    </div>
+
+    <div class="token-container blow">
+      <div class="token-header">
+        <img src="assets/images/Blow-Me-Me.png" alt="Blow Me Me" class="token-icon">
+        <h3>Blow Me Me</h3>
+        <span id="blow-tokens-percent">0%</span>
+      </div>
+      <div class="health-bar-container">
+        <div id="blow-health-bar" class="health-bar"></div>
+      </div>
+      <p id="blow-status-message">Not yet earned</p>
+      <div class="token-actions">
+        <button class="pledge-button" data-element="blow" onclick="takePledge('blow')">Take Pledge</button>
+        <button onclick="window.location.href='ProgressMapBM/index.html'">Progress Map</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="dev-controls">
+    <h3>Developer Testing Controls</h3>
+    <button id="simulate-decay-button">Simulate 7 Days Decay</button>
+    <button id="restore-tokens-button">Restore All Tokens to 100%</button>
+  </div>
+
+  <button id="back-button">Back to Progress Map</button>
+
+  <script src="../playerState.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      playerState.load();
+
+      // Display XP
+      document.getElementById("main-xp").textContent = playerState.getXP("main") || 0;
+      document.getElementById("water-xp").textContent = playerState.getXP("water") || 0;
+      document.getElementById("ground-xp").textContent = playerState.getXP("ground") || 0;
+      document.getElementById("light-xp").textContent = playerState.getXP("light") || 0;
+      document.getElementById("blow-xp").textContent = playerState.getXP("blow") || 0;
+
+      // Update token health displays
+      const tokens = ["water", "ground", "light", "blow"];
+      
+      tokens.forEach(token => {
+        const percentage = playerState.getMeMePercentage(token);
+        const healthBar = document.getElementById(`${token}-health-bar`);
+        const percentText = document.getElementById(`${token}-tokens-percent`);
+        const statusMessage = document.getElementById(`${token}-status-message`);
+        const tokenContainer = document.querySelector(`.token-container.${token}`);
+        
+        if (playerState.meMeTokens[token] > 0) {
+          // Update percentage display
+          percentText.textContent = `${percentage}%`;
+          
+          // Update health bar width
+          healthBar.style.width = `${percentage}%`;
+          
+          // Set health bar color and message based on percentage
+          if (percentage >= 80) {
+            healthBar.className = "health-bar healthy";
+            statusMessage.textContent = "Your Me Me is healthy and strong!";
+            tokenContainer.classList.add("active");
+          } else if (percentage >= 50) {
+            healthBar.className = "health-bar fading";
+            statusMessage.textContent = "Your Me Me is fading. Play soon to keep it strong!";
+            tokenContainer.classList.add("active");
+          } else {
+            healthBar.className = "health-bar weak";
+            statusMessage.textContent = "Your Me Me needs attention! Complete more puzzles to restore.";
+            tokenContainer.classList.add("active");
+          }
+        } else {
+          // Not earned yet
+          percentText.textContent = "0%";
+          healthBar.style.width = "0%";
+          statusMessage.textContent = "Not yet earned";
+          tokenContainer.classList.remove("active");
+        }
+      });
+
+      document.getElementById("back-button").addEventListener("click", () => {
+        window.location.href = "index.html";
+      });
+
+      // Developer test buttons
+      document.getElementById("simulate-decay-button").addEventListener("click", () => {
+        simulateDecay(7); // Simulate 7 days of decay
+      });
+
+      document.getElementById("restore-tokens-button").addEventListener("click", () => {
+        restoreTokens();
+      });
+
+      function simulateDecay(days) {
+        const decayRate = 0.002; // Same lambda value as in calculateTokenDecay
+        
+        // Apply decay to each token
+        const tokens = ["water", "ground", "light", "blow"];
+        tokens.forEach(token => {
+          if (playerState.meMeTokens[token] > 0) {
+            // Get current value
+            const currentValue = playerState.meMeTokens[token];
+            
+            // Calculate decay: Token_new = Token_current * e^(-λ * days)
+            const decayedValue = currentValue * Math.exp(-decayRate * days);
+            
+            // Ensure it doesn't go below 20% of maximum
+            const minimumValue = playerState.maxTokensEver[token] * 0.2;
+            playerState.meMeTokens[token] = Math.max(decayedValue, minimumValue);
+            
+            // Save to localStorage
+            localStorage.setItem(`${token}Tokens`, playerState.meMeTokens[token]);
+          }
+        });
+        
+        // Update the UI
+        updateTokenDisplays();
+        
+        // Flash effect to indicate change
+        document.getElementById("token-summary").classList.add("flash");
+        setTimeout(() => {
+          document.getElementById("token-summary").classList.remove("flash");
+        }, 300);
+      }
+      
+      function restoreTokens() {
+        // Set all tokens to 100%
+        const tokens = ["water", "ground", "light", "blow"];
+        tokens.forEach(token => {
+          if (playerState.meMeTokens[token] > 0) {
+            // Restore to 100%
+            playerState.meMeTokens[token] = 1.0;
+            
+            // Update last earned date to now
+            const now = new Date().toISOString();
+            playerState.tokenLastEarnedDate[token] = now;
+            
+            // Save to localStorage
+            localStorage.setItem(`${token}Tokens`, playerState.meMeTokens[token]);
+          }
+        });
+        
+        // Save updated last earned dates
+        localStorage.setItem('tokenLastEarnedDate', JSON.stringify(playerState.tokenLastEarnedDate));
+        
+        // Update the UI
+        updateTokenDisplays();
+        
+        // Flash effect to indicate change
+        document.getElementById("token-summary").classList.add("flash-restore");
+        setTimeout(() => {
+          document.getElementById("token-summary").classList.remove("flash-restore");
+        }, 300);
+      }
+      
+      // Extract token display update logic to a reusable function
+      function updateTokenDisplays() {
+        const tokens = ["water", "ground", "light", "blow"];
+        
+        tokens.forEach(token => {
+          const percentage = playerState.getMeMePercentage(token);
+          const healthBar = document.getElementById(`${token}-health-bar`);
+          const percentText = document.getElementById(`${token}-tokens-percent`);
+          const statusMessage = document.getElementById(`${token}-status-message`);
+          const tokenContainer = document.querySelector(`.token-container.${token}`);
+          
+          if (playerState.meMeTokens[token] > 0) {
+            // Update percentage display
+            percentText.textContent = `${percentage}%`;
+            
+            // Update health bar width
+            healthBar.style.width = `${percentage}%`;
+            
+            // Set health bar color and message based on percentage
+            if (percentage >= 80) {
+              healthBar.className = "health-bar healthy";
+              statusMessage.textContent = "Your Me Me is healthy and strong!";
+              tokenContainer.classList.add("active");
+            } else if (percentage >= 50) {
+              healthBar.className = "health-bar fading";
+              statusMessage.textContent = "Your Me Me is fading. Play soon to keep it strong!";
+              tokenContainer.classList.add("active");
+            } else {
+              healthBar.className = "health-bar weak";
+              statusMessage.textContent = "Your Me Me needs attention! Complete more puzzles to restore.";
+              tokenContainer.classList.add("active");
+            }
+          } else {
+            // Not earned yet
+            percentText.textContent = "0%";
+            healthBar.style.width = "0%";
+            statusMessage.textContent = "Not yet earned";
+            tokenContainer.classList.remove("active");
+          }
+        });
+      }
+    });
+  </script>
+  <script src="xp-summary.js"></script>
+  <script src="me-me-modal.js"></script>
+</body>
+</html>

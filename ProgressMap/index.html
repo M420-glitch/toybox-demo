@@ -2,11 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>GVA Progress Map</title>
+  <title>Progress Map</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>🌿 GVA Progress Map</h1>
+  <h1>Progress Map</h1>
+
+  <a href="xp-summary.html" id="xp-display">Current XP: --</a>
+
+  <div id="me-me-counter">Me Mes Earned: <span id="me-me-count">0</span></div>
+
   <div id="progress-bar">
     <!-- 1 to 10 = 50 XP | 11–16 = forks -->
     <button data-xp="0" onclick="goTo('Toybox-1')">1</button>
@@ -68,9 +73,289 @@
     </div>
   </div>
 
-  <p id="xp-display">Current XP: --</p>
+  <div class="me-me-section">
+    <div class="me-me-connection" id="water-me-me-connection">
+      <div class="me-me">
+        <img src="assets/images/Water-Me-Me.png" alt="Water Me Me">
+        <button onclick="window.location.href='ProgressMapWM/index.html'">
+          <span>Water Me Me</span>
+          <span class="button-subtitle">Progress Map</span>
+        </button>
+        <span id="water-me-me-status" class="connection-text">Unlocked as you progress</span>
+      </div>
+    </div>
+    
+    <!-- Ground Me Me -->
+    <div class="me-me-connection" id="ground-me-me-connection">
+      <div class="me-me">
+        <img src="assets/images/Ground-Me-Me.png" alt="Ground Me Me">
+        <button onclick="window.location.href='ProgressMapGM/index.html'">
+          <span>Ground Me Me</span>
+          <span class="button-subtitle">Progress Map</span>
+        </button>
+        <span id="ground-me-me-status" class="connection-text">Unlock Here</span>
+      </div>
+    </div>
+    
+    <!-- Light Me Me -->
+    <div class="me-me-connection" id="light-me-me-connection">
+      <div class="me-me">
+        <img src="assets/images/Light-Me-Me.png" alt="Light Me Me">
+        <button onclick="window.location.href='ProgressMapLM/index.html'">
+          <span>Light Me Me</span>
+          <span class="button-subtitle">Progress Map</span>
+        </button>
+        <span id="light-me-me-status" class="connection-text">Unlock Here</span>
+      </div>
+    </div>
+    
+    <!-- Blow Me Me -->
+    <div class="me-me-connection" id="blow-me-me-connection">
+      <div class="me-me">
+        <img src="assets/images/Blow-Me-Me.png" alt="Blow Me Me">
+        <button onclick="window.location.href='ProgressMapBM/index.html'">
+          <span>Blow Me Me</span>
+          <span class="button-subtitle">Progress Map</span>
+        </button>
+        <span id="blow-me-me-status" class="connection-text">Unlock Here</span>
+      </div>
+    </div>
+  </div>
+
+  <button id="dev-reset-button" onclick="resetProgress()">Dev Reset Score</button>
 
   <script src="../playerState.js"></script>
   <script src="map.js"></script>
+  <script>
+    function goToPledge(folderName) {
+      window.location.href = `../${folderName}/index.html`;
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      playerState.load();
+
+      const updateMeMeStatus = (meMeId, toyboxNumber, elementId) => {
+        const statusElementId = `${meMeId}-me-me-status`;
+        const statusElement = document.getElementById(statusElementId);
+        const meMeConnection = document.getElementById(elementId);
+
+        // Check if Me Me token exists with value > 0
+        if (playerState.meMeTokens[meMeId] > 0) {
+          const percentage = playerState.getMeMePercentage(meMeId);
+          
+          // Remove locked class first
+          meMeConnection.classList.remove('locked');
+          
+          // Apply appropriate health class
+          if (percentage >= 80) {
+            statusElement.textContent = "Healthy!";
+            meMeConnection.classList.remove('fading', 'weak');
+            meMeConnection.classList.add('healthy');
+          } else if (percentage >= 50) {
+            statusElement.textContent = "Fading...";
+            meMeConnection.classList.remove('healthy', 'weak');
+            meMeConnection.classList.add('fading');
+          } else {
+            statusElement.textContent = "Needs care!";
+            meMeConnection.classList.remove('healthy', 'fading');
+            meMeConnection.classList.add('weak');
+          }
+        } else if (playerState.isCompleted(toyboxNumber)) {
+          statusElement.textContent = "Earned!";
+          meMeConnection.classList.remove('locked', 'healthy', 'fading', 'weak');
+        } else {
+          statusElement.textContent = "Unlocked as you progress";
+          meMeConnection.classList.add('locked');
+          meMeConnection.classList.remove('healthy', 'fading', 'weak');
+        }
+      };
+
+      const updateButtonStyles = () => {
+        const buttons = document.querySelectorAll("#progress-bar button");
+        const currentXP = playerState.getXP("main"); // Get main XP
+
+        buttons.forEach(button => {
+          const requiredXP = parseInt(button.getAttribute("data-xp"));
+          const toyboxId = button.textContent;
+          const toyboxNumber = parseInt(toyboxId);
+
+          let isAccessible = true;
+
+          // Sequential unlocking for Toyboxes 5 onwards
+          if (toyboxNumber >= 5) {
+            const previousToyboxId = (toyboxNumber - 1).toString();
+            if (!playerState.isCompleted(previousToyboxId)) {
+              isAccessible = false;
+            }
+          }
+
+          if (playerState.isCompleted(toyboxId)) {
+            button.classList.add("completed");
+            button.classList.remove("unlocked");
+            button.disabled = false; // Enable completed buttons
+          } else if (toyboxNumber < 5 && currentXP >= requiredXP) {
+            button.classList.add("unlocked");
+            button.classList.remove("completed");
+            button.disabled = false; // Enable unlocked buttons
+          } else if (toyboxNumber >= 5 && isAccessible) {
+            button.classList.add("unlocked");
+            button.classList.remove("completed");
+            button.disabled = false; // Enable unlocked buttons
+          } else {
+            button.classList.remove("unlocked", "completed"); // Remove unlocked and completed classes
+            button.disabled = true; // Disable locked buttons
+          }
+        });
+      };
+
+      updateMeMeStatus("water", "4", "water-me-me-connection");
+      updateMeMeStatus("ground", "9", "ground-me-me-connection");
+      updateMeMeStatus("light", "14A", "light-me-me-connection");
+      updateMeMeStatus("blow", "18", "blow-me-me-connection");
+
+      updateButtonStyles();
+
+      // Update XP display
+      document.getElementById("xp-display").textContent = `Current XP: ${playerState.getXP("main")}`;
+
+      // Update Me Me counter
+      let meMeCount = 0;
+      for (let key in playerState.meMeTokens) {
+        if (playerState.meMeTokens[key] === 1) {
+          meMeCount++;
+        }
+      }
+      document.getElementById("me-me-count").textContent = meMeCount;
+    });
+
+    function resetProgress() {
+      playerState.clearData();
+      window.location.reload();
+    }
+  </script>
+  <link rel="stylesheet" href="me-me-modal.css">
+  <script src="me-me-modal.js"></script>
+
+  <div id="dev-panel">
+    <!-- Leave existing reset button as is -->
+    
+    <!-- New dev test buttons with specific functionality -->
+    <button class="dev-button" onclick="devStep1()">Dev Step 1: Toybox 3 Complete (15 XP)</button>
+    <button class="dev-button" onclick="devStep2()">Dev Step 2: Toybox 4 + Water Token (20 XP)</button>
+    <button class="dev-button" onclick="devStep3()">Dev Step 3: Water Pledge Taken (2.2× tokens)</button>
+    <button class="dev-toggle" onclick="toggleDevPanel()">Toggle Dev Panel</button>
+  </div>
+
+  <script>
+    // Dev panel functions
+    function toggleDevPanel() {
+      const panel = document.getElementById('dev-panel');
+      panel.classList.toggle('collapsed');
+    }
+    
+    function devStep1() {
+      // Step 1: Toybox 3 completed (15 XP total)
+      playerState.xp.main = 15;
+      playerState.completedToyboxes = ["1", "2", "3"];
+      playerState.meMeTokens = {}; // No tokens yet
+      playerState.pledgesTaken = {}; // No pledges taken
+      playerState.save();
+      console.log("Dev Step 1: Set to Toybox 3 completed (15 XP)");
+      window.location.reload();
+    }
+    
+    function devStep2() {
+      // Step 2: Toybox 4 completed (20 XP total) + Water Me Me token
+      playerState.xp.main = 20;
+      playerState.completedToyboxes = ["1", "2", "3", "4"];
+      
+      // Add 1 Water Me Me token
+      playerState.meMeTokens = {
+        water: 1
+      };
+      playerState.meMeLastUpdated = {
+        water: new Date().toISOString()
+      };
+      playerState.pledgesTaken = {}; // No pledges taken yet
+      
+      playerState.save();
+      console.log("Dev Step 2: Set to Toybox 4 completed (20 XP) with 1 Water Me Me token");
+      window.location.reload();
+    }
+    
+    function devStep3() {
+      // Step 3: Water Me Me pledge taken (2.2× tokens)
+      playerState.xp.main = 20;
+      playerState.completedToyboxes = ["1", "2", "3", "4"];
+      
+      // Add 2.2 Water Me Me tokens (pledge taken)
+      playerState.meMeTokens = {
+        water: 2.2
+      };
+      playerState.meMeLastUpdated = {
+        water: new Date().toISOString()
+      };
+      
+      // Set water pledge as taken
+      playerState.pledgesTaken = {
+        water: true
+      };
+      
+      playerState.save();
+      console.log("Dev Step 3: Water Me Me pledge taken with 2.2× tokens");
+      window.location.reload();
+    }
+  </script>
+
+  <style>
+    #dev-panel {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      background-color: rgba(0, 0, 0, 0.8);
+      padding: 10px;
+      border-radius: 8px;
+      z-index: 100;
+    }
+    
+    #dev-panel.collapsed .dev-button {
+      display: none;
+    }
+    
+    .dev-button {
+      padding: 8px 12px;
+      font-size: 14px;
+      font-family: monospace;
+      background: #333;
+      border: 2px solid #666;
+      color: #ddd;
+      border-radius: 6px;
+      cursor: pointer;
+      text-align: left;
+    }
+    
+    .dev-button:hover {
+      background: #444;
+      border-color: #888;
+    }
+    
+    .dev-toggle {
+      background-color: #222;
+      border-color: #555;
+      padding: 8px 12px;
+      font-size: 14px;
+      font-family: monospace;
+      color: #ddd;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    
+    .dev-toggle:hover {
+      background-color: #333;
+    }
+  </style>
 </body>
 </html>

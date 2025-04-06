@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Blow Me Me Progress Map</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="../../playerState.js"></script>
+  
+  <!-- IMMEDIATE LOCK CHECK - this runs before anything else -->
+  <script>
+    // Execute this code immediately
+    (function() {
+      if (typeof playerState !== 'undefined') {
+        playerState.load();
+        const blowToken = playerState.meMeTokens.blow || 0;
+        
+        // If no token, store this in window variable for later use
+        window.needsLock = (blowToken <= 0);
+        
+        // Pre-style the body to prevent flash of content
+        if (window.needsLock) {
+          document.write(`
+            <style>
+              #container {
+                filter: grayscale(90%) !important;
+                opacity: 0.7 !important;
+                pointer-events: none !important;
+              }
+              
+              #lock-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.3);
+                z-index: 99999;
+              }
+              
+              #unlock-message {
+                position: fixed;
+                top: 30px;
+                left: 50%;
+                transform: translateX(-50%);
+                background-color: rgba(0, 0, 0, 0.9);
+                color: white;
+                padding: 20px 30px;
+                border-radius: 8px;
+                z-index: 100000;
+                text-align: center;
+                box-shadow: 0 0 30px rgba(103, 58, 183, 0.6);
+                border: 2px solid #673AB7;
+              }
+              
+              a {
+                pointer-events: none !important;
+                cursor: not-allowed !important;
+                text-decoration: line-through !important;
+                opacity: 0.5 !important;
+              }
+              
+              button:not(#dev-reset-button):not(#return-button) {
+                pointer-events: none !important;
+                cursor: not-allowed !important;
+                opacity: 0.5 !important;
+              }
+            </style>
+          `);
+        }
+      }
+    })();
+  </script>
+</head>
+<body>
+  <div id="top-left-controls">
+    <button id="save-and-exit-button" onclick="saveAndExit()">Save and Exit</button>
+  </div>
+
+  <p id="xp-display">Current XP: --</p>
+
+  <!-- Blow Me Me Info Block -->
+  <div id="blow-me-me-info-block" class="me-me-info-block">
+    <h3>Blow Me Me Status</h3>
+    <div class="info-content">
+      <div class="info-row">
+        <span class="info-label">Pledge Status:</span>
+        <span id="pledge-status" class="info-value">Not taken</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Tokens:</span>
+        <span id="token-count" class="info-value">0</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Blow Me Me XP:</span>
+        <span id="blow-xp" class="info-value">0</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="container">
+    <section id="brick-ironclaw">
+      <h2>Brick IronClaw's Guidance</h2>
+      <p>Welcome, Adept! Brick IronClaw here, your guide through the ethereal realm of Blow Me Me. Follow these steps to unlock the secrets of the Air Pledge...</p>
+    </section>
+
+    <section id="what-is-gva">
+      <h2>What is Gaiaverse Adventures (GVA)?</h2>
+      <p>Gaiaverse Adventures (GVA) is...</p>
+    </section>
+
+    <section id="sub-quests">
+      <h2>Blow Me Me Sub-Quests</h2>
+      <ul class="sub-quest-list">
+        <li><a href="../../Toybox-18/BlowMeReveal/delete-self/index.html">🌬️ Delete Self: Click to uninstall your personality. No undo.</a></li>
+        <li><a href="../../Toybox-18/BlowMeReveal/ego-blender/index.html">🌪️ Ego Blender: Purée your identity. Add ice.</a></li>
+        <li><a href="../../Toybox-18/BlowMeReveal/exit-lung/index.html">💨 Exit Lung: Inhale truth. Exhale relevance.</a></li>
+        <li><a href="../../Toybox-18/BlowMeReveal/blasphemy-bot/index.html">😤 Blasphemy Bot: Powered by sarcasm. Forgiven by no one.</a></li>
+        <li><a href="../../Toybox-18/BlowMeReveal/glitch-exit/index.html">🚪 Glitch Exit: You weren't supposed to find this door.</a></li>
+        <li><a href="../../Toybox-18/BlowMeReveal/karma-cache/index.html">💾 Karma Cache: We saved your karma. It's mostly error logs.</a></li>
+        <li><a href="../../Toybox-18/BlowMeReveal/final-sniff/index.html">👃 Final Sniff: Smells like denial and expired destiny.</a></li>
+        <li><a href="../../Toybox-18/BlowMeReveal/soul-alt-delete/index.html">⌨️ Soul Alt Delete: Control yourself. Alt your ego. Delete your guru.</a></li>
+        <li><a href="../../Toybox-18/BlowMeReveal/afterlife-loop/index.html">🔄 Afterlife Loop: You died. Please refresh the page.</a></li>
+        <li><a href="../../Toybox-18/BlowMeReveal/cancel-reincarnation/index.html">❌ Cancel Reincarnation: You've opted out of existence. Good choice.</a></li>
+        <li><a href="../../Toybox-18/BlowMeReveal/breath-tax/index.html">💸 Breath Tax: Every exhale is a microtransaction.</a></li>
+        <li><a href="../../Toybox-18/BlowMeReveal/windfall-fraud/index.html">💰 Windfall Fraud: The breeze was a scam. You're the product.</a></li>
+        <li><a href="../../Toybox-18/BlowMeReveal/blowback-protocol/index.html">💥 Blowback Protocol: You pushed the truth. It pushed back harder.</a></li>
+        <li><a href="../../Toybox-18/BlowMeReveal/unmask-script/index.html">🎭 Unmask Script: Remove mask. Reveal face. Realize it's another mask.</a></li>
+        <li><a href="../../Toybox-18/BlowMeReveal/truth-vomit/index.html">🤢 Truth Vomit: It's not wisdom. It's just violently accurate.</a></li>
+        <li><a href="../../Toybox-18/BlowMeReveal/airborne-lie/index.html">🦠 Airborne Lie: Truth is contagious. So are delusions.</a></li>
+        <li><a href="../../Toybox-18/BlowMeReveal/wheezus/index.html">🎤 Wheezus: The final breath. Auto-tuned and monetized.</a></li>
+      </ul>
+    </section>
+
+    <section id="progress-map">
+      <h2>Progress Map</h2>
+      <div id="progress-bar">
+        <button data-xp="0" onclick="goTo('Toybox-1')">1</button>
+        <button data-xp="5" onclick="goTo('Toybox-2')">2</button>
+        <button data-xp="10" onclick="goTo('Toybox-3')">3</button>
+        <button data-xp="15" onclick="goTo('Toybox-4')">4</button>
+        <button data-xp="20" onclick="goTo('Toybox-5')">5</button>
+        <button data-xp="25" onclick="goTo('Toybox-6')">6</button>
+        <button data-xp="30" onclick="goTo('Toybox-7')">7</button>
+        <button data-xp="35" onclick="goTo('Toybox-8')">8</button>
+        <button data-xp="40" onclick="goTo('Toybox-9')">9</button>
+        <button data-xp="45" onclick="goTo('Toybox-10')">10</button>
+
+        <div class="forks">
+          <button data-xp="50" onclick="goTo('Toybox-11A')">11A</button>
+          <button data-xp="50" onclick="goTo('Toybox-11B')">11B</button>
+          <button data-xp="50" onclick="goTo('Toybox-11C')">11C</button>
+          <button data-xp="50" onclick="goTo('Toybox-11D')">11D</button>
+        </div>
+
+        <div class="forks">
+          <button data-xp="55" onclick="goTo('Toybox-12A')">12A</button>
+          <button data-xp="55" onclick="goTo('Toybox-12B')">12B</button>
+          <button data-xp="55" onclick="goTo('Toybox-12C')">12C</button>
+          <button data-xp="55" onclick="goTo('Toybox-12D')">12D</button>
+        </div>
+
+        <div class="forks">
+          <button data-xp="60" onclick="goTo('Toybox-13A')">13A</button>
+          <button data-xp="60" onclick="goTo('Toybox-13B')">13B</button>
+          <button data-xp="60" onclick="goTo('Toybox-13C')">13C</button>
+          <button data-xp="60" onclick="goTo('Toybox-13D')">13D</button>
+        </div>
+
+        <div class="forks">
+          <button data-xp="65" onclick="goTo('Toybox-14A')">14A</button>
+          <button data-xp="65" onclick="goTo('Toybox-14B')">14B</button>
+          <button data-xp="65" onclick="goTo('Toybox-14C')">14C</button>
+          <button data-xp="65" onclick="goTo('Toybox-14D')">14D</button>
+        </div>
+
+        <div class="forks">
+          <button data-xp="70" onclick="goTo('Toybox-15A')">15A</button>
+          <button data-xp="70" onclick="goTo('Toybox-15B')">15B</button>
+          <button data-xp="70" onclick="goTo('Toybox-15C')">15C</button>
+          <button data-xp="70" onclick="goTo('Toybox-15D')">15D</button>
+        </div>
+
+        <div class="forks">
+          <button data-xp="75" onclick="goTo('Toybox-16A')">16A</button>
+          <button data-xp="75" onclick="goTo('Toybox-16B')">16B</button>
+          <button data-xp="75" onclick="goTo('Toybox-16C')">16C</button>
+          <button data-xp="75" onclick="goTo('Toybox-16D')">16D</button>
+        </div>
+
+        <div class="final-line">
+          <button data-xp="80" onclick="goTo('Toybox-17')">17</button>
+          <button data-xp="85" onclick="goTo('Toybox-18')">18</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="me-me-section" class="pledge-content">
+      <h2>Me Me Tokens</h2>
+      <div class="me-me-tokens">
+        <div class="me-me" id="water">
+          <img src="assets/images/Water-Me-Me.png" alt="Water Me Me" onclick="goToPledge('water')"/>
+          <button onclick="goToPledge('water')">Water Me Me</button>
+        </div>
+        <div class="me-me" id="ground">
+          <img src="assets/images/Ground-Me-Me.png" alt="Ground Me Me" onclick="goToPledge('ground')"/>
+          <button onclick="goToPledge('ground')">Ground Me Me</button>
+        </div>
+        <div class="me-me" id="light">
+          <img src="assets/images/Light-Me-Me.png" alt="Light Me Me" onclick="goToPledge('light')"/>
+          <button onclick="goToPledge('light')">Light Me Me</button>
+        </div>
+        <div class="me-me" id="blow">
+          <img src="assets/images/Blow-Me-Me.png" alt="Blow Me Me" onclick="goToPledge('blow')"/>
+          <button onclick="goToPledge('blow')">Blow Me Me</button>
+        </div>
+      </div>
+    </section>
+
+    <button id="dev-reset-button" onclick="resetProgress()">Dev Reset Score</button>
+  </div>
+
+  <!-- Add the lock overlay elements at the end of the body -->
+  <script>
+    // Run this immediately after body loads
+    (function() {
+      if (window.needsLock) {
+        // Create lock overlay
+        const overlay = document.createElement('div');
+        overlay.id = 'lock-overlay';
+        document.body.appendChild(overlay);
+        
+        // Create message
+        const message = document.createElement('div');
+        message.id = 'unlock-message';
+        message.innerHTML = `
+          <h3 style="margin: 0 0 15px 0; color: #673AB7; font-size: 22px;">🔒 PREVIEW MODE</h3>
+          <p style="margin: 0 0 15px 0; font-size: 16px;">Complete Toybox 18 to access this area</p>
+          <button id="return-button" style="padding: 12px 24px; background: #673AB7; color: white; 
+                                         border: none; cursor: pointer; border-radius: 4px;
+                                         font-weight: bold; font-size: 16px;">
+            Return to Main Progress Map
+          </button>
+        `;
+        document.body.appendChild(message);
+        
+        // Add return button functionality
+        document.getElementById('return-button').onclick = function() {
+          window.location.href = '../index.html';
+        };
+        
+        // Disable all links by removing their href
+        document.querySelectorAll('a').forEach(link => {
+          // Save original href
+          link.setAttribute('data-original-href', link.href);
+          // Replace with void
+          link.href = 'javascript:void(0)';
+        });
+        
+        // Block ALL clicks at document level
+        document.addEventListener('click', function(e) {
+          // Only allow clicks on specific elements
+          if (e.target.id !== 'dev-reset-button' && 
+              e.target.id !== 'return-button' && 
+              !e.target.closest('#return-button')) {
+            e.stopPropagation();
+            e.preventDefault();
+            return false;
+          }
+        }, true); // Use capture phase
+      }
+    })();
+    
+    function resetProgress() {
+      playerState.clearData();
+      window.location.reload();
+    }
+    
+    function saveAndExit() {
+      window.location.href = '../index.html';
+    }
+  </script>
+  
+  <script src="map.js"></script>
+  <script src="page-state.js"></script>
+</body>
+</html>

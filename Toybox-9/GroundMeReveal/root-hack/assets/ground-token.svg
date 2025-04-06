@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50">
+  <style>
+    .glow { filter: drop-shadow(0 0 3px #4CAF50); }
+  </style>
+  
+  <!-- Token circle -->
+  <circle cx="25" cy="25" r="22" fill="#2E7D32" stroke="#4CAF50" stroke-width="2" />
+  
+  <!-- Ground/Earth symbol -->
+  <g class="glow">
+    <!-- Soil layers -->
+    <path d="M12,17 C15,15 20,18 25,17 C30,16 35,19 38,17" stroke="#8D6E63" stroke-width="2" fill="none" />
+    <path d="M12,22 C15,20 20,23 25,22 C30,21 35,24 38,22" stroke="#A1887F" stroke-width="2" fill="none" />
+    <path d="M12,27 C15,25 20,28 25,27 C30,26 35,29 38,27" stroke="#BCAAA4" stroke-width="2" fill="none" />
+    
+    <!-- Root system -->
+    <path d="M25,17 C25,17 25,37 25,37" stroke="#4CAF50" stroke-width="2" fill="none" />
+    <path d="M25,22 C25,22 18,30 20,35" stroke="#4CAF50" stroke-width="2" fill="none" />
+    <path d="M25,25 C25,25 32,30 30,35" stroke="#4CAF50" stroke-width="2" fill="none" />
+  </g>
+  
+  <!-- ME ME text at bottom -->
+  <text x="14" y="43" font-family="Arial, sans-serif" font-size="8" font-weight="bold" fill="#A5D6A7">GROUND</text>
+</svg>

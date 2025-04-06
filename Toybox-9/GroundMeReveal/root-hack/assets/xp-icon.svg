@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
+  <style>
+    .glow { filter: drop-shadow(0 0 2px #4CAF50); }
+  </style>
+  
+  <!-- XP circle background -->
+  <circle cx="20" cy="20" r="18" fill="#1F1F1F" stroke="#4CAF50" stroke-width="2" />
+  
+  <!-- XP text -->
+  <g class="glow">
+    <text x="11" y="26" font-family="'Courier New', monospace" font-size="16" font-weight="bold" fill="#4CAF50">XP</text>
+  </g>
+  
+  <!-- Sparkle accents -->
+  <path d="M8,8 L12,12 M8,12 L12,8" stroke="#A5D6A7" stroke-width="1.5" />
+  <path d="M28,28 L32,32 M28,32 L32,28" stroke="#A5D6A7" stroke-width="1.5" />
+  <path d="M8,28 L12,32 M8,32 L12,28" stroke="#A5D6A7" stroke-width="1.5" />
+  <path d="M28,8 L32,12 M28,12 L32,8" stroke="#A5D6A7" stroke-width="1.5" />
+</svg>

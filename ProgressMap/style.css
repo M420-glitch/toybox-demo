@@ -4,6 +4,7 @@ body {
   color: #fff;
   padding: 40px;
   text-align: center;
+  position: relative;
 }
 
 h1 {
@@ -52,16 +53,19 @@ button:hover:enabled {
 }
 
 #xp-display {
-  font-size: 16px;
-  color: #aaa;
-  margin-top: 20px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 1.2em;
+  color: #0f0;
+  text-decoration: none;
 }
 
 /* Fork Faction Colors */
-button:nth-child(1 of .forks button) { border-color: #ffeb3b; color: #ffeb3b; } /* 11A, 12A... GG Yellow */
-button:nth-child(2 of .forks button) { border-color: #4caf50; color: #4caf50; } /* 11B, 12B... BB Green */
-button:nth-child(3 of .forks button) { border-color: #2196F3; color: #2196F3; } /* 11C, 12C... CC Blue */
-button:nth-child(4 of .forks button) { border-color: #f44336; color: #f44336; } /* 11D, 12D... DD Red */
+button:nth-child(1 of .forks button) { border-color: #ffeb3b; color: #ffeb3b; }
+button:nth-child(2 of .forks button) { border-color: #4caf50; color: #4caf50; }
+button:nth-child(3 of .forks button) { border-color: #2196F3; color: #2196F3; }
+button:nth-child(4 of .forks button) { border-color: #f44336; color: #f44336; }
 
 button.locked {
   background: #111;
@@ -81,4 +85,184 @@ button.completed {
   color: #000;
   border: 2px solid #0f0;
   font-weight: bold;
+}
+
+.me-me-section {
+  position: absolute;
+  top: 27px;
+  left: 30px; /* Changed from 10px to 30px */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.me-me {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+.me-me img {
+  width: 81px;
+  height: 81px;
+  margin-bottom: 5px;
+}
+
+.me-me button {
+  padding: 12px;
+  font-size: 16px;
+  font-family: monospace;
+  background: #333;
+  border: 2px solid #666;
+  color: #ddd;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 150px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  padding: 5px 10px;
+  line-height: 1.2;
+  font-size: 14px; /* Smaller font size */
+}
+
+.me-me button span {
+  display: block;
+}
+
+.button-subtitle {
+  font-size: 12px; /* Even smaller font for subtitle */
+  margin-top: 2px;
+}
+
+.me-me-connection {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.me-me-connection.locked {
+  filter: grayscale(100%);
+}
+
+.me-me-connection.healthy .me-me img {
+  filter: brightness(1.2);
+  border: 3px solid #00ff00;
+}
+
+.me-me-connection.fading .me-me img {
+  filter: brightness(0.8);
+  border: 3px solid #ffff00;
+}
+
+.me-me-connection.weak .me-me img {
+  filter: brightness(0.5) grayscale(0.5);
+  border: 3px solid #ff0000;
+}
+
+.connection-line {
+  width: 2px;
+  height: 50px;
+  background: #555;
+  border-style: dashed;
+}
+
+.connection-text {
+  display: block;
+  font-size: 14px;
+  color: #aaa;
+  white-space: nowrap; /* Prevent text from wrapping */
+  min-height: 18px; /* Ensure height stays consistent */
+  text-align: center;
+  margin-top: 5px;
+  width: auto; /* Allow the width to adapt to content */
+  min-width: 180px; /* Maintain minimum width for alignment */
+}
+
+#dev-reset-button {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  padding: 12px;
+  font-size: 16px;
+  font-family: monospace;
+  background: #333;
+  border: 2px solid #666;
+  color: #ddd;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.double-indicator {
+  position: absolute;
+  right: -25px;
+  top: 0;
+  background-color: #0ff;
+  color: #000;
+  padding: 2px 5px;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: bold;
+  font-family: 'Share Tech Mono', monospace;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+  animation: pulse 2s infinite;
+}
+
+.health-bar.doubled {
+  background-image: linear-gradient(
+    45deg,
+    rgba(0, 255, 0, 1) 25%,
+    rgba(0, 255, 255, 1) 25%,
+    rgba(0, 255, 255, 1) 50%,
+    rgba(0, 255, 0, 1) 50%,
+    rgba(0, 255, 0, 1) 75%,
+    rgba(0, 255, 255, 1) 75%,
+    rgba(0, 255, 255, 1) 100%
+  );
+  background-size: 20px 20px;
+  animation: move-stripes 2s linear infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+@keyframes move-stripes {
+  0% { background-position: 0 0; }
+  100% { background-position: 20px 0; }
+}
+
+#top-left-controls {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1000;
+}
+
+#top-left-controls button {
+  padding: 6px 10px;
+  font-size: 14px;
+  font-family: monospace;
+  background: #222;
+  border: 2px solid #555;
+  color: #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#top-left-controls button:hover {
+  background: #0f0;
+  color: #000;
 }

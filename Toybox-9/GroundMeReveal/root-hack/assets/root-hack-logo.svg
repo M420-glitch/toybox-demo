@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="60" viewBox="0 0 200 60">
+  <style>
+    .text { font-family: 'Courier New', monospace; font-weight: bold; }
+    .roots { stroke: #4CAF50; fill: none; stroke-width: 2; }
+    .glow { filter: drop-shadow(0 0 3px #4CAF50); }
+  </style>
+  
+  <!-- Main logo text -->
+  <text x="60" y="25" class="text" font-size="22" fill="#4CAF50">ROOT_HACK</text>
+  <text x="60" y="45" class="text" font-size="10" fill="#A5D6A7">v9.13.7</text>
+  
+  <!-- Root icon -->
+  <g class="glow">
+    <!-- Main root -->
+    <path class="roots" d="M25,10 C25,10 25,50 25,50" />
+    <!-- Root branches -->
+    <path class="roots" d="M25,20 C25,20 40,30 35,40" />
+    <path class="roots" d="M25,25 C25,25 10,35 15,45" />
+    <path class="roots" d="M25,35 C25,35 45,40 40,50" />
+    <path class="roots" d="M25,30 C25,30 5,35 10,50" />
+    
+    <!-- Earth surface line -->
+    <path d="M5,10 C8,8 15,12 20,10 C25,8 30,12 35,10 C40,8 45,12 50,10" stroke="#8D6E63" stroke-width="2" fill="none" />
+    
+    <!-- Seed/node -->
+    <circle cx="25" cy="10" r="5" fill="#4CAF50" />
+  </g>
+</svg>

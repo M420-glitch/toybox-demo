@@ -1,0 +1,235 @@
+css */
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+body {
+  font-family: 'VT323', monospace;
+  background-color: #000;
+  color: #0f0;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)),
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none" stroke="%230f0" stroke-width="0.5"/></svg>');
+  background-size: 20px 20px;
+  text-shadow: 0 0 5px #0f0;
+}
+
+.exit-container {
+  width: 90%;
+  max-width: 600px;
+  background-color: #000;
+  border: 2px solid #0f0;
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.2), 
+              inset 0 0 10px rgba(0, 255, 0, 0.1);
+  padding: 30px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.exit-container::before {
+  content: "C:\\GVA\\EXIT>";
+  position: absolute;
+  top: 0;
+  left: 10px;
+  font-family: 'Share Tech Mono', monospace;
+  color: #0f0;
+  line-height: 20px;
+  padding: 5px;
+  background: #000;
+  border-bottom: 1px solid #0f0;
+  width: calc(100% - 10px);
+  text-align: left;
+  z-index: 1;
+}
+
+.exit-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 30px;
+  background: #000;
+  border-bottom: 1px solid #0f0;
+  z-index: 0;
+}
+
+h1 {
+  color: #0f0;
+  margin-top: 15px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 28px;
+}
+
+h1::before {
+  content: ">";
+  margin-right: 10px;
+}
+
+h2 {
+  color: #0f0;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-top: 30px;
+  font-size: 20px;
+}
+
+h2::before {
+  content: ">";
+  margin-right: 10px;
+}
+
+.stats-summary {
+  background-color: #000;
+  border: 1px solid #0f0;
+  padding: 15px;
+  margin: 20px 0;
+  position: relative;
+  text-align: left;
+}
+
+.stats-summary::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    transparent 0%,
+    rgba(0, 255, 0, 0.03) 50%,
+    transparent 100%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  animation: scanline 8s linear infinite;
+}
+
+@keyframes scanline {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 100%;
+  }
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(0, 255, 0, 0.3);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 18px;
+}
+
+.stat-row:last-child {
+  border-bottom: none;
+}
+
+.stat-row span:first-child::before {
+  content: ">";
+  margin-right: 5px;
+  color: #0f0;
+}
+
+.stat-row span:last-child {
+  color: #fff;
+  text-shadow: 0 0 8px #0f0;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 25px;
+}
+
+button {
+  padding: 12px;
+  border: 1px solid #0f0;
+  background-color: #000;
+  color: #0f0;
+  font-family: 'VT323', monospace;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+button:hover {
+  background-color: rgba(0, 255, 0, 0.2);
+  border-color: #0ff;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+  text-shadow: 0 0 10px #0ff;
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+.primary-button {
+  border-width: 2px;
+  background-color: rgba(0, 255, 0, 0.1);
+}
+
+.primary-button:hover {
+  background-color: rgba(0, 255, 0, 0.3);
+}
+
+.secondary-button {
+  border-style: dashed;
+}
+
+.secondary-button:hover {
+  border-style: solid;
+}
+
+.danger-button {
+  border-color: #f00;
+  color: #f00;
+  margin-top: 15px;
+}
+
+.danger-button:hover {
+  background-color: rgba(255, 0, 0, 0.2);
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+  text-shadow: 0 0 10px #f00;
+}
+
+/* Matrix effect in the background */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    rgba(0, 255, 0, 0.03) 10px,
+    rgba(0, 255, 0, 0.03) 20px
+  );
+  z-index: -1;
+  animation: matrix-bg 20s linear infinite;
+}
+
+@keyframes matrix-bg {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

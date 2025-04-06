@@ -45,7 +45,7 @@
   <div id="top-left-controls">
     <button onclick="goToMap()">🗺️ Progress Map</button>
     <button onclick="saveAndExit()">💾 Save & Exit</button>
-  </div>
+ </div>
   <div id="waterme-modal" class="modal" style="display: none;">
     <div class="modal-content">
       <div class="me-me-row">
@@ -87,4 +87,8 @@
   document.getElementById('btn-register').addEventListener('click', () => {
     window.location.href = '../Toybox-4/WaterMeReveal/index.html';
   });
+
+  console.log("XP Value:", playerState.getXP("main"));
 </script>
+</body>
+</html>

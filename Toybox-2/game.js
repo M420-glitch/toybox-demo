@@ -1,6 +1,6 @@
 window.addEventListener("DOMContentLoaded", () => {
   playerState.load();
-  document.getElementById("xp-value").textContent = playerState.getXP();
+  document.getElementById("xp-value").textContent = playerState.getXP("main");
 });
 
 let dragged = null;
@@ -64,11 +64,17 @@ function checkGrowResult() {
     gameAreaEl.style.borderColor = '#28a745';
 
     if (!playerState.isCompleted("2")) {
-      let currentXP = playerState.getXP();
-      currentXP += 5;
-      playerState.setXP(currentXP);
+      // Award XP
+      playerState.addXP("main", 5);
+
+      // Mark the toybox as completed
       playerState.markCompleted("2");
-      xpEl.textContent = currentXP;
+
+      // Save the player state
+      playerState.save();
+
+      // Update XP display
+      xpEl.textContent = playerState.getXP("main");
 
       xpEl.classList.add('xp-flash');
       setTimeout(() => xpEl.classList.remove('xp-flash'), 500);
@@ -103,12 +109,14 @@ function checkGrowResult() {
   }
 }
 
+document.getElementById("xp-value").textContent = playerState.getXP("main");
+
 document.getElementById('btn-continue').addEventListener('click', () => {
   window.location.href = '../Toybox-3/index.html';
 });
 
 document.getElementById('btn-exit').addEventListener('click', () => {
-  console.log('Exit Toybox');
+  saveAndExit();
 });
 
 function goToMap() {

@@ -1,6 +1,14 @@
 window.addEventListener("DOMContentLoaded", () => {
   playerState.load(); // Load from localStorage
-  document.getElementById("xp-value").textContent = playerState.getXP();
+  document.getElementById("xp-value").textContent = playerState.getXP("main");
+  
+  // Make XP clickable and link to XP summary
+  const xpValueElement = document.getElementById("xp-value");
+  xpValueElement.style.cursor = "pointer";
+  xpValueElement.title = "Click to view XP Summary";
+  xpValueElement.addEventListener("click", () => {
+    window.location.href = "../ProgressMap/xp-summary.html";
+  });
 });
 
 let dragged = null;
@@ -82,16 +90,23 @@ function checkWindItems() {
     gameAreaEl.style.borderColor = '#28a745';
 
     if (!playerState.isCompleted("4")) {
-      let currentXP = playerState.getXP();
-      currentXP += 5;
-      playerState.setXP(currentXP);
+      // Award XP
+      playerState.addXP("main", 5);
+      
+      // Award the Water Me Me token here, when toybox is completed
+      playerState.markMeMeEarned("water");
+      
+      // Mark the toybox as completed
       playerState.markCompleted("4");
-      xpEl.textContent = currentXP;
-    
+
+      // Save the player state
+      playerState.save();
+
+      xpEl.textContent = playerState.getXP("main");
       xpEl.classList.add('xp-flash');
       setTimeout(() => xpEl.classList.remove('xp-flash'), 500);
     }
-    
+
     setTimeout(() => {
       document.getElementById('waterme-modal').style.display = 'flex';
       gameAreaEl.classList.remove('complete');
@@ -125,8 +140,20 @@ function resetSlots() {
 document.getElementById('btn-register').addEventListener('click', () => {
   console.log('Redirect to registration');
   document.getElementById('waterme-modal').style.display = 'none';
+  playerState.save();
+  window.location.href = '../Toybox-4/WaterMeReveal/index.html';
 });
+
+document.getElementById('btn-continue').addEventListener('click', () => {
+  window.location.href = '../Toybox-5/index.html';
+});
+
+document.getElementById('btn-exit').addEventListener('click', () => {
+  saveAndExit();
+});
+
 function goToMap() {
+  playerState.save();
   window.location.href = "../ProgressMap/index.html"; // Adjust path if needed
 }
 

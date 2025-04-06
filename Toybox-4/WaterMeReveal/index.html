@@ -9,20 +9,18 @@
   
   <button id="btn-test-claim" class="dev-claim-btn">💧 Claim Token (Dev Test)</button>
 
-
   <div class="ad-column left-column">
     <div class="ad" title="Earn +5 XP"><a href="https://www.youtube.com/shorts/sTuStNx31os" target="_blank">
       <img src="../assets/blow/TOTD-teaser.png" alt="Tent of the Dead Teaser" />
     </a></div>
-    <div class="ad" title="Earn +5 XP">💾 Install the GaiaVerse Netscape Plugin</div>
-    <div class="ad" title="Earn +5 XP">👀 Shadow Sight™: See beyond the veil</div>
-    <div class="ad" title="Earn +5 XP">🧃 Drink Weed Water, Stay Rooted™</div>
-    <div class="ad" title="Earn +5 XP">🦷 DENTAL DAO – Decay or Destiny?</div>
-    <div class="ad" title="Earn +5 XP">👀 SNIFF ME ME SNEAK PEEK</div>
-    <div class="ad" title="Earn +5 XP">📦 Buy 2 NFTs Get 6 Crates</div>
-    <div class="ad" title="Earn +5 XP">🧼 Baron's Cleanse™ – Coming Soon</div>
-    <div class="ad" title="Earn +5 XP">💼 TRADE LIKE A BARON. LOSE LIKE A LEGEND.</div>
-
+    <div class="ad" title="Earn +5 XP"><a href="install-plugin/index.html">💾 Install the GaiaVerse Netscape Plugin</a></div>
+    <div class="ad" title="Earn +5 XP"><a href="shadow-sight/index.html">👀 Shadow Sight™: See beyond the veil</a></div>
+    <div class="ad" title="Earn +5 XP"><a href="weed-water/index.html">🧃 Drink Weed Water, Stay Rooted™</a></div>
+    <div class="ad" title="Earn +5 XP"><a href="dental-dao/index.html">🦷 DENTAL DAO – Decay or Destiny?</a></div>
+    <div class="ad" title="Earn +5 XP"><a href="sniff-me-me/index.html">👀 SNIFF ME ME SNEAK PEEK</a></div>
+    <div class="ad" title="Earn +5 XP"><a href="nft-crates/index.html">📦 Buy 2 NFTs Get 6 Crates</a></div>
+    <div class="ad" title="Earn +5 XP"><a href="barons-cleanse/index.html">🧼 Baron's Cleanse™ – Coming Soon</a></div>
+    <div class="ad" title="Earn +5 XP"><a href="trade-baron/index.html">💼 TRADE LIKE A BARON. LOSE LIKE A LEGEND.</a></div>
   </div>
 
   <div id="container">
@@ -74,56 +72,97 @@
   </div>
 
   <div class="ad-column right-column">
-    <div class="ad" title="Earn +5 XP">📡 Join the Barons' Surveillance Loyalty Club™</div>
-    <div class="ad" title="Earn +5 XP">💊 Eat the Red Pill & Get a Free Hat</div>
-    <div class="ad" title="Earn +5 XP">🧠 Brain-Mint 3000 – Freshness You Can Think</div>
-    <div class="ad" title="Earn +5 XP">👻 WhisperCoin – Mint in Silence</div>
-    <div class="ad" title="Earn +5 XP">🚨 XP BOOST: GLITCHGLADE MAP DROP</div>
-    <div class="ad" title="Earn +5 XP">💊 TOKENOMICS TUNNEL – ENTER?</div>
-    <div class="ad" title="Earn +5 XP">🎥 NEW: Tent of the Dead trailer</div>
-    <div class="ad" title="Earn +5 XP">💎 CLAIM YOUR DANK PASS</div>
-    <div class="ad" title="Earn +5 XP">🧙‍♂️ Unlock: Ghost Noodle Lore</div>
-
+    <div class="ad" title="Earn +5 XP"><a href="surveillance-club/index.html">📡 Join the Barons' Surveillance Loyalty Club™</a></div>
+    <div class="ad" title="Earn +5 XP"><a href="red-pill/index.html">💊 Eat the Red Pill & Get a Free Hat</a></div>
+    <div class="ad" title="Earn +5 XP"><a href="brain-mint/index.html">🧠 Brain-Mint 3000 – Freshness You Can Think</a></div>
+    <div class="ad" title="Earn +5 XP"><a href="whisper-coin/index.html">👻 WhisperCoin – Mint in Silence</a></div>
+    <div class="ad" title="Earn +5 XP"><a href="glitch-glade/index.html">🚨 XP BOOST: GLITCHGLADE MAP DROP</a></div>
+    <div class="ad" title="Earn +5 XP"><a href="tokenomics-tunnel/index.html">💊 TOKENOMICS TUNNEL – ENTER?</a></div>
+    <div class="ad" title="Earn +5 XP"><a href="totd-trailer/index.html">🎥 NEW: Tent of the Dead trailer</a></div>
+    <div class="ad" title="Earn +5 XP"><a href="dank-pass/index.html">💎 CLAIM YOUR DANK PASS</a></div>
+    <div class="ad" title="Earn +5 XP"><a href="ghost-noodle/index.html">🧙‍♂️ Unlock: Ghost Noodle Lore</a></div>
   </div>
   <script>
-    // Ensure playerState is available
-    if (!window.playerState) {
-      window.playerState = {
-        meMes: JSON.parse(localStorage.getItem('meMes')) || {},
-  
-        markMeMeEarned(token) {
-          this.meMes[token] = true;
-          localStorage.setItem('meMes', JSON.stringify(this.meMes));
-        },
-  
-        hasMeMe(token) {
-          return this.meMes[token] === true;
-        },
-  
-        save() {
-          localStorage.setItem('meMes', JSON.stringify(this.meMes));
+  // Ensure playerState is available
+  if (!window.playerState) {
+    window.playerState = {
+      meMes: JSON.parse(localStorage.getItem('meMes')) || {},
+      meMeTokens: {
+        water: parseFloat(localStorage.getItem('waterTokens')) || 0,
+      },
+      
+      markMeMeEarned(token) {
+        this.meMes[token] = true;
+        this.meMeTokens[token] = 1.0; // Set to 100%
+        localStorage.setItem('meMes', JSON.stringify(this.meMes));
+        localStorage.setItem(`${token}Tokens`, this.meMeTokens[token]);
+      },
+      
+      takeMeMePledge(token) {
+        if (this.hasMeMe(token)) {
+          this.meMeTokens[token] = 2.2; // 220% - with bonus!
+          localStorage.setItem(`${token}Tokens`, this.meMeTokens[token]);
+          return true;
         }
-      };
-    }
-  
-    document.addEventListener("DOMContentLoaded", () => {
-      const btn = document.getElementById('btn-test-claim');
-  
-      if (playerState.hasMeMe("water")) {
-        btn.classList.add("claimed");
-        btn.textContent = "✅ Token Claimed";
+        return false;
+      },
+      
+      hasMeMe(token) {
+        return this.meMes[token] === true;
+      },
+      
+      save() {
+        localStorage.setItem('meMes', JSON.stringify(this.meMes));
+        for (const token in this.meMeTokens) {
+          localStorage.setItem(`${token}Tokens`, this.meMeTokens[token]);
+        }
       }
-  
-      btn.addEventListener('click', () => {
-        if (!playerState.hasMeMe("water")) {
-          playerState.markMeMeEarned("water");
-          playerState.save();
-          btn.classList.add("claimed");
-          btn.textContent = "✅ Token Claimed";
+    };
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const btn = document.getElementById('btn-test-claim');
+    
+    // Check if token is already earned
+    if (playerState.hasMeMe("water")) {
+      const waterTokenValue = parseFloat(localStorage.getItem('waterTokens')) || 0;
+      
+      if (waterTokenValue >= 2.0) {
+        // Pledge already taken
+        btn.classList.add("claimed");
+        btn.textContent = "✅ Pledge Taken";
+      } else {
+        // Token earned but no pledge yet
+        btn.classList.add("earned");
+        btn.textContent = "🌊 Take Water Pledge";
+      }
+    }
+
+    btn.addEventListener('click', () => {
+      if (!playerState.hasMeMe("water")) {
+        // First-time claim - earn the token
+        playerState.markMeMeEarned("water");
+        playerState.save();
+        btn.classList.add("earned");
+        btn.textContent = "🌊 Take Water Pledge";
+      } else {
+        // Already have token, now take pledge
+        const waterTokenValue = parseFloat(localStorage.getItem('waterTokens')) || 0;
+        
+        if (waterTokenValue < 2.0) {
+          if (confirm("Do you pledge to protect and nurture water in your community?")) {
+            playerState.takeMeMePledge("water");
+            playerState.save();
+            btn.classList.remove("earned");
+            btn.classList.add("claimed");
+            btn.textContent = "✅ Pledge Taken";
+            alert("You've taken the Water Pledge! Your token is now boosted to 220%!");
+          }
         }
-      });
+      }
     });
-  </script>
+  });
+</script>
   
 </body>
 </html>

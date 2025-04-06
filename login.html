@@ -1,0 +1,70 @@
+.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GVA Toyboxes - Login</title>
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+  <div class="container">
+    <div class="form-container">
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="login">Login</button>
+        <button class="tab-btn" data-tab="signup">Sign Up</button>
+      </div>
+      
+      <!-- Login Form -->
+      <div class="form-panel active" id="login-panel">
+        <h2>Welcome Back!</h2>
+        <form id="login-form">
+          <div class="form-group">
+            <label for="login-username">Username</label>
+            <input type="text" id="login-username" placeholder="Enter your username" required>
+          </div>
+          <div class="form-group">
+            <label for="login-password">Password</label>
+            <input type="password" id="login-password" placeholder="For demo, any password works" required>
+          </div>
+          <button type="submit" class="primary-button">Login</button>
+        </form>
+        <div class="demo-note">
+          <p>For demo purposes, you can login with any username and password</p>
+        </div>
+      </div>
+      
+      <!-- Sign Up Form -->
+      <div class="form-panel" id="signup-panel">
+        <h2>Create Account</h2>
+        <form id="signup-form">
+          <div class="form-group">
+            <label for="signup-username">Username</label>
+            <input type="text" id="signup-username" placeholder="Choose a username" required>
+          </div>
+          <div class="form-group">
+            <label for="signup-email">Email</label>
+            <input type="email" id="signup-email" placeholder="Your email" required>
+          </div>
+          <div class="form-group">
+            <label for="signup-password">Password</label>
+            <input type="password" id="signup-password" placeholder="Create password" required>
+          </div>
+          <button type="submit" class="primary-button">Sign Up</button>
+        </form>
+        <div class="demo-note">
+          <p>For demo purposes, no real account is created</p>
+        </div>
+      </div>
+
+      <div class="guest-option">
+        <p>Or</p>
+        <button id="guest-button" class="secondary-button">Continue as Guest</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="playerState.js"></script>
+  <script src="login.js"></script>
+</body>
+</html>
